@@ -1,12 +1,14 @@
 raytracer
 =========
 
-MABM Raytracer auteurs :
+MABM Raytracer
 
-Merran Geoffrey
-Adès Nicolas
-Bertomeu Joris
-Mediavilla Jeremy
+Auteurs :
+
+- Merran Geoffrey
+- Adès Nicolas
+- Bertomeu Joris
+- Mediavilla Jeremy
 
 Guest : Marteliere Pierrik
 
