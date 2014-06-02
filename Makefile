@@ -5,7 +5,7 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Mon Oct 21 13:28:05 2013 Geoffrey Merran
-## Last update Mon May 19 23:35:15 2014 Geoffrey Merran
+## Last update Mon Jun  2 09:40:10 2014 Jeremy Mediavilla
 ##
 
 RM		= rm -f
@@ -38,6 +38,8 @@ SRC		= $(D_CORE)main.c			\
 		$(D_INTER)get_simple_pos2.c		\
 		$(D_INTER)find_inter.c			\
 		$(D_PARSER)items.c 			\
+		$(D_PARSER)list.c 			\
+		$(D_PARSER)read_inf.c 			\
 		$(D_SHAPE)sphere.c			\
 		$(D_SHAPE)plan.c 			\
 		$(D_SHAPE)cylinder.c 			\

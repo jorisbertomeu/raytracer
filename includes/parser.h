@@ -5,15 +5,33 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Mon May 19 23:05:46 2014 Geoffrey Merran
-** Last update Mon May 19 23:27:50 2014 Geoffrey Merran
+** Last update Mon Jun  2 09:42:40 2014 Jeremy Mediavilla
 */
 
 #ifndef PARSER_
 # define PARSER_
 # include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
+# include <unistd.h>
 # include "my.h"
 # include "my_mlx.h"
 # include "rtv1.h"
+
+typedef		struct s_list
+{
+  char		*data;
+  struct s_list *next;
+  struct s_list *prev;
+}		t_list;
+
+/* fonctions dans list.c */
+
+t_list		*create_list(char *);
+void		add_after(t_list *, char *);
+void		add_before(t_list *, char *);
+void		remove_from_list(t_list *);
+void		add_to_end(t_list *, char *);
 
 /*
 ** Old
