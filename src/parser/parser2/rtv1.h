@@ -5,25 +5,18 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Tue Jun  3 17:03:17 2014 Geoffrey Merran
+** Last update Mon May 19 23:27:11 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
 # define RTV1_
-# include "my_mlx.h"
-
-typedef union	s_union
-{
-  int		clr;
-  char		color[4];
-}		t_union;
 
 typedef enum	s_type
   {
-    SPHERE,
-    PLANE,
-    CONE,
-    CYLINDER
+    SPHERE = 1,
+    PLANE = 2,
+    CONE = 3,
+    CYLINDER = 4
   }		t_type;
 
 typedef struct	s_rgb
@@ -61,7 +54,6 @@ typedef struct	s_inter
   t_vector	n;
   t_vector	p;
   t_rgb		rgb;
-  t_type	type;
 }		t_inter;
 
 typedef struct	s_rinter
