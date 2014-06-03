@@ -5,14 +5,14 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Mon Jun  2 15:32:31 2014 Jeremy Mediavilla
-** Last update Mon Jun  2 15:39:49 2014 Jeremy Mediavilla
+** Last update Tue Jun  3 16:41:44 2014 Jeremy Mediavilla
 */
 
 #include "my_mlx.h"
 
 unsigned int	get_pix_clr(int pixel, int length, t_scene *scene)
 {
-  t_post	*pos;
+  t_pos		*pos;
 
   if (length == 0)
     {

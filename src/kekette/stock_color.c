@@ -5,9 +5,10 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:31:37 2014 Jeremy Mediavilla
-** Last update Tue Jun  3 16:32:51 2014 Jeremy Mediavilla
+** Last update Tue Jun  3 16:40:54 2014 Jeremy Mediavilla
 */
 
+#include <string.h>
 #include "rtv1.h"
 
 void		stock_clr_img(int *color, char *img)
@@ -23,7 +24,7 @@ void		stock_clr_img(int *color, char *img)
 	return ;
       tmp.clr = color[i + 8];
       pos = color[i] * 4;
-      img[pos] = tmp.color;
+      memcpy(&img[pos], &tmp.color, 4);
       i++;
     }
 }
