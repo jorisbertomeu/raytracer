@@ -5,7 +5,7 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Mon Oct 21 13:28:05 2013 Geoffrey Merran
-## Last update Mon Jun  2 09:40:10 2014 Jeremy Mediavilla
+## Last update Tue Jun  3 16:30:01 2014 Jeremy Mediavilla
 ##
 
 RM		= rm -f
@@ -31,6 +31,7 @@ D_INTER		= src/inter/
 D_PARSER	= src/parser/
 D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
+D_TMP		= src/kekette/
 
 SRC		= $(D_CORE)main.c			\
 		$(D_CORE)hook.c				\
@@ -46,6 +47,7 @@ SRC		= $(D_CORE)main.c			\
 		$(D_SHAPE)cone.c			\
 		$(D_LUM)luminosity.c 			\
 		$(D_CORE)xfunction.c			\
+		$(D_TMP)stock_color.c			\
 
 all:	libs $(NAME)
 

@@ -5,11 +5,18 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Mon May 19 23:27:11 2014 Geoffrey Merran
+** Last update Tue Jun  3 16:32:22 2014 Jeremy Mediavilla
 */
 
 #ifndef RTV1_
 # define RTV1_
+# include "my_mlx.h"
+
+typedef union	s_union
+{
+  int		clr;
+  char		color[4];
+}		t_union;
 
 typedef enum	s_type
   {
