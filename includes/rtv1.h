@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Mon May 19 23:27:11 2014 Geoffrey Merran
+** Last update Mon Jun  2 16:01:52 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -13,10 +13,10 @@
 
 typedef enum	s_type
   {
-    SPHERE = 1,
-    PLANE = 2,
-    CONE = 3,
-    CYLINDER = 4
+    SPHERE,
+    PLANE,
+    CONE,
+    CYLINDER
   }		t_type;
 
 typedef struct	s_rgb
@@ -54,6 +54,7 @@ typedef struct	s_inter
   t_vector	n;
   t_vector	p;
   t_rgb		rgb;
+  t_type	type;
 }		t_inter;
 
 typedef struct	s_rinter

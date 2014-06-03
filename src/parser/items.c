@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Mon May 19 23:21:49 2014 Geoffrey Merran
+** Last update Mon Jun  2 17:35:56 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -68,8 +68,8 @@ t_node		*get_items()
   init_vec(&n_pos, 0, 0, 0);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 0, 255, 0);
-  init_item(&new, n_pos, n_angle, CONE);
-  init_item2(&new, 10.0, n_color);
+  init_item(&new, n_pos, n_angle, CYLINDER);
+  init_item2(&new, 50.0, n_color);
   add_item(&items, new);
   return (items);
 }

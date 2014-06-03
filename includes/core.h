@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Mon May 19 23:38:41 2014 Geoffrey Merran
+** Last update Tue Jun  3 16:55:45 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -28,8 +28,8 @@
 */
 
 void		init_cam(t_cam *cam); /* to move in parser */
-unsigned int   	calc_image(t_pos pos, t_cam eye, t_node *items);
-void		fill_image(t_img *img);
+unsigned int   	calc_image(t_pos pos, t_scene *scene);
+void		fill_image(t_img *img, t_scene *scene);
 
 
 /*
@@ -41,6 +41,7 @@ typedef t_rinter (*t_finter)(t_cam, t_vector, t_item);
 t_inter		find_inter(t_cam eye, t_vector pos_3d, t_node *items);
 t_vector	get_eq_param(t_vector eye, float k, t_vector pos_3d);
 float		get_k_from_delta(float delta, float a, float b);
+t_vector	get_normal(t_inter inter);
 t_rinter	inter_plan(t_cam eye, t_vector pos_3d, t_item plan);
 t_rinter	inter_sphere(t_cam eye, t_vector pos_3d, t_item sphere);
 t_rinter	inter_cylinder(t_cam eye, t_vector pos_3d, t_item sphere);
