@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Fri May 30 14:08:01 2014 martelliere
-** Last update Wed Jun  4 00:11:06 2014 martelliere
+** Last update Mon Jun  2 14:36:39 2014 martelliere
 */
 
 #include "parser.h"
@@ -14,14 +14,7 @@ int             get_compo(t_parser *parser, int nb)
 {
   if (parser->tab[parser->n][3] == '<' &&
       parser->tab[parser->n][strlen(parser->tab[parser->n]) - 1] == '>')
-    {
-      nb = atof(&parser->tab[parser->n][4]);
-      if (nb < 0 || nb > 255)
-	{
-	  printf("The color composant must be between 0 and 255 line %d.\n",
-		 parser->line);
-	  exit(EXIT_FAILURE);
-	}
+    nb = atof(&parser->tab[parser->n][4]);
   else
     {
       printf("Syntax error line %d.\n", parser->line);
