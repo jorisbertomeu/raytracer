@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Mon Jun  2 16:10:25 2014 Geoffrey Merran
-** Last update Tue Jun  3 21:31:55 2014 Geoffrey Merran
+** Last update Thu Jun  5 21:35:10 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -36,7 +36,7 @@ t_vector	get_normal(t_inter inter)
     {
       n.x = inter.p.x;
       n.y = inter.p.y;
-      n.z = (-conv_radian(inter.item.rayon)) * inter.p.z;
+      n.z = (-(conv_radian(inter.item.rayon))) * inter.p.z;
     }
   return (n);
 }

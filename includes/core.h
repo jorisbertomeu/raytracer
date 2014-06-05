@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Wed Jun  4 02:09:58 2014 Geoffrey Merran
+** Last update Thu Jun  5 21:01:01 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -62,8 +62,8 @@ void		get_simple_pos(t_cam *eye, t_item item, t_vector *pos_3d);
 ** Luminosity / Shadow
 */
 
-int		is_shadow(t_spot spot, t_inter inter, t_vector pos_3d, t_node *items);
 unsigned int	luminosity(t_spot spot, t_inter inter);
+int		is_shadow(t_spot spot, t_inter inter, t_node *items);
 
 /*
 ** Hook

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Thu Jun  5 00:25:34 2014 Geoffrey Merran
+** Last update Thu Jun  5 21:55:40 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -72,6 +72,6 @@ t_node		*get_items()
   init_rgb(&n_color, 0, 255, 0);
   init_item(&new, n_pos, n_angle, CONE);
   init_item2(&new, 20.0, n_color, 0.5);
-  /* add_item(&items, new); */
+  add_item(&items, new);
   return (items);
 }
