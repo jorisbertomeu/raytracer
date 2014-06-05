@@ -5,13 +5,13 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Tue Jun  3 16:55:45 2014 Geoffrey Merran
+** Last update Wed Jun  4 02:09:58 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
 # define MAIN_
-# define WIN_X 400
-# define WIN_Y 400
+# define WIN_X 800
+# define WIN_Y 800
 # define ESCAPE 65307
 # define WIN_TITLE "RayTracer V.1 | Geoffrey Merran"
 # include <math.h>
@@ -62,6 +62,7 @@ void		get_simple_pos(t_cam *eye, t_item item, t_vector *pos_3d);
 ** Luminosity / Shadow
 */
 
+int		is_shadow(t_spot spot, t_inter inter, t_vector pos_3d, t_node *items);
 unsigned int	luminosity(t_spot spot, t_inter inter);
 
 /*

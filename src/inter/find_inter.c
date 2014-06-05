@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 18:42:28 2014 Geoffrey Merran
-** Last update Mon Jun  2 16:05:20 2014 Geoffrey Merran
+** Last update Tue Jun  3 18:28:45 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -26,9 +26,7 @@ void	best_of_k(t_rinter new, t_item item, t_inter *inter)
       ((new.k < inter->k && new.k > 0.0001)))
     {
       inter->k = new.k;
-      inter->rgb = item.color;
-      inter->type = item.type;
-      init_vec(&inter->n, item.pos.x, item.pos.y, item.pos.z);
+      inter->item = item;
     }
 }
 
@@ -50,7 +48,6 @@ void		init_inter(t_inter *inter)
   init_rgb(&inter->rgb, 0, 0, 0);
   init_vec(&inter->n, 0, 0, 0);
   inter->k = 0;
-  inter->type = -1;
 }
 
 t_inter		find_inter(t_cam eye, t_vector pos_3d, t_node *items)

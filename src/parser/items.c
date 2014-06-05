@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Mon Jun  2 17:35:56 2014 Geoffrey Merran
+** Last update Thu Jun  5 00:25:34 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -20,6 +20,7 @@ void		add_item(t_node **list, t_item new)
   tmp->item.type = new.type;
   tmp->item.rayon = new.rayon;
   tmp->item.color = new.color;
+  tmp->item.brillance = new.brillance;
   tmp->next = *list;
   *list = tmp;
 }
@@ -31,10 +32,11 @@ void	init_item(t_item *new, t_vector pos, t_vector angle, t_type type)
   new->type = type;
 }
 
-void	init_item2(t_item *new, float rayon, t_rgb color)
+void	init_item2(t_item *new, float rayon, t_rgb color, float brillance)
 {
   new->rayon = rayon;
   new->color = color;
+  new->brillance = brillance;
 }
 
 void	init_rgb(t_rgb *color, int r, int g, int b)
@@ -53,23 +55,23 @@ t_node		*get_items()
   t_item	new;
 
   items = NULL;
-  init_vec(&n_pos, 0, 0, 0);
+  init_vec(&n_pos, 0, 0, 100);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 255, 0, 0);
   init_item(&new, n_pos, n_angle, SPHERE);
-  init_item2(&new, 100.0, n_color);
+  init_item2(&new, 100.0, n_color, 0.5);
   add_item(&items, new);
   init_vec(&n_pos, 0, 0, 0);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 0, 0, 255);
   init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color);
+  init_item2(&new, 0, n_color, 0.5);
   add_item(&items, new);
-  init_vec(&n_pos, 0, 0, 0);
+  init_vec(&n_pos, 0, 0, 200);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 0, 255, 0);
-  init_item(&new, n_pos, n_angle, CYLINDER);
-  init_item2(&new, 50.0, n_color);
-  add_item(&items, new);
+  init_item(&new, n_pos, n_angle, CONE);
+  init_item2(&new, 20.0, n_color, 0.5);
+  /* add_item(&items, new); */
   return (items);
 }

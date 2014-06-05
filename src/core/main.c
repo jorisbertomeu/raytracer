@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Tue Jun  3 16:58:47 2014 Geoffrey Merran
+** Last update Thu Jun  5 00:41:11 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -17,7 +17,7 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   t_spot	spot;
   unsigned int 	color;
 
-  init_vec(&spot.pos, 300, -100, 0);
+  init_vec(&spot.pos, -300, 100, 150);
   init_rgb(&spot.color, 255, 255, 255);
   pos_3d.x = scene->eye->distance;
   pos_3d.y = (WIN_X / 2.000) - (float) pos.x;
@@ -25,6 +25,8 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   inter = find_inter(*scene->eye, pos_3d, scene->items);
   inter.p = get_eq_param(scene->eye->pos, inter.k, pos_3d);
   inter.n = get_normal(inter);
+  if (is_shadow(spot, inter, pos_3d, scene->items))
+    return (change_rgb(0, 0, 0));
   color = luminosity(spot, inter);
   return (color);
 }

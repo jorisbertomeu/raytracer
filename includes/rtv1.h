@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Tue Jun  3 17:03:17 2014 Geoffrey Merran
+** Last update Wed Jun  4 00:27:32 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -46,6 +46,7 @@ typedef struct	s_item
   t_vector	angle;
   t_type	type;
   float		rayon;
+  float		brillance;
   t_rgb		color;
 }		t_item;
 
@@ -61,7 +62,7 @@ typedef struct	s_inter
   t_vector	n;
   t_vector	p;
   t_rgb		rgb;
-  t_type	type;
+  t_item	item;
 }		t_inter;
 
 typedef struct	s_rinter
@@ -74,6 +75,7 @@ typedef struct	s_spot
 {
   t_vector	pos;
   t_rgb		color;
+  struct s_spot	*next;
 }		t_spot;
 
 typedef struct	s_scene
