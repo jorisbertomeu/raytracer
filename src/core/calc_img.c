@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Fri Jun  6 19:48:30 2014 Geoffrey Merran
+** Last update Sat Jun  7 00:57:39 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -77,7 +77,7 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   inter = get_pixel_color(pos_3d, scene);
   color = inter.rgb;
   if (inter.k == 0)
-    return (change_rgb(color.r, color.g, color.b));
+    return (change_rgb(0, 0, 0));
   save = put_reflexion(inter, scene, pos_3d);
   color.r = (save.r * inter.item.reflexion) +
     (color.r * (1.0 - inter.item.reflexion));
