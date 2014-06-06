@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Fri Jun  6 05:00:44 2014 Geoffrey Merran
+** Last update Fri Jun  6 15:35:27 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -67,14 +67,14 @@ t_spot		*get_spots()
 
   spots = NULL;
   init_vec(&n_pos, -300, 800, 300);
-  init_rgb(&n_color, 161, 40, 48);
+  init_rgb(&n_color, 0, 0, 255);
   add_spot(&spots, n_pos, n_color);
   init_vec(&n_pos, -300, -800, 300);
-  init_rgb(&n_color, 244, 41, 61);
+  init_rgb(&n_color, 255, 0, 0);
   add_spot(&spots, n_pos, n_color);
-  /* init_vec(&n_pos, -300, 0, 300); */
-  /* init_rgb(&n_color, 45, 255, 156); */
-  /* add_spot(&spots, n_pos, n_color); */
+  init_vec(&n_pos, -300, 0, 300);
+  init_rgb(&n_color, 0, 255, 0);
+  add_spot(&spots, n_pos, n_color);
   return (spots);
 }
 
@@ -87,21 +87,21 @@ t_node		*get_items()
   t_item	new;
 
   items = NULL;
-  init_vec(&n_pos, 0, 0, 300);
+  init_vec(&n_pos, -200, -100, 100);
   init_vec(&n_angle, 0, 0, 0);
-  init_rgb(&n_color, 202, 0, 42);
-  init_item(&new, n_pos, n_angle, SPHERE);
-  init_item2(&new, 100.0, n_color, 0.5, 0.5);
+  init_rgb(&n_color, 255, 0, 0);
+  init_item(&new, n_pos, n_angle, CONE);
+  init_item2(&new, 30.0, n_color, 0.5, 0.5);
   add_item(&items, new);
   init_vec(&n_pos, 0, 0, 0);
   init_vec(&n_angle, 0, 0, 0);
-  init_rgb(&n_color, 255, 17, 0);
+  init_rgb(&n_color, 0, 0, 255);
   init_item(&new, n_pos, n_angle, PLANE);
   init_item2(&new, 0, n_color, 0.5, 0.5);
   add_item(&items, new);
   init_vec(&n_pos, 0, 0, 200);
   init_vec(&n_angle, 0, 0, 0);
-  init_rgb(&n_color, 255, 66, 0);
+  init_rgb(&n_color, 0, 255, 0);
   init_item(&new, n_pos, n_angle, CYLINDER);
   init_item2(&new, 50.0, n_color, 0.5, 0.5);
   add_item(&items, new);
