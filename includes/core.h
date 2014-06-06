@@ -5,13 +5,13 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Tue Jun  3 16:55:45 2014 Geoffrey Merran
+** Last update Fri Jun  6 04:06:08 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
 # define MAIN_
-# define WIN_X 400
-# define WIN_Y 400
+# define WIN_X 800
+# define WIN_Y 800
 # define ESCAPE 65307
 # define WIN_TITLE "RayTracer V.1 | Geoffrey Merran"
 # include <math.h>
@@ -30,6 +30,7 @@
 void		init_cam(t_cam *cam); /* to move in parser */
 unsigned int   	calc_image(t_pos pos, t_scene *scene);
 void		fill_image(t_img *img, t_scene *scene);
+t_inter		get_pixel_color(t_vector pos_3d, t_scene *scene);
 
 
 /*
@@ -62,7 +63,14 @@ void		get_simple_pos(t_cam *eye, t_item item, t_vector *pos_3d);
 ** Luminosity / Shadow
 */
 
-unsigned int	luminosity(t_spot spot, t_inter inter);
+t_rgb		luminosity(t_spot spot, t_inter inter);
+int		is_shadow(t_spot spot, t_inter inter, t_node *items);
+
+/*
+** Effects
+*/
+
+t_rgb		put_reflexion(t_inter inter, t_scene *scene, t_vector pos_3d);
 
 /*
 ** Hook

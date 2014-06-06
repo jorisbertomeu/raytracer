@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Mon Dec  2 16:20:00 2013 Geoffrey Merran
-** Last update Sun Mar 16 05:13:42 2014 Geoffrey Merran
+** Last update Thu Jun  5 21:18:11 2014 Geoffrey Merran
 */
 
 #define _GNU_SOURCE
@@ -13,7 +13,7 @@
 
 float	conv_radian(float degree)
 {
-  return ((degree * M_PI) / 180);
+  return ((degree * M_PI) / (float) 180);
 }
 
 int	is_fzero(float f)

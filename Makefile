@@ -5,7 +5,7 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Tue Jun  3 17:03:02 2014 Geoffrey Merran
-## Last update Tue Jun  3 17:03:03 2014 Geoffrey Merran
+## Last update Fri Jun  6 03:27:26 2014 Geoffrey Merran
 ##
 
 RM		= rm -f
@@ -31,9 +31,11 @@ D_INTER		= src/inter/
 D_PARSER	= src/parser/
 D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
+D_REFL		= src/reflexion/
 D_TMP		= src/kekette/
 
 SRC		= $(D_CORE)main.c			\
+		$(D_CORE)calc_img.c			\
 		$(D_CORE)hook.c				\
 		$(D_INTER)get_simple_pos.c 		\
 		$(D_INTER)get_simple_pos2.c		\
@@ -47,6 +49,8 @@ SRC		= $(D_CORE)main.c			\
 		$(D_SHAPE)cylinder.c 			\
 		$(D_SHAPE)cone.c			\
 		$(D_LUM)luminosity.c 			\
+		$(D_LUM)shadow.c 			\
+		$(D_REFL)reflexion.c			\
 		$(D_CORE)xfunction.c			\
 		$(D_TMP)stock_color.c			\
 
