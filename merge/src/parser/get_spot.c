@@ -5,14 +5,14 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Fri May 30 14:08:01 2014 martelliere
-** Last update Fri Jun  6 18:24:28 2014 Geoffrey Merran
+** Last update Fri Jun  6 21:49:28 2014 martelliere
 */
 
 #include "parser.h"
 
 int             get_compo(t_parser *parser, int nb)
 {
-  if (parser->tab[parser->n][3] == '<' &&
+  if (parser->tab[parser->n] != NULL && parser->tab[parser->n][3] == '<' &&
       parser->tab[parser->n][strlen(parser->tab[parser->n]) - 1] == '>')
     {
       nb = atof(&parser->tab[parser->n][4]);
@@ -38,7 +38,8 @@ int             get_rgb(t_parser *parser, char *id)
   parser->line++;
   parser->n++;
   nb = 0;
-  if (strncmp(strlower(parser->tab[parser->n]), id, 3) == 0)
+  if (parser->tab[parser->n] != NULL &&
+      strncmp(strlower(parser->tab[parser->n]), id, 3) == 0)
     nb = get_compo(parser, nb);
   else
     {
@@ -54,7 +55,8 @@ t_rgb           get_color(t_parser *parser)
 
   parser->line++;
   parser->n++;
-  if (strcmp(strlower(parser->tab[parser->n]), "<col>") == 0)
+  if (parser->tab[parser->n] != NULL &&
+      strcmp(strlower(parser->tab[parser->n]), "<col>") == 0)
     {
       color.r = get_rgb(parser, "<r>");
       color.g = get_rgb(parser, "<g>");

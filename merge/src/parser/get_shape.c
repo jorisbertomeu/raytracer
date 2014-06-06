@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Mon Jun  2 14:16:00 2014 martelliere
-** Last update Fri Jun  6 16:07:33 2014 Geoffrey Merran
+** Last update Fri Jun  6 21:50:34 2014 martelliere
 */
 
 #include "parser.h"
@@ -16,11 +16,12 @@ float           get_size(t_parser *parser)
 
   parser->line++;
   parser->n++;
-  if (strcmp(strlower(parser->tab[parser->n]), "<size>") == 0)
+  if (parser->tab[parser->n] != NULL &&
+      strcmp(strlower(parser->tab[parser->n]), "<size>") == 0)
     {
       parser->n++;
       parser->line++;
-      if (parser->tab[parser->n][0] == '<' &&
+      if (parser->tab[parser->n] != NULL && parser->tab[parser->n][0] == '<' &&
           parser->tab[parser->n][strlen(parser->tab[parser->n]) - 1] == '>')
         size = atof(&parser->tab[parser->n][1]);
       else

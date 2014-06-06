@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:03 2014 martelliere
-** Last update Fri Jun  6 17:33:22 2014 Geoffrey Merran
+** Last update Fri Jun  6 21:52:21 2014 martelliere
 */
 
 #include "parser.h"
@@ -49,7 +49,8 @@ int	my_parser(t_scene *scene, t_parser *parser, int i)
   i = 0;
   while (i < 5)
     {
-      if (strcmp(otab[i], strlower(parser->tab[parser->n])) == 0)
+      if (parser->tab[parser->n] != NULL &&
+	  strcmp(otab[i], strlower(parser->tab[parser->n])) == 0)
 	{
 	  if ((i == 1 || i == 2) && parser->k != 3)
 	    parser->k = parser->k + i;

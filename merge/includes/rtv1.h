@@ -5,11 +5,12 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Fri Jun  6 15:45:37 2014 Geoffrey Merran
+** Last update Fri Jun  6 19:30:01 2014 martelliere
 */
 
 #ifndef RTV1_
 # define RTV1_
+
 # include "my_mlx.h"
 
 typedef union	s_union

@@ -5,14 +5,14 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Thu Jun  5 18:41:17 2014 martelliere
-** Last update Fri Jun  6 17:36:48 2014 Geoffrey Merran
+** Last update Fri Jun  6 21:48:36 2014 martelliere
 */
 
 #include	"parser.h"
 
 float		get_coord(t_parser *parser, float pos)
 {
-  if (parser->tab[parser->n][3] == '<' &&
+  if (parser->tab[parser->n] != NULL && parser->tab[parser->n][3] == '<' &&
       parser->tab[parser->n][strlen(parser->tab[parser->n]) - 1] == '>')
     pos = atof(&parser->tab[parser->n][4]);
   else
@@ -30,7 +30,8 @@ float		get_pos(t_parser *parser, char *id)
   parser->line++;
   parser->n++;
   pos = 0;
-  if (strncmp(strlower(parser->tab[parser->n]), id, 3) == 0)
+  if (parser->tab[parser->n] != NULL &&
+      strncmp(strlower(parser->tab[parser->n]), id, 3) == 0)
     pos = get_coord(parser, pos);
   else
     {
@@ -47,7 +48,8 @@ t_vector	get_vector(t_parser *parser, char *id)
 
   parser->line++;
   parser->n++;
-  if (strcmp(strlower(parser->tab[parser->n]), id) == 0)
+  if (parser->tab[parser->n] != NULL &&
+      strcmp(strlower(parser->tab[parser->n]), id) == 0)
     {
       vector.x = get_pos(parser, "<x>");
       vector.y = get_pos(parser, "<y>");

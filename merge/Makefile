@@ -5,7 +5,7 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Tue Jun  3 17:03:02 2014 Geoffrey Merran
-## Last update Fri Jun  6 18:07:41 2014 Geoffrey Merran
+## Last update Fri Jun  6 21:36:40 2014 martelliere
 ##
 
 RM		= rm -f
@@ -70,7 +70,7 @@ SRC		= $(D_CORE)main.c			\
 all:	libs $(NAME)
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LIBS) -L$(LIB) -L$(LIBMYX) -L$(LIBX11) -L$(LIBXEXT) -lm
+	$(CC) -o $(NAME) $(OBJ) $(LIBS) -L$(LIB) -L$(LIBMYX) -L$(LIBX11) -L$(LIBXEXT) -lm -g3
 
 libs:
 	make -C $(LIB)

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Fri Jun  6 17:21:28 2014 Geoffrey Merran
+** Last update Fri Jun  6 21:54:58 2014 martelliere
 */
 
 #include "core.h"
