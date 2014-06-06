@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Fri Jun  6 04:45:21 2014 Geoffrey Merran
+** Last update Fri Jun  6 19:29:30 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -38,7 +38,7 @@ t_rgb		put_spots(t_inter inter, t_scene *scene)
   while (tmp)
     {
       if (is_shadow(*tmp, inter, scene->items))
-	init_rgb(&save, 0, 0, 0);
+      	init_rgb(&save, 0, 0, 0);
       else
         save = luminosity(*tmp, inter);
       color.r = color.r + save.r;

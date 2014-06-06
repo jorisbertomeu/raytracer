@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 23:18:21 2014 Geoffrey Merran
-** Last update Fri Jun  6 02:59:40 2014 Geoffrey Merran
+** Last update Fri Jun  6 19:30:31 2014 Geoffrey Merran
 */
 
 #define _BSD_SOURCE
@@ -45,9 +45,9 @@ t_rgb		luminosity(t_spot spot, t_inter inter)
   float		norm;
   float		norm_d;
 
-  l.x = spot.pos.x - inter.p.x - inter.item.pos.x;
-  l.y = spot.pos.y - inter.p.y - inter.item.pos.y;
-  l.z = spot.pos.z - inter.p.z - inter.item.pos.z;
+  l.x = spot.pos.x - inter.p.x;
+  l.y = spot.pos.y - inter.p.y;
+  l.z = spot.pos.z - inter.p.z;
   norm = sqrtf(pow(l.x, 2) + pow(l.y, 2) + pow(l.z, 2));
   norm_d = sqrtf(pow(inter.n.x, 2) + pow(inter.n.y, 2) + pow(inter.n.z, 2));
   cos_a = ((inter.n.x * l.x) + (inter.n.y * l.y)
