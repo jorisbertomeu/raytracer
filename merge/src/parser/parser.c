@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:03 2014 martelliere
-** Last update Mon Jun  2 15:04:37 2014 martelliere
+** Last update Fri Jun  6 17:33:22 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -60,7 +60,8 @@ int	my_parser(t_scene *scene, t_parser *parser, int i)
     }
   if (i == 6)
     {
-      printf("%s: unknown object line %d.\n", parser->tab[0], parser->line);
+      fprintf(stderr, "%s: unknown object line %d.\n",
+	      parser->tab[0], parser->line);
       exit(EXIT_FAILURE);
     }
   return (parser->k);

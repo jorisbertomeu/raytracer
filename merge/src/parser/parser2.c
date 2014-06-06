@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:15 2014 martelliere
-** Last update Mon Jun  2 15:15:02 2014 martelliere
+** Last update Fri Jun  6 17:47:13 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -13,27 +13,26 @@
 void		check_scene(int k)
 {
   if (k == 2)
-    printf("At least one light is needed by the RT.\n");
+    fprintf(stderr, "At least one light is needed by the RT.\n");
   else if (k == 1)
-    printf("You must provide the eye informations.\n");
+    fprintf(stderr, "You must provide the eye informations.\n");
   else
-    printf("Missing both eye and light informations.\n");
+    fprintf(stderr, "Missing both eye and light informations.\n");
+  exit(EXIT_FAILURE);
 }
 
-void		start_parser(char *buff)
+t_scene		*get_scene(char *buff)
 {
   t_parser	*parser;
   t_scene	*scene;
   int		i;
 
-  /*
-  ** DEBUT DU PARSEUR
-  */
-
-  parser = my_xmalloc(sizeof(t_parser));
+  parser = my_xmalloc(sizeof(*parser));
   scene = NULL;
   scene = init_scene(scene);
   parser->tab = my_str_to_wordtab(buff);
+  if (parser->tab == NULL)
+    my_error("Error : empty file");
   parser->line = 1;
   parser->k = 0;
   parser->n = 0;
@@ -44,21 +43,18 @@ void		start_parser(char *buff)
       parser->line++;
       parser->n++;
     }
-
-  /*
-  ** PARTIE A LAISSER POUR VERIFIER LA PRESENCE DE L'OEIL ET D'UNE LIGHT EN FONCTION DU RETOUR DE K
-  */
-
   if (parser->k != 3)
     check_scene(parser->k);
+  return (scene);
 }
 
-int		main(int ac, char **av)
+char   		*check_conf(int ac, char **av)
 {
   char		*s;
   char		*buff;
   int		fd;
 
+  buff = NULL;
   if (ac == 2)
     {
       fd = xopen(av[1], O_RDONLY, 00644);
@@ -69,10 +65,9 @@ int		main(int ac, char **av)
 	  strcat(buff, s);
 	  xfree(s);
 	}
-      start_parser(buff);
       xclose(fd);
     }
   else
-    printf("Usage: ./rt <file[.conf]>\n");
-  return (0);
+    fprintf(stderr, "Usage: ./rt <file[.conf]>\n");
+  return (buff);
 }

@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Mon Jun  2 14:16:00 2014 martelliere
-** Last update Thu Jun  5 18:57:34 2014 martelliere
+** Last update Fri Jun  6 16:07:33 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -46,8 +46,8 @@ void    get_plan(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = PLANE;
   new.rayon = get_size(parser);
-  new.brill = get_brill(parser);
-  new.opacity = get_opacity(parser);
+  new.brillance = get_brill(parser);
+  new.transparence = get_opacity(parser);
   add_item(&(scene->items), new);
 }
 
@@ -60,8 +60,8 @@ void    get_sphere(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = SPHERE;
   new.rayon = get_size(parser);
-  new.brill = get_brill(parser);
-  new.opacity = get_opacity(parser);
+  new.brillance = get_brill(parser);
+  new.transparence = get_opacity(parser);
   add_item(&(scene->items), new);
 }
 
@@ -74,8 +74,8 @@ void    get_cone(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = CONE;
   new.rayon = get_size(parser);
-  new.brill = get_brill(parser);
-  new.opacity = get_opacity(parser);
+  new.brillance = get_brill(parser);
+  new.transparence = get_opacity(parser);
   add_item(&(scene->items), new);
 }
 
@@ -88,7 +88,7 @@ void    get_cylindre(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = CYLINDER;
   new.rayon = get_size(parser);
-  new.brill = get_brill(parser);
-  new.opacity = get_opacity(parser);
+  new.brillance = get_brill(parser);
+  new.transparence = get_opacity(parser);
   add_item(&(scene->items), new);
 }

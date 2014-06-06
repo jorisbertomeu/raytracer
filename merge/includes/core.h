@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Wed Jun  4 02:09:58 2014 Geoffrey Merran
+** Last update Fri Jun  6 17:26:07 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -30,6 +30,7 @@
 void		init_cam(t_cam *cam); /* to move in parser */
 unsigned int   	calc_image(t_pos pos, t_scene *scene);
 void		fill_image(t_img *img, t_scene *scene);
+t_inter		get_pixel_color(t_vector pos_3d, t_scene *scene);
 
 
 /*
@@ -62,8 +63,14 @@ void		get_simple_pos(t_cam *eye, t_item item, t_vector *pos_3d);
 ** Luminosity / Shadow
 */
 
-int		is_shadow(t_spot spot, t_inter inter, t_vector pos_3d, t_node *items);
-unsigned int	luminosity(t_spot spot, t_inter inter);
+t_rgb		luminosity(t_spot spot, t_inter inter);
+int		is_shadow(t_spot spot, t_inter inter, t_node *items);
+
+/*
+** Effects
+*/
+
+t_rgb		put_reflexion(t_inter inter, t_scene *scene, t_vector pos_3d);
 
 /*
 ** Hook
@@ -76,6 +83,7 @@ int		key_hook(int keycode, t_screen *params);
 ** Xfunction
 */
 
+void		init_rgb(t_rgb *color, int r, int g, int b);
 mlxptr		xmlx_init();
 
 #endif /* MAIN_ */

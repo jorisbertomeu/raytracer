@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Fri Jun  6 15:33:43 2014 martelliere
+** Last update Fri Jun  6 15:45:37 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -45,6 +45,7 @@ typedef struct	s_item
   t_vector	pos;
   t_vector	angle;
   t_type	type;
+  t_rgb		color;
   float		rayon;
   float		brillance;
   float		reflexion;

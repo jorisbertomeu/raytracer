@@ -5,12 +5,18 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Tue Feb 18 12:16:38 2014 Geoffrey Merran
-** Last update Sun Apr 13 18:51:33 2014 Nicolas Ades
+** Last update Fri Jun  6 17:48:07 2014 Geoffrey Merran
 */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "my.h"
+
+void	my_error(char *err)
+{
+  my_puterr(err);
+  exit(EXIT_FAILURE);
+}
 
 void	my_puterr(char *err)
 {

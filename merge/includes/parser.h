@@ -1,52 +1,77 @@
 /*
-** parser.h for parser in /home/merran_g/work/c_elem/raytracer/includes
-** 
-** Made by Geoffrey Merran
-** Login   <merran_g@epitech.net>
-** 
-** Started on  Mon May 19 23:05:46 2014 Geoffrey Merran
-** Last update Tue Jun  3 22:56:39 2014 Geoffrey Merran
+** parser.h for Parser RT in /home/martel_c/rendu/RT/parser
+**
+** Made by martelliere
+** Login   <martel_c@epitech.net>
+**
+** Started on  Tue May 13 17:50:34 2014 martelliere
+** Last update Fri Jun  6 17:51:45 2014 Geoffrey Merran
 */
 
-#ifndef PARSER_
-# define PARSER_
-# include <stdlib.h>
-# include <string.h>
-# include <stdio.h>
-# include <unistd.h>
-# include "my.h"
-# include "my_mlx.h"
-# include "rtv1.h"
+#ifndef		PARSER_H_
+# define	PARSER_H_
 
-typedef		struct s_list
+/*
+** INCLUDES
+*/
+
+# include	<sys/types.h>
+# include	<sys/stat.h>
+# include	<fcntl.h>
+# include	<unistd.h>
+# include	<string.h>
+# include	<stdlib.h>
+# include	<stdio.h>
+# include	"get_next_line.h"
+# include	"my_mlx.h"
+# include	"my.h"
+# include	"rtv1.h"
+
+/*
+** DEFINITIONS
+*/
+
+typedef	struct	s_parser
 {
-  char		*data;
-  struct s_list *next;
-  struct s_list *prev;
-}		t_list;
+  int		line;
+  int		k;
+  int		n;
+  char		**tab;
+}		t_parser;
 
-/* fonctions dans list.c */
-
-t_list		*create_list(char *);
-void		add_after(t_list *, char *);
-void		add_before(t_list *, char *);
-void		remove_from_list(t_list *);
-void		add_to_end(t_list *, char *);
+typedef void(*ptr)(t_scene *, t_parser *);
 
 /*
-** Old
+** PROTOTYPES
 */
 
-void   	add_item(t_node **list, t_item new);
-void	init_item(t_item *new, t_vector pos, t_vector angle, t_type type);
-void	init_item2(t_item *new, float rayon, t_rgb color, float brillance);
-void	init_rgb(t_rgb *color, int r, int g, int b);
-t_node 	*get_items();
+void		get_eye(t_scene *scene, t_parser *parser);
+void		get_spot(t_scene *scene, t_parser *parser);
+void		get_plan(t_scene *scene, t_parser *parser);
+void		get_sphere(t_scene *scene, t_parser *paser);
+void		get_cone(t_scene *scene, t_parser *parser);
+void		get_cylindre(t_scene *scene, t_parser *parser);
+void		init_otab(char **otab, void **which_object);
+void            init_vec(t_vector *vec, float x, float y, float z);
+void		add_item(t_node **list, t_item new);
+void		*my_xmalloc(int size);
+void		*my_xrealloc(char *str, int size);
+void		*my_alloc_init(int size, char c);
+char		*strlower(char *str);
+char		**my_str_to_wordtab(char *s);
+float		get_pos(t_parser *parser, char *id);
+float		get_size(t_parser *parser);
+float		get_brill(t_parser *parser);
+float		get_opacity(t_parser *parser);
+int		my_parser(t_scene *scene, t_parser *parser, int i);
+int		xopen(const char *, int, mode_t);
+t_vector	get_vector(t_parser *parser, char *id);
+t_rgb		get_color(t_parser *parser);
+t_scene		*init_scene(t_scene *scene);
+char   		*check_conf(int ac, char **av);
+t_scene		*get_scene(char *buff);
+int		xopen(const char *path, int flags, mode_t mode);
+void		xfree(char *s);
+void		xclose(int fd);
 
-/*
-** Get Scene (To Do)
-*/
-
-t_scene	*get_scene();
-
-#endif /* PARSER_ */
+#endif		/* PARSER_H_ */

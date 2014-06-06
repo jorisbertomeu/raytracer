@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Thu Oct 10 18:46:29 2013 martelliere
-** Last update Mon Jun  2 12:47:05 2014 martelliere
+** Last update Fri Jun  6 17:33:36 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -13,7 +13,8 @@
 int	char_is_alphanum(char c)
 {
   if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') ||
-      (c >= 'A' && c <= 'Z') || c == '.' || c == '<' || c == '>' || c == '-')
+      (c >= 'A' && c <= 'Z') || c == '.' || c == '<' ||
+      c == '>' || c == '-' || c == ',')
     {
       return (0);
     }

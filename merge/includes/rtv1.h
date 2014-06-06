@@ -1,11 +1,11 @@
 /*
 ** rtv1.h for rtv1 in /home/merran_g/work/c_igraph/rtv1
-** 
+**
 ** Made by Geoffrey Merran
 ** Login   <merran_g@epitech.net>
-** 
+**
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Wed Jun  4 00:27:32 2014 Geoffrey Merran
+** Last update Fri Jun  6 15:45:37 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -45,9 +45,11 @@ typedef struct	s_item
   t_vector	pos;
   t_vector	angle;
   t_type	type;
+  t_rgb		color;
   float		rayon;
   float		brillance;
-  t_rgb		color;
+  float		reflexion;
+  float		transparence;
 }		t_item;
 
 typedef struct	s_node

@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Fri May 30 14:08:01 2014 martelliere
-** Last update Wed Jun  4 00:11:06 2014 martelliere
+** Last update Fri Jun  6 17:34:28 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -18,10 +18,11 @@ int             get_compo(t_parser *parser, int nb)
       nb = atof(&parser->tab[parser->n][4]);
       if (nb < 0 || nb > 255)
 	{
-	  printf("The color composant must be between 0 and 255 line %d.\n",
+	  fprintf(stderr, "The color composant must be between 0 and 255 line %d.\n",
 		 parser->line);
 	  exit(EXIT_FAILURE);
 	}
+    }
   else
     {
       printf("Syntax error line %d.\n", parser->line);
@@ -41,7 +42,7 @@ int             get_rgb(t_parser *parser, char *id)
     nb = get_compo(parser, nb);
   else
     {
-      printf("Syntax error line %d: %s missing.\n", parser->line, id);
+      fprintf(stderr, "Syntax error line %d: %s missing.\n", parser->line, id);
       exit(EXIT_FAILURE);
     }
   return (nb);
@@ -61,7 +62,8 @@ t_rgb           get_color(t_parser *parser)
     }
   else
     {
-      printf("Syntax error line %d: \"<col>\" missing.\n", parser->line);
+      fprintf(stderr, "Syntax error line %d: \"<col>\" missing.\n",
+	      parser->line);
       exit(EXIT_FAILURE);
     }
   return (color);

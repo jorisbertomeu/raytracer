@@ -5,7 +5,7 @@
 ** Login   <martel_c@pc-martel_c>
 **
 ** Started on  Wed Dec  5 04:36:08 2012 martelliere
-** Last update Fri May 30 09:54:41 2014 martelliere
+** Last update Fri Jun  6 17:32:51 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -16,7 +16,7 @@ int	xopen(const char *path, int flags, mode_t mode)
 
   if ((ret = open(path, flags, mode)) == -1)
     {
-      printf("RT: %s can't be opened.\n", path);
+      fprintf(stderr, "RT: %s can't be opened.\n", path);
       exit(EXIT_FAILURE);
     }
   return (ret);

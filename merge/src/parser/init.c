@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Mon Jun  2 14:35:58 2014 martelliere
-** Last update Mon Jun  2 14:37:22 2014 martelliere
+** Last update Fri Jun  6 17:27:50 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -21,13 +21,6 @@ t_scene         *init_scene(t_scene *scene)
   scene->items = NULL;
   scene->items = my_xmalloc(sizeof(t_node));
   return (scene);
-}
-
-void            init_vec(t_vector *vec, float x, float y, float z)
-{
-  vec->x = x;
-  vec->y = y;
-  vec->z = z;
 }
 
 void            add_item(t_node **list, t_item new)
