@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:15 2014 martelliere
-** Last update Mon Jun  2 15:15:02 2014 martelliere
+** Last update Thu Jun  5 18:58:26 2014 martelliere
 */
 
 #include "parser.h"
@@ -20,7 +20,7 @@ void		check_scene(int k)
     printf("Missing both eye and light informations.\n");
 }
 
-void		start_parser(char *buff)
+t_scene		*get_scene(char *buff)
 {
   t_parser	*parser;
   t_scene	*scene;
@@ -51,6 +51,7 @@ void		start_parser(char *buff)
 
   if (parser->k != 3)
     check_scene(parser->k);
+  //return (scene);
 }
 
 int		main(int ac, char **av)
@@ -69,7 +70,7 @@ int		main(int ac, char **av)
 	  strcat(buff, s);
 	  xfree(s);
 	}
-      start_parser(buff);
+      get_scene(buff);
       xclose(fd);
     }
   else

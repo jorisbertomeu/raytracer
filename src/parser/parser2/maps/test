@@ -1,4 +1,4 @@
-    <EYE> doit obligatoirement etre de cette forme : eye pos (xyz) rot (xyz)
+    <EYE>
         <POS>
             <X><-1000>
             <Y><0>
@@ -7,7 +7,7 @@
             <X><0>
             <Y><0>
             <Z><0>
-    <SPOT> pareil que eye : spot pos (xyz) col (rgb)
+    <SPOT>
         <POS>
             <X><-1000>
             <Y><0>
@@ -16,7 +16,7 @@
             <R><255>
             <G><0>
             <B><0>
-    <PLAN> doit obligatoirement etre de cette forme (pour toutes les formes) : <forme> <pos> (xyz) <col> (rgb) <rot> (xyz) <size> (n)
+    <PLAN>
         <POS>
             <X><0>
             <Y><0>
@@ -31,6 +31,10 @@
             <Z><0>
         <SIZE>
             <0>
+	<BRILL>
+	    <0.5>
+	<OPACITY>
+	    <1>
     <PLAN>
         <POS>
             <X><500>
@@ -46,6 +50,10 @@
             <Z><0>
         <SIZE>
             <0>
+	<BRILL>
+	    <0.5>
+	<OPACITY>
+	    <1>
     <PLAN>
         <POS>
             <X><0>
@@ -61,6 +69,10 @@
             <Z><0>
         <SIZE>
             <0>
+	<BRILL>
+	    <0.5>
+	<OPACITY>
+	    <1>
     <PLAN>
         <POS>
             <X><0>
@@ -76,3 +88,7 @@
             <Z><0>
         <SIZE>
             <0>
+	<BRILL>
+	    <0.5>
+	<OPACITY>
+	    <1.0>

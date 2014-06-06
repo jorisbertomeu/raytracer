@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:50:34 2014 martelliere
-** Last update Mon Jun  2 15:08:40 2014 martelliere
+** Last update Thu Jun  5 18:26:18 2014 martelliere
 */
 
 #ifndef		PARSER_H_
@@ -24,7 +24,7 @@
 # include	<stdio.h>
 # include	"get_next_line.h"
 # include	"my_mlx.h"
-# include	"rtv1.h"
+# include	"../../../includes/rtv1.h"
 
 /*
 ** DEFINITIONS
@@ -60,6 +60,8 @@ char		*strlower(char *str);
 char		**my_str_to_wordtab(char *s);
 float		get_pos(t_parser *parser, char *id);
 float		get_size(t_parser *parser);
+float		get_brill(t_parser *parser);
+float		get_opacity(t_parser *parser);
 int		my_parser(t_scene *scene, t_parser *parser, int i);
 int		xopen(const char *, int, mode_t);
 t_vector	get_vector(t_parser *parser, char *id);

@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Mon Jun  2 14:16:00 2014 martelliere
-** Last update Mon Jun  2 14:57:15 2014 martelliere
+** Last update Thu Jun  5 18:57:34 2014 martelliere
 */
 
 #include "parser.h"
@@ -31,7 +31,7 @@ float           get_size(t_parser *parser)
     }
   else
     {
-      printf("Syntax error line %d: \"<col>\" missing.\n", parser->line);
+      printf("Syntax error line %d: \"<size>\" missing.\n", parser->line);
       exit(EXIT_FAILURE);
     }
   return (size);
@@ -46,6 +46,8 @@ void    get_plan(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = PLANE;
   new.rayon = get_size(parser);
+  new.brill = get_brill(parser);
+  new.opacity = get_opacity(parser);
   add_item(&(scene->items), new);
 }
 
@@ -58,6 +60,8 @@ void    get_sphere(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = SPHERE;
   new.rayon = get_size(parser);
+  new.brill = get_brill(parser);
+  new.opacity = get_opacity(parser);
   add_item(&(scene->items), new);
 }
 
@@ -70,6 +74,8 @@ void    get_cone(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = CONE;
   new.rayon = get_size(parser);
+  new.brill = get_brill(parser);
+  new.opacity = get_opacity(parser);
   add_item(&(scene->items), new);
 }
 
@@ -82,5 +88,7 @@ void    get_cylindre(t_scene *scene, t_parser *parser)
   new.angle = get_vector(parser, "<rot>");
   new.type = CYLINDER;
   new.rayon = get_size(parser);
+  new.brill = get_brill(parser);
+  new.opacity = get_opacity(parser);
   add_item(&(scene->items), new);
 }

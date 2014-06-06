@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Fri May 30 14:08:01 2014 martelliere
-** Last update Wed Jun  4 00:11:06 2014 martelliere
+** Last update Thu Jun  5 18:39:56 2014 martelliere
 */
 
 #include "parser.h"
@@ -22,6 +22,7 @@ int             get_compo(t_parser *parser, int nb)
 		 parser->line);
 	  exit(EXIT_FAILURE);
 	}
+    }
   else
     {
       printf("Syntax error line %d.\n", parser->line);
