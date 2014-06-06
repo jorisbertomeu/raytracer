@@ -5,31 +5,10 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Thu Jun  5 22:04:49 2014 Geoffrey Merran
+** Last update Fri Jun  6 04:40:29 2014 Geoffrey Merran
 */
 
 #include "core.h"
-
-unsigned int   	calc_image(t_pos pos, t_scene *scene)
-{
-  t_vector	pos_3d;
-  t_inter      	inter;
-  t_spot	spot;
-  unsigned int 	color;
-
-  init_vec(&spot.pos, -300, 300, 150);
-  init_rgb(&spot.color, 255, 255, 255);
-  pos_3d.x = scene->eye->distance;
-  pos_3d.y = (WIN_X / 2.000) - (float) pos.x;
-  pos_3d.z = (WIN_Y / 2.000) - (float) pos.y;
-  inter = find_inter(*scene->eye, pos_3d, scene->items);
-  inter.p = get_eq_param(scene->eye->pos, inter.k, pos_3d);
-  inter.n = get_normal(inter);
-  if (is_shadow(spot, inter, scene->items))
-    return (change_rgb(0, 0, 0));
-  color = luminosity(spot, inter);
-  return (color);
-}
 
 void		fill_image(t_img *img, t_scene *scene)
 {
@@ -57,7 +36,7 @@ void		fill_image(t_img *img, t_scene *scene)
 
 void	init_cam(t_cam *cam)
 {
-  init_vec(&cam->pos, -300, 0, 150);
+  init_vec(&cam->pos, -500, 0, 300);
   init_vec(&cam->angle, 0, 0, 0);
   cam->distance = 100;
 }
@@ -70,6 +49,7 @@ t_scene		*init_scene()
   scene->eye = my_xmalloc(sizeof(*scene->eye));
   init_cam(scene->eye);
   scene->items = get_items();
+  scene->spots = get_spots();
   return (scene);
 }
 

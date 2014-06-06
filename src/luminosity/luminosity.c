@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 23:18:21 2014 Geoffrey Merran
-** Last update Thu Jun  5 21:22:14 2014 Geoffrey Merran
+** Last update Fri Jun  6 02:59:40 2014 Geoffrey Merran
 */
 
 #define _BSD_SOURCE
@@ -38,15 +38,13 @@ void		get_lumi_color(t_inter *inter, float cos_a, t_spot spot)
   get_correct_color(&inter->rgb.b);
 }
 
-unsigned int	luminosity(t_spot spot, t_inter inter)
+t_rgb		luminosity(t_spot spot, t_inter inter)
 {
   t_vector	l;
   float		cos_a;
   float		norm;
   float		norm_d;
 
-  if (inter.k == 0)
-    return (change_rgb(0, 0, 0));
   l.x = spot.pos.x - inter.p.x - inter.item.pos.x;
   l.y = spot.pos.y - inter.p.y - inter.item.pos.y;
   l.z = spot.pos.z - inter.p.z - inter.item.pos.z;
@@ -57,6 +55,6 @@ unsigned int	luminosity(t_spot spot, t_inter inter)
   if (cos_a < 0.0001)
     cos_a = 0;
   get_lumi_color(&inter, cos_a, spot);
-  return (change_rgb(inter.rgb.r, inter.rgb.g, inter.rgb.b));
+  return (inter.rgb);
 }
 

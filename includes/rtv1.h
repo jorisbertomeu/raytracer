@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Wed Jun  4 00:27:32 2014 Geoffrey Merran
+** Last update Fri Jun  6 03:53:33 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -47,6 +47,8 @@ typedef struct	s_item
   t_type	type;
   float		rayon;
   float		brillance;
+  float		reflexion;
+  float		transparence;
   t_rgb		color;
 }		t_item;
 

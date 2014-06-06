@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Wed Jun  4 01:46:57 2014 Geoffrey Merran
-** Last update Thu Jun  5 22:09:54 2014 Geoffrey Merran
+** Last update Thu Jun  5 23:43:19 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -15,7 +15,6 @@ int		is_shadow(t_spot spot, t_inter inter, t_node *items)
   t_inter	inter_shadow;
   t_vector	l;
   t_cam		spot_dir;
-  t_node	tmp;
 
   if (inter.k == 0)
     return (1);
