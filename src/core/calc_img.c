@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Fri Jun  6 04:45:21 2014 Geoffrey Merran
+** Last update Fri Jun  6 19:48:30 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -38,7 +38,7 @@ t_rgb		put_spots(t_inter inter, t_scene *scene)
   while (tmp)
     {
       if (is_shadow(*tmp, inter, scene->items))
-	init_rgb(&save, 0, 0, 0);
+      	init_rgb(&save, 0, 0, 0);
       else
         save = luminosity(*tmp, inter);
       color.r = color.r + save.r;
@@ -78,12 +78,12 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   color = inter.rgb;
   if (inter.k == 0)
     return (change_rgb(color.r, color.g, color.b));
-  /* save = put_reflexion(inter, scene, pos_3d); */
-  /* color.r = (save.r * inter.item.reflexion) + */
-  /*   (color.r * (1.0 - inter.item.reflexion)); */
-  /* color.g = (save.g * inter.item.reflexion) + */
-  /*   (color.g * (1.0 - inter.item.reflexion)); */
-  /* color.b = (save.b * inter.item.reflexion) + */
-  /*   (color.b * (1.0 - inter.item.reflexion)); */
+  save = put_reflexion(inter, scene, pos_3d);
+  color.r = (save.r * inter.item.reflexion) +
+    (color.r * (1.0 - inter.item.reflexion));
+  color.g = (save.g * inter.item.reflexion) +
+    (color.g * (1.0 - inter.item.reflexion));
+  color.b = (save.b * inter.item.reflexion) +
+    (color.b * (1.0 - inter.item.reflexion));
   return (change_rgb(color.r, color.g, color.b));
 }
