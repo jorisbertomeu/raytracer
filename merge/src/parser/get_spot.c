@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Fri May 30 14:08:01 2014 martelliere
-** Last update Fri Jun  6 17:34:28 2014 Geoffrey Merran
+** Last update Fri Jun  6 18:24:28 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -25,7 +25,7 @@ int             get_compo(t_parser *parser, int nb)
     }
   else
     {
-      printf("Syntax error line %d.\n", parser->line);
+      fprintf(stderr, "Syntax error line %d.\n", parser->line);
       exit(EXIT_FAILURE);
     }
   return (nb);
@@ -69,8 +69,13 @@ t_rgb           get_color(t_parser *parser)
   return (color);
 }
 
-void    get_spot(t_scene *scene, t_parser *parser)
+void		get_spot(t_scene *scene, t_parser *parser)
 {
-  scene->spots->pos = get_vector(parser, "<pos>");
-  scene->spots->color = get_color(parser);
+  t_spot	*new;
+
+  new = my_xmalloc(sizeof(*new));
+  new->pos = get_vector(parser, "<pos>");
+  new->color = get_color(parser);
+  new->next = scene->spots;
+  scene->spots = new;
 }

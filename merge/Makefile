@@ -5,7 +5,7 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Tue Jun  3 17:03:02 2014 Geoffrey Merran
-## Last update Fri Jun  6 17:26:42 2014 Geoffrey Merran
+## Last update Fri Jun  6 18:07:41 2014 Geoffrey Merran
 ##
 
 RM		= rm -f
@@ -50,6 +50,7 @@ SRC		= $(D_CORE)main.c			\
 		$(D_PARSER)init.c			\
 		$(D_PARSER)parser.c			\
 		$(D_PARSER)parser2.c			\
+		$(D_PARSER)my_str_to_wordtab.c		\
 		$(D_PARSER)my_alloc_init.c		\
 		$(D_PARSER)my_free_wordtab.c		\
 		$(D_PARSER)my_xrealloc.c		\

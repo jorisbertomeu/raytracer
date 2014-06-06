@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:50:34 2014 martelliere
-** Last update Fri Jun  6 17:51:45 2014 Geoffrey Merran
+** Last update Fri Jun  6 18:07:06 2014 Geoffrey Merran
 */
 
 #ifndef		PARSER_H_
@@ -25,6 +25,7 @@
 # include	"get_next_line.h"
 # include	"my_mlx.h"
 # include	"my.h"
+# include	"my_printf.h"
 # include	"rtv1.h"
 
 /*
@@ -58,7 +59,7 @@ void		*my_xmalloc(int size);
 void		*my_xrealloc(char *str, int size);
 void		*my_alloc_init(int size, char c);
 char		*strlower(char *str);
-char		**my_str_to_wordtab(char *s);
+char		**my_martel_to_wordtab(char *str);
 float		get_pos(t_parser *parser, char *id);
 float		get_size(t_parser *parser);
 float		get_brill(t_parser *parser);

@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Mon Jun  2 14:35:58 2014 martelliere
-** Last update Fri Jun  6 17:27:50 2014 Geoffrey Merran
+** Last update Fri Jun  6 18:25:22 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -14,12 +14,9 @@ t_scene         *init_scene(t_scene *scene)
 {
   scene = NULL;
   scene = my_xmalloc(sizeof(t_scene));
-  scene->eye = NULL;
   scene->eye = my_xmalloc(sizeof(t_cam));
   scene->spots = NULL;
-  scene->spots = my_xmalloc(sizeof(t_spot));
   scene->items = NULL;
-  scene->items = my_xmalloc(sizeof(t_node));
   return (scene);
 }
 
@@ -33,6 +30,7 @@ void            add_item(t_node **list, t_item new)
   tmp->item.type = new.type;
   tmp->item.rayon = new.rayon;
   tmp->item.color = new.color;
+  tmp->item.brillance = new.brillance;
   tmp->next = *list;
   *list = tmp;
 }

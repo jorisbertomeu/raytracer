@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Thu Oct 10 18:46:29 2013 martelliere
-** Last update Fri Jun  6 17:33:36 2014 Geoffrey Merran
+** Last update Fri Jun  6 18:06:28 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -61,7 +61,7 @@ int	get_first_alphanum(char *str, int i)
   return (i);
 }
 
-char	**my_str_to_wordtab(char *str)
+char	**my_martel_to_wordtab(char *str)
 {
   int	i;
   int	j;

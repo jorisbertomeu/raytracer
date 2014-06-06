@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:15 2014 martelliere
-** Last update Fri Jun  6 17:47:13 2014 Geoffrey Merran
+** Last update Fri Jun  6 18:06:17 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -30,9 +30,7 @@ t_scene		*get_scene(char *buff)
   parser = my_xmalloc(sizeof(*parser));
   scene = NULL;
   scene = init_scene(scene);
-  parser->tab = my_str_to_wordtab(buff);
-  if (parser->tab == NULL)
-    my_error("Error : empty file");
+  parser->tab = my_martel_to_wordtab(buff);
   parser->line = 1;
   parser->k = 0;
   parser->n = 0;
