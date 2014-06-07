@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Fri Jun  6 18:01:17 2014 Geoffrey Merran
+** Last update Sat Jun  7 18:11:37 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -23,7 +23,9 @@ typedef enum	s_type
     SPHERE,
     PLANE,
     CONE,
-    CYLINDER
+    CYLINDER,
+    HYPERBOLOIDE,
+    CUBETROUE
   }		t_type;
 
 typedef struct	s_rgb

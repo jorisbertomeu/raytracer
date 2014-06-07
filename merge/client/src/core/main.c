@@ -1,19 +1,19 @@
 /*
-** main.c for  in /home/merran_g/work/c_piscine/mkdir
-**
-** Made by Geoffrey Merran
-** Login   <merran_g@epitech.net>
-**
-** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 19:38:57 2014 Joris Bertomeu
+** main.c for rt in /home/jobertomeu/Work/raytracer/merge
+** 
+** Made by Joris Bertomeu
+** Login   <jobertomeu@epitech.net>
+** 
+** Started on  Sat Jun  7 19:42:19 2014 Joris Bertomeu
+** Last update Sat Jun  7 19:42:19 2014 Joris Bertomeu
 */
 
-#include "core.h"
 #include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <libclient.h>
+#include "core.h"
 
 int	WIN_X;
 int	WIN_Y;
