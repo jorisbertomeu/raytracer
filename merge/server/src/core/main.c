@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 15:32:15 2014 Joris Bertomeu
+** Last update Sat Jun  7 17:55:24 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -13,11 +13,13 @@
 #include <pthread.h>
 #include <gtk/gtk.h>
 #include <time.h>
+#include <X11/Xlib.h>
 
 GdkPixbuf	*pixbuf;
 GdkPixbuf	*pixbuff;
 int		g_flag;
 int		start;
+char		*my_read_inf(int);
 
 typedef union	s_union
 {
@@ -52,7 +54,7 @@ typedef struct	s_gui_serv
   int		heigh;
   int		twidth;
   int		theigh;
-  char		*argv;
+  char		**argv;
   t_libserver	*libserver;
 }		t_gui_serv;
 
@@ -285,7 +287,7 @@ void	send_first_data(t_libserver *libserver, int nb_cl_total, t_gui_serv *gui)
 	strlen("Bienvenue sur le MABM_RTServer !\n") + 1);
   sleep(1);
   write(libserver->newsockfd, &size, sizeof(int));
-  printf("Taille cnf : %d\n", strlen(gui->file));
+  printf("Taille cnf : %d\n", (int) strlen(gui->file));
   write(libserver->newsockfd, gui->file, strlen(gui->file));
   printf("Envoie du fichier de conf\n");
   sleep(1);
@@ -316,7 +318,7 @@ void	send_first_data_re(t_libserver *libserver, int nb_cl_total,
 		strlen("Bienvenue sur le MABM_RTServer !\n") + 1);
 	  sleep(1);
 	  write(libserver->clients[i].fd, &size, sizeof(int));
-	  printf("Taille cnf : %d\n", strlen(gui->file));
+	  printf("Taille cnf : %d\n", (int) strlen(gui->file));
 	  write(libserver->clients[i].fd, gui->file, strlen(gui->file));
 	  printf("Envoie du fichier de conf\n");
 	  sleep(1);
@@ -437,13 +439,15 @@ void	init_all_serv(t_libserver *libserver, t_params *params)
     }
 }
 
-int		server(t_gui_serv *gui)
+void		*server(void *ok)
 {
   t_libserver	*libserver;
+  t_gui_serv	*gui;
   fd_set	rfds;
   int		retval;
   int		max;
 
+  gui = ok;
   libserver = malloc(sizeof(*libserver));
   libserver = gui->libserver;
   init_all_serv(libserver, gui->params);
@@ -480,8 +484,11 @@ void	refresh_imgf(GtkWidget *useless, t_gui_serv *gui)
   gtk_widget_show_all(gui->windowf);
 }
 
-void	*refresh_img_func_full(t_gui_serv *gui)
+void	*refresh_img_func_full(void *data)
 {
+  t_gui_serv	*gui;
+
+  gui = data;
   g_flag = 0;
   while (g_flag == 0)
     {
@@ -492,11 +499,12 @@ void	*refresh_img_func_full(t_gui_serv *gui)
   return (NULL);
 }
 
-void		*refresh_img_func(t_gui_serv *gui)
+void		*refresh_img_func(void *data)
 {
   char		*final;
-  pthread_t	thread;
+  t_gui_serv	*gui;
 
+  gui = data;
   final = malloc(128 * sizeof(char));
   while (g_flag == 0)
     {
@@ -505,11 +513,12 @@ void		*refresh_img_func(t_gui_serv *gui)
     }
   memset(final, 0, 128);
   sprintf(final, "Calculé en %d minutes et %d secondes",
-	  (gui->finish - gui->start) / 60,
-	  (gui->finish - gui->start) % 60);
+	  (int)(gui->finish - gui->start) / 60,
+	  (int)(gui->finish - gui->start) % 60);
   refresh_img(NULL, gui);
   gui->label = gtk_label_new(final);
-  gtk_fixed_put(GTK_FIXED(gui->frame), gui->label, 50, 20);
+  gtk_fixed_put(GTK_FIXED(gui->frame),
+		gui->label, 50, 20);
   gtk_widget_show_all(gui->window);
   return (NULL);
 }
@@ -689,8 +698,6 @@ void	init_win_serv(t_gui_serv *gui)
 
 void	call_all(t_gui_serv *gui)
 {
-  pthread_t	thread;
-
   gui->twidth = gui->width;
   gui->theigh = gui->heigh;
   start = 1;
@@ -714,6 +721,7 @@ void		full_res_func(GtkWidget *w, t_gui_serv *gui)
   int		x;
   int		y;
 
+  (void)w;
   call_all(gui);
   gtk_rc_parse("./rc.cnf");
   gui->windowf = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -730,7 +738,7 @@ void		full_res_func(GtkWidget *w, t_gui_serv *gui)
   gtk_fixed_put(GTK_FIXED(frame), gui->imagef,
 		(gint)((x / 2) - (gui->width / 2)),
 		(gint)((y / 2) - (gui->heigh / 2)));
-  pthread_create(&thread, NULL, refresh_img_func_full, (void*)gui);
+  pthread_create(&thread, NULL, refresh_img_func_full, gui);
   gtk_widget_show_all(gui->windowf);
   g_signal_connect(G_OBJECT(gui->windowf), "delete-event",
 		   G_CALLBACK(gtk_main_quit), NULL);
@@ -783,7 +791,6 @@ void            *my_xrealloc(char *str, int size)
 
 char   		*check_conf(char *arg)
 {
-  char		*s;
   char		*buff;
   int		fd;
 
@@ -794,13 +801,6 @@ char   		*check_conf(char *arg)
       exit(-1);
     }
   buff = my_read_inf(fd);
-  /* buff = my_alloc_init(sizeof(char), 0); */
-  /* while ((s = get_next_line(fd)) != NULL) */
-  /*   { */
-  /*     buff = my_xrealloc(buff, (strlen(s) + 1)); */
-  /*     strcat(buff, s); */
-  /*     free(s); */
-  /*   } */
   close(fd);
   return (buff);
 }
@@ -832,7 +832,7 @@ void		start_serv(int ac, char **argv)
   gtk_init(&ac, &argv);
   pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, 0, 8, 800, 600);
   pixbuff = gdk_pixbuf_new(GDK_COLORSPACE_RGB, 0, 8, gui->width, gui->heigh);
-  pthread_create(&thread, NULL, server, (void*)gui);
+  pthread_create(&thread, NULL, server, gui);
   start_gtk(gui);
 }
 
