@@ -5,10 +5,16 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 21:53:11 2014 Joris Bertomeu
+** Last update Sun Jun  8 00:25:01 2014 Joris Bertomeu
 */
 
 #include "core.h"
+#include <stdio.h>
+#include <gtk/gtk.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include "gui.h"
 
 GdkPixbuf	*pixbuf;
 GdkPixbuf	*pixbuff;
@@ -807,12 +813,13 @@ void		start_serv(int ac, char **argv)
   XInitThreads();
   gtk_init(&ac, &argv);
   pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, 0, 8, 800, 600);
+  printf("X : %d Y : %d\n", gui->width, gui->heigh);
   pixbuff = gdk_pixbuf_new(GDK_COLORSPACE_RGB, 0, 8, gui->width, gui->heigh);
   pthread_create(&thread, NULL, server, gui);
   start_gtk(gui);
 }
 
-int		main(int ac, char *argv[])
+int		serv_dacc(int ac, char **argv)
 {
   if (ac != 6)
     {
