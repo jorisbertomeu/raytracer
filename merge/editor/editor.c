@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:21:49 2014 nicolas ades
-** Last update Sat Jun  7 20:23:07 2014 nicolas ades
+** Last update Sun Jun  8 01:48:52 2014 nicolas ades
 */
 
 #include "editor.h"
@@ -34,14 +34,8 @@ void		create_combo(t_editor *editor)
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->combo, 550, 30);
 }
 
-void		editor(int ac, char **av)
+void		generate_editor(t_editor *editor)
 {
-  t_editor	*editor;
-
-  editor = malloc(sizeof(*editor));
-  gtk_init(&ac, &av);
-  init_window(editor);
-  editor->list = create_list();
   quit_btn(editor);
   save_btn(editor);
   open_btn(editor);
@@ -66,6 +60,17 @@ void		editor(int ac, char **av)
   create_area(editor);
   create_combo(editor);
   catch_sig(editor);
+}
+
+void		editor(int ac, char **av)
+{
+  t_editor	*editor;
+
+  editor = malloc(sizeof(*editor));
+  gtk_init(&ac, &av);
+  init_window(editor);
+  editor->list = create_list();
+  generate_editor(editor);
   gtk_widget_show_all(editor->pWindow);
   gtk_main();
 }
