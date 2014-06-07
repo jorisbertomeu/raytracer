@@ -1,3 +1,4 @@
+
 RM		= rm -f
 
 CC		= cc `pkg-config --libs --cflags gtk+-2.0`
@@ -23,7 +24,7 @@ SRC		= $(D_CORE)main.c			\
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) -lX11
 
 clean:
 	$(RM) $(OBJ)

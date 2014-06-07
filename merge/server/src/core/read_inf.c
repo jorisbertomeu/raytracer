@@ -5,11 +5,12 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sat Oct 26 18:03:57 2013 Jeremy Mediavilla
-** Last update Sat Jun  7 20:22:44 2014 Joris Bertomeu
+** Last update Sat Jun  7 22:50:21 2014 Geoffrey Merran
 */
 
-#include "parser.h"
+# define _BSD_SOURCE
 # define SIZE (4096)
+#include "core.h"
 
 char		*cat_list(t_list *list)
 {

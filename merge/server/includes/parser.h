@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Mon May 19 23:05:46 2014 Geoffrey Merran
-** Last update Sat Jun  7 21:18:18 2014 Joris Bertomeu
+** Last update Sat Jun  7 22:51:47 2014 Geoffrey Merran
 */
 
 #ifndef PARSER_
@@ -16,11 +16,5 @@
 # include <unistd.h>
 # include "my.h"
 
-typedef		struct s_list
-{
-  char		*data;
-  struct s_list *next;
-  struct s_list *prev;
-}		t_list;
 
 #endif /* PARSER_ */
