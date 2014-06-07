@@ -5,7 +5,7 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Tue Jun  3 17:03:02 2014 Geoffrey Merran
-## Last update Fri Jun  6 03:27:26 2014 Geoffrey Merran
+## Last update Sat Jun  7 01:44:58 2014 Geoffrey Merran
 ##
 
 RM		= rm -f
@@ -52,7 +52,6 @@ SRC		= $(D_CORE)main.c			\
 		$(D_LUM)shadow.c 			\
 		$(D_REFL)reflexion.c			\
 		$(D_CORE)xfunction.c			\
-		$(D_TMP)stock_color.c			\
 
 all:	libs $(NAME)
 
