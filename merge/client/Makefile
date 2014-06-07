@@ -1,3 +1,13 @@
+##
+## Makefile for  in /home/ades_n/Workspace/raytracer/merge/client
+## 
+## Made by nicolas ades
+## Login   <ades_n@epitech.net>
+## 
+## Started on  Sun Jun  8 00:57:30 2014 nicolas ades
+## Last update Sun Jun  8 00:58:34 2014 nicolas ades
+##
+
 RM		= rm -f
 
 CC		= cc
@@ -29,6 +39,8 @@ SRC		= $(D_CORE)main.c			\
 		$(D_CORE)hook.c				\
 		$(D_CORE)libclient.c			\
 		$(D_CORE)utility.c			\
+		$(D_CORE)communication.c			\
+		$(D_CORE)thread.c			\
 		$(D_INTER)get_simple_pos.c 		\
 		$(D_INTER)get_simple_pos2.c		\
 		$(D_INTER)find_inter.c			\

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sat Jun  7 22:53:57 2014 Geoffrey Merran
+** Last update Sun Jun  8 00:42:59 2014 nicolas ades
 */
 
 #ifndef MAIN_
@@ -25,6 +25,7 @@
 # include <gtk/gtk.h>
 # include <time.h>
 # include <X11/Xlib.h>
+# include "gui.h"
 # include "my.h"
 # include "my_printf.h"
 # include "parser.h"
