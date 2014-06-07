@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Fri Oct 25 13:42:22 2013 Jeremy Mediavilla
-** Last update Mon Jun  2 09:37:14 2014 Jeremy Mediavilla
+** Last update Sat Jun  7 20:23:10 2014 Joris Bertomeu
 */
 
 #include "parser.h"
@@ -14,7 +14,7 @@ t_list		*create_list(char *str)
 {
   t_list	*list;
 
-  list = my_xmalloc(sizeof(*list));
+  list = malloc(sizeof(*list));
   list->next = NULL;
   list->prev = NULL;
   list->data = str;
