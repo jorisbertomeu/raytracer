@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Fri May 30 14:08:01 2014 martelliere
-** Last update Fri Jun  6 21:49:28 2014 martelliere
+** Last update Sat Jun  7 17:01:59 2014 martelliere
 */
 
 #include "parser.h"
@@ -76,6 +76,7 @@ void		get_spot(t_scene *scene, t_parser *parser)
   t_spot	*new;
 
   new = my_xmalloc(sizeof(*new));
+  memset(new, 0, sizeof(*new));
   new->pos = get_vector(parser, "<pos>");
   new->color = get_color(parser);
   new->next = scene->spots;

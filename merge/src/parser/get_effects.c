@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Thu Jun  5 18:09:01 2014 martelliere
-** Last update Fri Jun  6 21:54:32 2014 martelliere
+** Last update Sat Jun  7 15:57:37 2014 martelliere
 */
 
 #include	"parser.h"
@@ -78,4 +78,31 @@ float		get_opacity(t_parser *parsr)
       exit(EXIT_FAILURE);
     }
   return (opacity);
+}
+
+float		get_reflexion(t_parser *parser)
+{
+  float		reflexion;
+
+  parser->line++;
+  parser->n++;
+  if (parser->tab[parser->n] != NULL &&
+      strcmp(strlower(parser->tab[parser->n]), "<reflexion>") == 0)
+    {
+      parser->n++;
+      parser->line++;
+      if (parser->tab[parser->n] != NULL && parser->tab[parser->n][0] == '<' &&
+          parser->tab[parser->n][strlen(parser->tab[parser->n]) - 1] == '>')
+	reflexion = atof(&(parser->tab[parser->n][1]));
+      else
+	aff_esyntax(parser);
+      check_constant(parser, reflexion);
+    }
+  else
+    {
+      fprintf(stderr, "Syntax error line %d: \"<reflexion>\" missing.\n",
+	      parser->line);
+      exit(EXIT_FAILURE);
+    }
+  return (reflexion);
 }

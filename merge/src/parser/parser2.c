@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:15 2014 martelliere
-** Last update Fri Jun  6 18:06:17 2014 Geoffrey Merran
+** Last update Sat Jun  7 15:36:10 2014 martelliere
 */
 
 #include "parser.h"
@@ -59,8 +59,9 @@ char   		*check_conf(int ac, char **av)
       buff = my_alloc_init(sizeof(char), 0);
       while ((s = get_next_line(fd)) != NULL)
 	{
-	  buff = my_xrealloc(buff, strlen(s) + 1);
+	  buff = my_xrealloc(buff, strlen(s) + 2);
 	  strcat(buff, s);
+	  strcat(buff, "\t");
 	  xfree(s);
 	}
       xclose(fd);
