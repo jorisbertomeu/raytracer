@@ -5,15 +5,17 @@
 ** Login   <jobertomeu@epitech.net>
 ** 
 ** Started on  Sat Jun  7 19:42:19 2014 Joris Bertomeu
-** Last update Sat Jun  7 19:42:19 2014 Joris Bertomeu
+** Last update Sat Jun  7 20:17:34 2014 Joris Bertomeu
 */
 
 #include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <libclient.h>
 #include "core.h"
+#define _BSD_SOURCE
 
 int	WIN_X;
 int	WIN_Y;
@@ -89,79 +91,63 @@ void	*calculate_pixel(void *data)
     do_all(tab, info, pos);
   write(info->fd_server, tab, 18 * sizeof(unsigned int));
   printf("Thread %d a finit avec j = %d\n", info->current, info->j);
+  return (NULL);
 }
 
-void		fill(char **argv, t_libclient *slib, t_info *info)
+void	rcv_trames(t_libclient *slib, t_info *info)
 {
-  int		i = 0;
-  int		pix_img;
-  pthread_t	*threads;
-  int		total;
-  int		c;
-  unsigned int	tab[18];
-  int		size;
-  int		n;
+  int	n;
+  int	size;
 
-  size = 0;
-  i = 0;
-  tab[0] = 1080 * 1920 + 100;
-  if (start == 0)
-    init_lib(slib, argv[1], atoi(argv[2]));
-  slib->flag = 1;
-  info->nb_core = 4;
-
-  info->fd_server = slib->to_server_socket;
+  n = 0;
   memset(slib->buffer, 0, 4096);
   read(slib->to_server_socket, slib->buffer, 4096);
   printf("Trame de bienvenue : %s\n", slib->buffer);
-
   memset(slib->buffer, 0, 4096);
   read(slib->to_server_socket, &size, sizeof(int));
-  printf("Taille du fichier de conf : %d\n", size);
   n = 0;
   info->file = malloc((size + 1) * sizeof(char));
   while (n != size)
     n += read(slib->to_server_socket, &(info->file[n]), size - n);
-  printf("Le client a recu le fichier de conf : %s\n", info->file);
   info->scene = get_scene(info->file);
   free(info->file);
   read(slib->to_server_socket, &(info->nb_clients), sizeof(int));
-  printf("Un total de %d clients sont attendus\n", info->nb_clients);
-
   memset(slib->buffer, 0, 4096);
   read(slib->to_server_socket, &(info->pos_me), sizeof(int));
-  printf("Je suis le client %d/%d\n", info->pos_me + 1, info->nb_clients);
   read(slib->to_server_socket, &(info->x), sizeof(int));
   read(slib->to_server_socket, &(info->y), sizeof(int));
-  printf("Resolution : %dx%d\n", info->x, info->y);
   WIN_X = info->x;
   WIN_Y = info->y;
-  pix_img = info->x * info->y;
-  info->pix_img = pix_img;
-  info->pix_by_core = malloc(info->nb_core * sizeof(int));
+}
+
+void	calculate_pix_core(t_info *info, int total)
+{
+  int	i;
+  int	pix_img;
+
+  pix_img = info->pix_img / info->nb_clients;
   i = 0;
-  pix_img = pix_img / info->nb_clients;
-  total = pix_img;
-  while (i < info->nb_core)
+  while (i < 4)
     {
       if (i != info->nb_core - 1)
 	{
-	  info->pix_by_core[i] = pix_img / info->nb_core;
-	  total = total - pix_img / info->nb_core;
+	  info->pix_by_core[i] = pix_img / 4;
+	  total -= pix_img / 4;
 	}
       else
-	{
-	  info->pix_by_core[i] = total;
-	}
+	info->pix_by_core[i] = total;
       info->max[i] = info->pix_by_core[i];
       printf("[%d] = %d --- Core %d Calcule : %d pixels\n",
 	     i, info->max[i], i + 1, info->pix_by_core[i]);
       i++;
     }
+}
 
-  threads = malloc(info->nb_core * sizeof(*threads));
-  usleep(100);
-  write(slib->to_server_socket, &tab, 18 * sizeof(unsigned int));
+void	wait_rep(t_libclient *slib)
+{
+  int	c;
+
+  c = 0;
   while (1)
     {
       read(slib->to_server_socket, &c, sizeof(char));
@@ -173,14 +159,45 @@ void		fill(char **argv, t_libclient *slib, t_info *info)
 	  exit(-1);
 	}
     }
+}
+
+void	create_threads(t_info *info, pthread_t *threads)
+{
+  int	i;
+
   i = 0;
-  while (i < info->nb_core)
+  while (i < 4)
     {
       info->current = i;
       pthread_create(&(threads[i]), NULL, calculate_pixel, info);
       pthread_join(threads[i], NULL);
       i++;
     }
+}
+
+void		fill(char **argv, t_libclient *slib, t_info *info)
+{
+  int		pix_img;
+  pthread_t	*threads;
+  int		total;
+  unsigned int	tab[18];
+
+  tab[0] = 1080 * 1920 + 100;
+  if (start == 0)
+    init_lib(slib, argv[1], atoi(argv[2]));
+  slib->flag = 1;
+  info->fd_server = slib->to_server_socket;
+  rcv_trames(slib, info);
+  pix_img = info->x * info->y;
+  info->pix_img = pix_img;
+  info->pix_by_core = malloc(4 * sizeof(int));
+  total = info->pix_img;
+  calculate_pix_core(info, total);
+  threads = malloc(4 * sizeof(*threads));
+  usleep(100);
+  write(slib->to_server_socket, &tab, 18 * sizeof(unsigned int));
+  wait_rep(slib);
+  create_threads(info, threads);
   my_putstr("\rPixel Color calculation done !\n");
   tab[0] = 1920 * 1080 + 200;
   write(slib->to_server_socket, &tab, 18 * sizeof(unsigned int));

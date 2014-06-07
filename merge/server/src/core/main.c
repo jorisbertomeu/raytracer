@@ -5,58 +5,15 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 17:55:24 2014 Joris Bertomeu
+** Last update Sat Jun  7 21:53:11 2014 Joris Bertomeu
 */
 
 #include "core.h"
-#include <libserver.h>
-#include <pthread.h>
-#include <gtk/gtk.h>
-#include <time.h>
-#include <X11/Xlib.h>
 
 GdkPixbuf	*pixbuf;
 GdkPixbuf	*pixbuff;
 int		g_flag;
 int		start;
-char		*my_read_inf(int);
-
-typedef union	s_union
-{
-  unsigned int	clr;
-  unsigned char	color[4];
-}		t_union;
-
-typedef struct	s_params
-{
-  int		nb_clients;
-  int		port;
-}		t_params;
-
-typedef struct	s_gui_serv
-{
-  GtkWidget	*window;
-  GtkWidget	*windowf;
-  GtkWidget	*imagef;
-  GtkWidget	*frame;
-  GtkWidget	*image;
-  GtkWidget	*refresh_btn;
-  GtkWidget	*png_btn;
-  GtkWidget	*jpg_btn;
-  GtkWidget	*full_btn;
-  GtkWidget	*progress;
-  GtkWidget	*label;
-  char		*file;
-  t_params	*params;
-  time_t	start;
-  time_t	finish;
-  int		width;
-  int		heigh;
-  int		twidth;
-  int		theigh;
-  char		**argv;
-  t_libserver	*libserver;
-}		t_gui_serv;
 
 void	print_error(char *str)
 {
@@ -158,7 +115,6 @@ void		stock_clr_img(t_libserver *libserver, t_gui_serv *gui)
   t_union	trans;
 
   i = 0;
-  init_pos(&count, 0, 0);
   while (i < 8)
     {
       if (((int*) libserver->tab)[i] == 0 &&
@@ -175,6 +131,17 @@ void		stock_clr_img(t_libserver *libserver, t_gui_serv *gui)
     }
 }
 
+void	do_finish(t_libserver *libserver, t_gui_serv *gui)
+{
+  libserver->nb_finish++;
+  if (libserver->nb_finish == libserver->cl_total)
+    {
+      time(&(gui->finish));
+      libserver->flag = 0;
+      g_flag = 1;
+    }
+}
+
 void		parse_line(char *buff, int fd_ok, t_libserver *libserver, t_gui_serv *gui)
 {
   char		*addr_client;
@@ -183,31 +150,20 @@ void		parse_line(char *buff, int fd_ok, t_libserver *libserver, t_gui_serv *gui)
   addr_client = search_ip_from_fd(libserver, fd_ok);
   if (strcmp(buff, "bye") == 0)
     del_client(libserver, addr_client, fd_ok);
-  else if (((int*) libserver->tab)[0] == 1080 * 1920 + 100 /* ATTENTION */)
+  else if (((int*) libserver->tab)[0] == 1080 * 1920 + 100)
     {
       libserver->nb_ready++;
-      printf("Rdy : %d, total : %d\n", libserver->nb_ready, libserver->cl_total);
       if (libserver->nb_ready == libserver->cl_total)
 	send_all(libserver, addr_client, "go");
     }
-  else if (((int*) libserver->tab)[0] == 1080 * 1920 + 200 /* ATTENTION */)
-    {
-      libserver->nb_finish++;
-      if (libserver->nb_finish == libserver->cl_total)
-	{
-	  time(&(gui->finish));
-	  libserver->flag = 0;
-	  g_flag = 1;
-	}
-    }
+  else if (((int*) libserver->tab)[0] == 1080 * 1920 + 200)
+    do_finish(libserver, gui);
   else
     {
       stock_clr_img(libserver, gui);
       if (cmptr == 0)
 	time(&(gui->start));
       cmptr += 8;
-      /* usleep(100); */
-      /* printf("=> %d\n", (cmptr) / (800 * 600)); */
       if (start == 0)
 	gtk_progress_set_percentage(GTK_PROGRESS(gui->progress),
 				    (gfloat)(cmptr) / (800 * 600));
@@ -302,6 +258,16 @@ void	send_first_data(t_libserver *libserver, int nb_cl_total, t_gui_serv *gui)
   printf("Envoie de la resolution_y\n");
 }
 
+void	send_rest(t_libserver *libserver, t_gui_serv *gui, int i)
+{
+  write(libserver->clients[i].fd, &(libserver->id_client), sizeof(int));
+  printf("Envoie de la position du client\n");
+  write(libserver->clients[i].fd, &(gui->twidth), sizeof(int));
+  printf("Envoie de la resolution_x\n");
+  write(libserver->clients[i].fd, &(gui->theigh), sizeof(int));
+  printf("Envoie de la resolution_y\n");
+}
+
 void	send_first_data_re(t_libserver *libserver, int nb_cl_total,
 			   t_gui_serv *gui)
 {
@@ -325,12 +291,7 @@ void	send_first_data_re(t_libserver *libserver, int nb_cl_total,
 	  write(libserver->clients[i].fd, &nb_cl_total, sizeof(int));
 	  printf("Envoie du nombre de clients total\n");
 	  sleep(1);
-	  write(libserver->clients[i].fd, &(libserver->id_client), sizeof(int));
-	  printf("Envoie de la position du client\n");
-	  write(libserver->clients[i].fd, &(gui->twidth), sizeof(int));
-	  printf("Envoie de la resolution_x\n");
-	  write(libserver->clients[i].fd, &(gui->theigh), sizeof(int));
-	  printf("Envoie de la resolution_y\n");
+	  send_rest(libserver, gui, i);
 	}
       i++;
     }
@@ -439,6 +400,14 @@ void	init_all_serv(t_libserver *libserver, t_params *params)
     }
 }
 
+void	decision(t_gui_serv *gui, fd_set rfds, t_libserver *libserver)
+{
+  if (FD_ISSET(libserver->sockfd, &rfds) == 1)
+    do_sock_fd(libserver, gui->params->nb_clients, gui);
+  else
+    do_sock_client(libserver, rfds, gui);
+}
+
 void		*server(void *ok)
 {
   t_libserver	*libserver;
@@ -447,8 +416,8 @@ void		*server(void *ok)
   int		retval;
   int		max;
 
-  gui = ok;
   libserver = malloc(sizeof(*libserver));
+  gui = ok;
   libserver = gui->libserver;
   init_all_serv(libserver, gui->params);
   while (1)
@@ -460,10 +429,7 @@ void		*server(void *ok)
       else if (retval == EINTR)
 	printf("Signal Caught\n");
       else if (retval <= 6)
-	if (FD_ISSET(libserver->sockfd, &rfds) == 1)
-	  do_sock_fd(libserver, gui->params->nb_clients, gui);
-	else
-	  do_sock_client(libserver, rfds, gui);
+	decision(gui, rfds, libserver);
       else
 	printf("Error - Max : %d retval : %d\n", max, retval);
     }
@@ -512,7 +478,7 @@ void		*refresh_img_func(void *data)
       sleep(1);
     }
   memset(final, 0, 128);
-  sprintf(final, "Calculé en %d minutes et %d secondes",
+  sprintf(final, "Calculé en moins de %d minute(s) et %d seconde(s)",
 	  (int)(gui->finish - gui->start) / 60,
 	  (int)(gui->finish - gui->start) % 60);
   refresh_img(NULL, gui);
@@ -536,7 +502,7 @@ int		there_is_ext(const gchar *str, char *ext)
 	     {
 	      i++;
 	      j++;
-	      if (j == my_strlen(ext))
+	      if (j == (int)strlen(ext))
 	        return (0);
 	     }
       else
@@ -560,7 +526,7 @@ gchar		*clear_path(const gchar *str, char *ext)
   if (there_is_ext(str, ext) != 0)
     {
       res = malloc((strlen((char *)str) + strlen(ext)) * sizeof(*res));
-      my_strcpy(res, (char *)str);
+      strcpy(res, (char *)str);
       res = strcat(res, ext);
       return (res);
     }
@@ -713,6 +679,22 @@ void	get_key_event(GtkWidget *w, GdkEventKey *event)
     save_png_full(w, pixbuff);
 }
 
+void		init_res_func(t_gui_serv *gui)
+{
+  gui->windowf = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title(GTK_WINDOW(gui->windowf), "Raytracer Server - FULLRES");
+  gtk_window_set_decorated(GTK_WINDOW(gui->windowf), FALSE);
+  gtk_window_fullscreen(GTK_WINDOW(gui->windowf));
+}
+
+void		manage_call_res(t_gui_serv *gui)
+{
+  g_signal_connect(G_OBJECT(gui->windowf), "delete-event",
+		   G_CALLBACK(gtk_main_quit), NULL);
+  g_signal_connect(G_OBJECT(gui->windowf), "key-release-event",
+		   G_CALLBACK(get_key_event), NULL);
+}
+
 void		full_res_func(GtkWidget *w, t_gui_serv *gui)
 {
   GtkWidget	*frame;
@@ -723,11 +705,8 @@ void		full_res_func(GtkWidget *w, t_gui_serv *gui)
 
   (void)w;
   call_all(gui);
-  gtk_rc_parse("./rc.cnf");
-  gui->windowf = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(gui->windowf), "Raytracer Server - FULLRES");
-  gtk_window_set_decorated(GTK_WINDOW(gui->windowf), FALSE);
-  gtk_window_fullscreen(GTK_WINDOW(gui->windowf));
+  gtk_rc_parse("./sys/rc.cnf");
+  init_res_func(gui);
   frame = gtk_fixed_new();
   gtk_container_add(GTK_CONTAINER(gui->windowf), frame);
   gui->imagef = gtk_image_new_from_pixbuf(pixbuff);
@@ -740,10 +719,7 @@ void		full_res_func(GtkWidget *w, t_gui_serv *gui)
 		(gint)((y / 2) - (gui->heigh / 2)));
   pthread_create(&thread, NULL, refresh_img_func_full, gui);
   gtk_widget_show_all(gui->windowf);
-  g_signal_connect(G_OBJECT(gui->windowf), "delete-event",
-		   G_CALLBACK(gtk_main_quit), NULL);
-  g_signal_connect(G_OBJECT(gui->windowf), "key-release-event",
-		   G_CALLBACK(get_key_event), NULL);
+  manage_call_res(gui);
   gtk_main();
 }
 
@@ -782,7 +758,7 @@ void            *my_xrealloc(char *str, int size)
     exit(EXIT_FAILURE);
   if (size == 0)
     return (str);
-  new_str = my_xmalloc((strlen(str) + size + 1) * sizeof(char));
+  new_str = malloc((strlen(str) + size + 1) * sizeof(char));
   *new_str = '\0';
   my_strcat(new_str, str);
   free(str);

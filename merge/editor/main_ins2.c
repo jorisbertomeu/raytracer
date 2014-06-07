@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Fri Jun  6 16:35:53 2014 nicolas ades
-** Last update Sat Jun  7 12:35:37 2014 nicolas ades
+** Last update Sat Jun  7 20:18:55 2014 nicolas ades
 */
 
 #include "editor.h"
@@ -40,7 +40,7 @@ void		inser_rz(t_editor *editor)
 void		inser_opacity(t_editor *editor)
 {
   editor->pOpa = gtk_entry_new();
-  gtk_widget_set_size_request(editor->pOpa, 25, 25);
+  gtk_widget_set_size_request(editor->pOpa, 80, 25);
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pOpa, 615, 265);
   editor->pLabel = gtk_label_new("Opacity :");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 550, 270);
@@ -49,7 +49,7 @@ void		inser_opacity(t_editor *editor)
 void		inser_reflexion(t_editor *editor)
 {
   editor->pReflex = gtk_entry_new();
-  gtk_widget_set_size_request(editor->pReflex, 25, 25);
+  gtk_widget_set_size_request(editor->pReflex, 80, 25);
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pReflex, 830, 265);
   editor->pLabel = gtk_label_new("Reflexion :");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 750, 270);
