@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:50:34 2014 martelliere
-** Last update Fri Jun  6 18:07:06 2014 Geoffrey Merran
+** Last update Sat Jun  7 16:01:09 2014 martelliere
 */
 
 #ifndef		PARSER_H_
@@ -64,6 +64,7 @@ float		get_pos(t_parser *parser, char *id);
 float		get_size(t_parser *parser);
 float		get_brill(t_parser *parser);
 float		get_opacity(t_parser *parser);
+float		get_reflexion(t_parser *parser);
 int		my_parser(t_scene *scene, t_parser *parser, int i);
 int		xopen(const char *, int, mode_t);
 t_vector	get_vector(t_parser *parser, char *id);
