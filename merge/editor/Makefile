@@ -5,7 +5,7 @@
 ## Login   <ades_n@epitech.net>
 ## 
 ## Started on  Wed Jun  4 13:16:58 2014 nicolas ades
-## Last update Sat Jun  7 20:24:34 2014 nicolas ades
+## Last update Sat Jun  7 22:59:42 2014 Geoffrey Merran
 ##
 
 SRC	=	help.c		\
@@ -42,4 +42,4 @@ fclean	:	clean
 
 re	:	fclean all
 
-.PHONY	:	all $(NAME) clean fclean re
+.PHONY	:	all clean fclean re

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sat Jun  7 21:51:20 2014 Joris Bertomeu
+** Last update Sat Jun  7 22:53:57 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -42,6 +42,13 @@ typedef struct	s_params
   int		port;
 }		t_params;
 
+typedef		struct s_list
+{
+  char		*data;
+  struct s_list *next;
+  struct s_list *prev;
+}		t_list;
+
 typedef struct	s_gui_serv
 {
   GtkWidget	*window;
@@ -75,5 +82,10 @@ struct				s_pos
 };
 
 char		*my_read_inf(int);
+t_list		*create_list(char *str);
+void		add_after(t_list *list, char *str);
+void		add_before(t_list *list, char *str);
+void		remove_from_list(t_list *list);
+void		add_to_end(t_list *list, char *str);
 
 #endif /* MAIN_ */
