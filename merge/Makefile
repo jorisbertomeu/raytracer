@@ -1,13 +1,3 @@
-##
-## Makefile for Makefile in /home/merran_g/work/c_igraph/raytracer
-## 
-## Made by Geoffrey Merran
-## Login   <merran_g@epitech.net>
-## 
-## Started on  Tue Jun  3 17:03:02 2014 Geoffrey Merran
-## Last update Fri Jun  6 21:36:40 2014 martelliere
-##
-
 RM		= rm -f
 
 CC		= cc
@@ -19,7 +9,7 @@ NAME		= raytracer
 
 OBJ		= $(SRC:.c=.o)
 
-LIBS		= -lmy -lmymlx -lmlx -lXext -lX11
+LIBS		= -L./minilibx -lmy -lmymlx -lmlx -lXext -lX11 -lpthread
 
 LIB		= libmy/
 LIBMYX		= libmymlx/
@@ -37,6 +27,7 @@ D_TMP		= src/kekette/
 SRC		= $(D_CORE)main.c			\
 		$(D_CORE)calc_img.c			\
 		$(D_CORE)hook.c				\
+		$(D_CORE)libclient.c			\
 		$(D_CORE)utility.c			\
 		$(D_INTER)get_simple_pos.c 		\
 		$(D_INTER)get_simple_pos2.c		\

@@ -5,13 +5,13 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Fri Jun  6 17:26:07 2014 Geoffrey Merran
+** Last update Sat Jun  7 16:00:37 2014 Joris Bertomeu
 */
 
 #ifndef MAIN_
 # define MAIN_
-# define WIN_X 800
-# define WIN_Y 800
+extern	int	WIN_X;
+extern	int	WIN_Y;
 # define ESCAPE 65307
 # define WIN_TITLE "RayTracer V.1 | Geoffrey Merran"
 # include <math.h>

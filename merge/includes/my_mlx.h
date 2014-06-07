@@ -5,12 +5,12 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Dec  1 17:53:21 2013 Geoffrey Merran
-** Last update Mon May 19 23:38:11 2014 Geoffrey Merran
+** Last update Sat Jun  7 15:52:39 2014 Joris Bertomeu
 */
 
 #ifndef MLX_
 # define MLX_
-# include <mlx.h>
+# include "mlx.h"
 
 typedef void * mlxptr;
 typedef struct s_pos t_pos;
