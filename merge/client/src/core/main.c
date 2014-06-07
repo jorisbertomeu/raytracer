@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 18:12:53 2014 Joris Bertomeu
+** Last update Sat Jun  7 19:38:57 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -34,13 +34,16 @@ struct s_info
   int	fd_server;
   char	*file;
   t_scene	*scene;
+  int		i;
+  int		j;
+  int		k;
 };
 
-void	init_int(int *j, int *k, int *i)
+void	init_int(t_info *info)
 {
-  *j = 1;
-  *k = 0;
-  *i = 0;
+  info->j = 1;
+  info->k = 0;
+  info->i = 0;
 }
 
 t_pos	do_pos(int i, t_info *info)
@@ -52,39 +55,40 @@ t_pos	do_pos(int i, t_info *info)
   return (pos);
 }
 
+void	do_all(unsigned int *tab, t_info *info, t_pos pos)
+{
+  tab[info->k] = info->i;
+  pos = do_pos(info->i, info);
+  tab[info->k + 8] = calc_image(pos, info->scene);
+  info->k++;
+  if (info->j != 0 && info->j % 8 == 0)
+    {
+      write(info->fd_server, tab, 18 * sizeof(unsigned int));
+      info->k = 0;
+    }
+  info->i += 4 * info->nb_clients;
+  info->j++;
+}
+
 void	*calculate_pixel(void *data)
 {
-  int		i;
-  int		j;
   t_info	*info;
-  unsigned int	tab[18];
-  int		k;
+  unsigned int	*tab;
   t_pos		pos;
 
   info = (t_info*) data;
-  init_int(&j, &k, &i);
-  while (i < 18)
-    tab[i++] = 0;
-  i = info->pos_me + info->current * info->nb_clients;
-  printf("Thread Créé pour le core %d i = %d\n", info->current, i);
-  tab[0] = i;
+  tab = malloc(18 * sizeof(int));
+  init_int(info);
+  while (info->i < 18)
+    tab[info->i++] = 0;
+  info->i = info->pos_me + info->current * info->nb_clients;
+  printf("Thread Créé pour le core %d i = %d\n", info->current, info->i);
+  tab[0] = info->i;
   tab[8] = 0x000000;
-  while (j <= info->max[info->current] - 1)
-    {
-      tab[k] = i;
-      pos = do_pos(i, info);
-      tab[k + 8] = calc_image(pos, info->scene);
-      k++;
-      if (j != 0 && j % 8 == 0)
-	{
-	  write(info->fd_server, &tab, 18 * sizeof(unsigned int));
-	  k = 0;
-	}
-      i += 4 * info->nb_clients;
-      j++;
-    }
-  write(info->fd_server, &tab, 18 * sizeof(unsigned int));
-  printf("Thread %d a finit avec j = %d\n", info->current, j);
+  while (info->j <= info->max[info->current] - 1)
+    do_all(tab, info, pos);
+  write(info->fd_server, tab, 18 * sizeof(unsigned int));
+  printf("Thread %d a finit avec j = %d\n", info->current, info->j);
 }
 
 void		fill(char **argv, t_libclient *slib, t_info *info)
