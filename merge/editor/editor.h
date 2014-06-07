@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:22:29 2014 nicolas ades
-** Last update Sat Jun  7 20:24:01 2014 nicolas ades
+** Last update Sat Jun  7 21:38:26 2014 nicolas ades
 */
 
 #ifndef EDITOR_H_
@@ -24,6 +24,7 @@
 
 typedef struct	s_editor
 {
+  gchar		*buff;
   GtkWidget	*pWindow;
   GtkWidget	*pWinSave;
   GtkWidget	*pWinHelp;
@@ -92,6 +93,7 @@ void		create_save_win(GtkWidget *, t_editor *);
 void		editor(int, char **);
 void		create_box2(t_editor *);
 void		catch_sig(t_editor *);
+void		get_from_text_view(t_editor *);
 void		init_window(t_editor *);
 void		catch_event(GtkWidget *, gpointer );
 void		create_area(t_editor *);

@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Fri Jun  6 16:37:15 2014 nicolas ades
-** Last update Sat Jun  7 15:46:18 2014 nicolas ades
+** Last update Sat Jun  7 21:36:20 2014 nicolas ades
 */
 
 #include "editor.h"
@@ -18,6 +18,7 @@ void		create_file(GtkWidget *less, t_editor *editor)
   (void)less;
   path = gtk_file_selection_get_filename(GTK_FILE_SELECTION(editor->pselection));
   fd = open(path, O_CREAT | O_WRONLY | O_APPEND, S_IRUSR | S_IWUSR);
+  get_from_text_view(editor);
   close (fd);
   gtk_main_quit();
 }
