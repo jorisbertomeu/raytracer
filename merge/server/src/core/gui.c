@@ -5,7 +5,7 @@
 ** Login   <jobertomeu@epitech.net>
 ** 
 ** Started on  Tue Jun  3 12:48:10 2014 Joris Bertomeu
-** Last update Sun Jun  8 00:45:48 2014 Joris Bertomeu
+** Last update Sun Jun  8 01:21:32 2014 Joris Bertomeu
 */
 
 #include <stdio.h>
@@ -534,7 +534,8 @@ void	init_arg(t_gui *gui)
 {
   gui->args.port = malloc(16 * sizeof(char));
   memset(gui->args.port, 0, 16);
-  strcpy(gui->args.port, "33668");
+  write(1, "Port ? ", 8);
+  scanf("%s", gui->args.port);
   gui->args.nb_max = malloc(8 * sizeof(char));
   memset(gui->args.nb_max, 0, 8);
   strcpy(gui->args.nb_max, "1");
