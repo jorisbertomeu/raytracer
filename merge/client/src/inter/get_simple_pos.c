@@ -1,16 +1,16 @@
 /*
 ** get_simple_pos.c for get_pos_simple in /home/merran_g/work/c_igraph/rtv1
-**
+** 
 ** Made by Geoffrey Merran
 ** Login   <merran_g@epitech.net>
-**
+** 
 ** Started on  Sat Mar 15 21:01:53 2014 Geoffrey Merran
-** Last update Sat Jun  7 15:55:38 2014 martelliere
+** Last update Mon Jun  2 15:47:30 2014 Geoffrey Merran
 */
 
 #include "core.h"
 
-void		translate(t_vector *eye, t_vector item)
+void	translate(t_vector *eye, t_vector item)
 {
   eye->x = eye->x - item.x;
   eye->y = eye->y - item.y;

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Sat Jun  7 02:05:22 2014 Geoffrey Merran
+** Last update Sat Jun  7 22:26:12 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -17,6 +17,7 @@ void		add_item(t_node **list, t_item new)
   tmp = my_xmalloc(sizeof(*tmp));
   tmp->item.pos = new.pos;
   tmp->item.angle = new.angle;
+  tmp->item.qua = new.qua;
   tmp->item.type = new.type;
   tmp->item.rayon = new.rayon;
   tmp->item.color = new.color;
@@ -93,7 +94,10 @@ t_node		*get_items()
   t_item	new;
 
   items = NULL;
-  /* init_vec(&n_pos, -200, -100, 100); */
+  new.qua.a = 0;
+  new.qua.b = 0;
+  new.qua.c = 0;
+  /* init_vec(&n0_pos, -200, -100, 100); */
   /* init_vec(&n_angle, 0, 0, 0); */
   /* init_rgb(&n_color, 255, 0, 0); */
   /* init_item(&new, n_pos, n_angle, CONE); */

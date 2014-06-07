@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Sat Jun  7 00:57:39 2014 Geoffrey Merran
+** Last update Sat Jun  7 22:17:28 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -57,8 +57,10 @@ t_inter		get_pixel_color(t_vector pos_3d, t_scene *scene)
   t_inter      	inter;
 
   inter = find_inter(*scene->eye, pos_3d, scene->items);
+  if (inter.k == 0)
+    return (inter);
   inter.p = get_eq_param(scene->eye->pos, inter.k, pos_3d);
-  inter.n = get_normal(inter);
+  inter.n = get_normal(inter, scene->eye);
   rotate_all(&inter.n, inter.item.angle);
   inter.rgb = put_spots(inter, scene);
   return (inter);

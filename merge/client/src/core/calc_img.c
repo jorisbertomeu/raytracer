@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Sat Jun  7 16:49:20 2014 Joris Bertomeu
+** Last update Sat Jun  7 22:17:28 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -57,8 +57,10 @@ t_inter		get_pixel_color(t_vector pos_3d, t_scene *scene)
   t_inter      	inter;
 
   inter = find_inter(*scene->eye, pos_3d, scene->items);
+  if (inter.k == 0)
+    return (inter);
   inter.p = get_eq_param(scene->eye->pos, inter.k, pos_3d);
-  inter.n = get_normal(inter);
+  inter.n = get_normal(inter, scene->eye);
   rotate_all(&inter.n, inter.item.angle);
   inter.rgb = put_spots(inter, scene);
   return (inter);
@@ -69,6 +71,7 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   t_vector	pos_3d;
   t_inter 	inter;
   t_rgb		color;
+  t_rgb		save;
 
   pos_3d.x = scene->eye->distance;
   pos_3d.y = (WIN_X / 2.000) - (float) pos.x;
@@ -76,13 +79,13 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   inter = get_pixel_color(pos_3d, scene);
   color = inter.rgb;
   if (inter.k == 0)
-    return (change_rgb(color.r, color.g, color.b));
-  /* save = put_reflexion(inter, scene, pos_3d); */
-  /* color.r = (save.r * inter.item.reflexion) + */
-  /*   (color.r * (1.0 - inter.item.reflexion)); */
-  /* color.g = (save.g * inter.item.reflexion) + */
-  /*   (color.g * (1.0 - inter.item.reflexion)); */
-  /* color.b = (save.b * inter.item.reflexion) + */
-  /*   (color.b * (1.0 - inter.item.reflexion)); */
+    return (change_rgb(0, 0, 0));
+  save = put_reflexion(inter, scene, pos_3d);
+  color.r = (save.r * inter.item.reflexion) +
+    (color.r * (1.0 - inter.item.reflexion));
+  color.g = (save.g * inter.item.reflexion) +
+    (color.g * (1.0 - inter.item.reflexion));
+  color.b = (save.b * inter.item.reflexion) +
+    (color.b * (1.0 - inter.item.reflexion));
   return (change_rgb(color.r, color.g, color.b));
 }

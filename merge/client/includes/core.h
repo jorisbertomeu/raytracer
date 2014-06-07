@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sat Jun  7 16:00:37 2014 Joris Bertomeu
+** Last update Sat Jun  7 22:33:06 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -42,11 +42,12 @@ typedef t_rinter (*t_finter)(t_cam, t_vector, t_item);
 t_inter		find_inter(t_cam eye, t_vector pos_3d, t_node *items);
 t_vector	get_eq_param(t_vector eye, float k, t_vector pos_3d);
 float		get_k_from_delta(float delta, float a, float b);
-t_vector	get_normal(t_inter inter);
+t_vector	get_normal(t_inter inter, t_cam *eye);
 t_rinter	inter_plan(t_cam eye, t_vector pos_3d, t_item plan);
 t_rinter	inter_sphere(t_cam eye, t_vector pos_3d, t_item sphere);
 t_rinter	inter_cylinder(t_cam eye, t_vector pos_3d, t_item sphere);
 t_rinter	inter_cone(t_cam eye, t_vector pos_3d, t_item cone);
+t_rinter	inter_hyper(t_cam eye, t_vector pos_3d, t_item hyper);
 
 /*
 ** Get position (real / simple)
@@ -80,10 +81,15 @@ int		expose_hook(t_screen *params);
 int		key_hook(int keycode, t_screen *params);
 
 /*
-** Xfunction
+** Utility
 */
 
 void		init_rgb(t_rgb *color, int r, int g, int b);
+
+/*
+** Xfunction
+*/
+
 mlxptr		xmlx_init();
 
 #endif /* MAIN_ */

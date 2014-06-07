@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 18:42:28 2014 Geoffrey Merran
-** Last update Tue Jun  3 18:28:45 2014 Geoffrey Merran
+** Last update Sat Jun  7 22:19:19 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -34,12 +34,13 @@ t_finter       	*get_inters()
 {
   t_finter     	*inter_x;
 
-  inter_x = my_xmalloc(5 * sizeof(*inter_x));
+  inter_x = my_xmalloc(6 * sizeof(*inter_x));
   inter_x[SPHERE] = inter_sphere;
   inter_x[PLANE] = inter_plan;
   inter_x[CONE] = inter_cone;
   inter_x[CYLINDER] = inter_cylinder;
-  inter_x[4] = NULL;
+  inter_x[HYPER] = inter_hyper;
+  inter_x[5] = NULL;
   return (inter_x);
 }
 

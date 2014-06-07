@@ -22,7 +22,7 @@ D_PARSER	= src/parser/
 D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
 D_REFL		= src/reflexion/
-D_TMP		= src/kekette/
+D_TMP		= src/clt_color/
 
 SRC		= $(D_CORE)main.c			\
 		$(D_CORE)calc_img.c			\
@@ -52,6 +52,7 @@ SRC		= $(D_CORE)main.c			\
 		$(D_SHAPE)plan.c 			\
 		$(D_SHAPE)cylinder.c 			\
 		$(D_SHAPE)cone.c			\
+		$(D_SHAPE)hyperboloide.c		\
 		$(D_LUM)luminosity.c 			\
 		$(D_LUM)shadow.c 			\
 		$(D_REFL)reflexion.c			\
