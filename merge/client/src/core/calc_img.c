@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Fri Jun  6 19:29:30 2014 Geoffrey Merran
+** Last update Sat Jun  7 16:49:20 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -69,7 +69,6 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   t_vector	pos_3d;
   t_inter 	inter;
   t_rgb		color;
-  t_rgb		save;
 
   pos_3d.x = scene->eye->distance;
   pos_3d.y = (WIN_X / 2.000) - (float) pos.x;

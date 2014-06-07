@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 19:22:46 2014 Geoffrey Merran
+** Last update Sat Jun  7 19:34:23 2014 Geoffrey Merran
 */
 
 #include <unistd.h>
@@ -36,6 +36,22 @@ struct s_info
   t_scene	*scene;
 };
 
+void	init_int(int *j, int *k, int *i)
+{
+  *j = 1;
+  *k = 0;
+  *i = 0;
+}
+
+t_pos	do_pos(int i, t_info *info)
+{
+  t_pos	pos;
+
+  pos.x = i % info->x;
+  pos.y = i / info->y;
+  return (pos);
+}
+
 void	*calculate_pixel(void *data)
 {
   int		i;
@@ -46,9 +62,7 @@ void	*calculate_pixel(void *data)
   t_pos		pos;
 
   info = (t_info*) data;
-  j = 1;
-  k = 0;
-  i = 0;
+  init_int(&j, &k, &i);
   while (i < 18)
     tab[i++] = 0;
   i = info->pos_me + info->current * info->nb_clients;
@@ -58,8 +72,7 @@ void	*calculate_pixel(void *data)
   while (j <= info->max[info->current] - 1)
     {
       tab[k] = i;
-      pos.x = i % info->x;
-      pos.y = i / info->y;
+      pos = do_pos(i, info);
       tab[k + 8] = calc_image(pos, info->scene);
       k++;
       if (j != 0 && j % 8 == 0)
