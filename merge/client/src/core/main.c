@@ -5,15 +5,15 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 16:32:53 2014 Joris Bertomeu
+** Last update Sat Jun  7 19:22:46 2014 Geoffrey Merran
 */
 
-#include "core.h"
 #include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <libclient.h>
+#include "core.h"
 
 int	WIN_X;
 int	WIN_Y;
