@@ -5,7 +5,7 @@
 ## Login   <ades_n@epitech.net>
 ## 
 ## Started on  Wed Jun  4 13:16:58 2014 nicolas ades
-## Last update Sat Jun  7 20:24:34 2014 nicolas ades
+## Last update Sat Jun  7 21:36:43 2014 nicolas ades
 ##
 
 SRC	=	help.c		\
@@ -14,6 +14,7 @@ SRC	=	help.c		\
 		main_ins.c	\
 		main_ins2.c	\
 		main_ins3.c	\
+		push_in_file.c	\
 		save.c		\
 		main_window.c	\
 		editor.c	\
