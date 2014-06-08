@@ -5,7 +5,7 @@
 ## Login   <ades_n@epitech.net>
 ## 
 ## Started on  Sun Jun  8 00:57:30 2014 nicolas ades
-## Last update Sun Jun  8 07:32:49 2014 Jeremy Mediavilla
+## Last update Sun Jun  8 10:41:43 2014 Jeremy Mediavilla
 ##
 
 RM		= rm -f
@@ -28,12 +28,11 @@ LIBXEXT		= /usr/lib64
 
 D_CORE		= src/core/
 D_INTER		= src/inter/
-D_PARSER	= src/parser/
 D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
 D_REFL		= src/reflexion/
 D_TMP		= src/clt_color/
-D_DIAVME	= src/parser/mediav_parser/
+D_DIAVME	= src/parser/
 
 SRC		= $(D_CORE)main.c			\
 		$(D_CORE)calc_img.c			\
@@ -46,8 +45,8 @@ SRC		= $(D_CORE)main.c			\
 		$(D_INTER)get_simple_pos2.c		\
 		$(D_INTER)find_inter.c			\
 		$(D_INTER)get_normal.c			\
-		$(D_PARSER)list.c			\
-		$(D_PARSER)read_inf.c			\
+		$(D_DIAVME)list.c			\
+		$(D_DIAVME)read_inf.c			\
 		$(D_SHAPE)sphere.c			\
 		$(D_SHAPE)plan.c 			\
 		$(D_SHAPE)cylinder.c 			\
@@ -59,6 +58,13 @@ SRC		= $(D_CORE)main.c			\
 		$(D_CORE)xfunction.c			\
 		$(D_TMP)stock_color.c			\
 		$(D_DIAVME)parser.c			\
+		$(D_DIAVME)items.c			\
+		$(D_DIAVME)balise_tools.c		\
+		$(D_DIAVME)balise_value.c		\
+		$(D_DIAVME)get_infos.c			\
+		$(D_DIAVME)get_item_val.c		\
+		$(D_DIAVME)scene_tools.c		\
+		$(D_DIAVME)str_tools.c			\
 
 all:	libs $(NAME)
 

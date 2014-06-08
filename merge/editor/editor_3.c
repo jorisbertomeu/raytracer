@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 06:44:20 2014 nicolas ades
-** Last update Sun Jun  8 06:45:45 2014 nicolas ades
+** Last update Sun Jun  8 09:00:44 2014 Joris Bertomeu
 */
 
 #include "editor.h"
@@ -68,7 +68,7 @@ char	*add_object(t_editor *editor)
 \n\t\t<y>%s</y>\n\t\t<z>%s</z>\n\t</ROT>\n\t<COLOR>\n\t\t<r>%s</g>\
 \n\t\t<g>%s</G>\n\t\t<b>%s</b>\n\t</COLOR>\n\t<EFFECTS>\n\t\t<BRILL>%s</BRILL>\
 \n\t\t<TRANSP>%s</TRANSP>\n\t\t<REFLEXION>%s</REFLEXION\
->\n\t\t<EFFECT>%s</EFFECT>\n\t</EFFECTS>\n\
+>\n\t\t<EFFECT>%s</EFFECT>\n\t</EFFECTS>\n\t<SIZE>%s</SIZE>\n\
 </%s>\n", cts(gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(editor->combo)->entry))),
 	  cts(gtk_entry_get_text(GTK_ENTRY(editor->pTx))),
 	  cts(gtk_entry_get_text(GTK_ENTRY(editor->pTy))),
@@ -83,6 +83,7 @@ char	*add_object(t_editor *editor)
 	  cts(gtk_entry_get_text(GTK_ENTRY(editor->pOpa))),
 	  cts(gtk_entry_get_text(GTK_ENTRY(editor->pReflex))),
 	  sort_number(gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(editor->pColor)->entry))),
+	  cts(gtk_entry_get_text(GTK_ENTRY(editor->sizeo))),
 	  cts(gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(editor->combo)->entry))));
   return (final);
 }

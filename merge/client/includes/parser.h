@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 07:29:05 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 07:35:25 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:54:37 2014 Jeremy Mediavilla
 */
 
 #ifndef		PARSER_H_
@@ -32,12 +32,11 @@
 ** DEFINITIONS
 */
 
-typedef	struct	s_parser
+
+typedef struct	s_parser
 {
-  int		line;
-  int		k;
-  int		n;
-  char		**tab;
+  t_scene	*scene;
+  t_item	tmp;
 }		t_parser;
 
 typedef void(*ptr)(t_scene *, t_parser *);
@@ -49,6 +48,54 @@ typedef		struct s_list
   struct s_list *prev;
 }		t_list;
 
+/* fonctions dans balise_tools.c */
+int		is_xml_balise(char **, char *, int);
+char		*get_closing_balise(char *);
+int		is_valid_balise(char *);
+void		is_closing_balise(int, char *, char **);
+void		wrong_balise(int *, char **);
+
+/* fonctions dans balise_value.c */
+int		get_ibalise_value(char *, char *, int);
+float		get_fbalise_value(char *, char *, int);
+float		get_fcoord_pars(char **, int, char *);
+float		get_fbalise_value_spec(char *, char *, int);
+float		get_effects_val(char *, char **, int);
+
+/* fonctions dans get_infos.c */
+void		get_color_info(int, char **, t_parser *);
+void		get_item_info(int *, char **, char *, t_parser *);
+void		get_spot_info(int *, char **, char *, t_parser *);
+void		get_eye_info(int *, char **, char *, t_parser *);
+float		get_effects_val2(char *, char **, int);
+
+/* fonctions dans get_item_val.c */
+void		print_rgb_error(int);
+void		get_item_pos(char **, int, char *, t_parser *);
+int		get_color_rgb(int, char **, char *);
+void		get_effects(int, char **, t_parser *);
+void		get_size_item(int, char **, t_parser *);
+
+/* fonctions dans parser.c */
+void		check_balise(int *, char *, char **, t_parser *);
+char		**epure_tab(char **, char *);
+t_scene		*get_scene(char *);
+
+/* fonctions dans scene_tools.c */
+void		reset_item(t_parser *);
+void		init_scene(t_scene **);
+void		aff_the_scene(t_scene *);
+
+/* fonctions dans str_tools.c */
+int		is_char_from_str(char, char *);
+int		nbr_char_begin(char *, char *);
+char		*remove_char_begin(char *, char *);
+char		*get_item_type(char *);
+int		type_val(char *);
+
+/* fonctions dans read_inf.c */
+char		*my_read_inf(int);
+
 /* fonctions dans list.c */
 
 t_list		*create_list(char *);
@@ -57,37 +104,7 @@ void		add_before(t_list *, char *);
 void		remove_from_list(t_list *);
 void		add_to_end(t_list *, char *);
 
-/*
-** PROTOTYPES
-*/
-
-void		get_eye(t_scene *scene, t_parser *parser);
-void		get_spot(t_scene *scene, t_parser *parser);
-void		get_plan(t_scene *scene, t_parser *parser);
-void		get_sphere(t_scene *scene, t_parser *paser);
-void		get_cone(t_scene *scene, t_parser *parser);
-void		get_cylindre(t_scene *scene, t_parser *parser);
-void		init_otab(char **otab, void **which_object);
-void            init_vec(t_vector *vec, float x, float y, float z);
-void		add_item(t_node **list, t_item new);
-void		*my_xmalloc(int size);
-void		*my_xrealloc(char *str, int size);
-void		*my_alloc_init(int size, char c);
-char		*strlower(char *str);
-char		**my_martel_to_wordtab(char *str);
-float		get_pos(t_parser *parser, char *id);
-float		get_size(t_parser *parser);
-float		get_brill(t_parser *parser);
-float		get_opacity(t_parser *parser);
-float		get_reflexion(t_parser *parser);
-int		my_parser(t_scene *scene, t_parser *parser, int i);
-int		xopen(const char *, int, mode_t);
-t_vector	get_vector(t_parser *parser, char *id);
-t_rgb		get_color(t_parser *parser);
-char   		*check_conf(int ac, char **av);
-t_scene		*get_scene(char *buff);
-int		xopen(const char *path, int flags, mode_t mode);
-void		xfree(char *s);
-void		xclose(int fd);
+/* fonction dans items.c */
+void		add_item(t_node **, t_item);
 
 #endif		/* PARSER_H_ */
