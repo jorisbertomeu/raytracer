@@ -5,7 +5,7 @@
 ** Login   <jobertomeu@epitech.net>
 ** 
 ** Started on  Tue Jun  3 12:48:10 2014 Joris Bertomeu
-** Last update Sun Jun  8 01:21:32 2014 Joris Bertomeu
+** Last update Sun Jun  8 02:50:15 2014 Joris Bertomeu
 */
 
 #include <stdio.h>
@@ -205,13 +205,6 @@ void	launch_rt_go(GtkWidget *w, t_gui *gui)
   gtk_widget_destroy(gui->rt.sys.window);
   send = set_send(gui);
   serv_dacc(6, send);
-  /* gtk_widget_destroy(gui->main.sys.window); */
-  printf("-- RESUM --\n");
-  printf("Port : %s\n", gui->args.port);
-  printf("Nb_Max : %s\n", gui->args.nb_max);
-  printf("X : %s\n", gui->args.x);
-  printf("Y : %s\n", gui->args.y);
-  printf("conf : %s\n", gui->args.conf);
 }
 
 void	rt_click(GtkWidget *useless, t_gui *gui)
@@ -238,7 +231,12 @@ GList	*init_resol_list()
   list = NULL;
   list = g_list_append(list, g_strdup_printf("800x600"));
   list = g_list_append(list, g_strdup_printf("1024x768"));
-  list = g_list_append(list, g_strdup_printf("1080x1920"));
+  list = g_list_append(list, g_strdup_printf("1280x800"));
+  list = g_list_append(list, g_strdup_printf("1280x1024"));
+  list = g_list_append(list, g_strdup_printf("1920x1080"));
+  list = g_list_append(list, g_strdup_printf("1440x900"));
+  list = g_list_append(list, g_strdup_printf("1680x1050"));
+  list = g_list_append(list, g_strdup_printf("1920x1080"));
   return (list);
 }
 
@@ -291,12 +289,8 @@ void		*save_options(GtkWidget *useless, t_gui *gui)
 	 gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(gui->opt.combo.resol)->entry)));
   strcpy(gui->args.y,
 	 gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(gui->opt.combo.resol)->entry)));
-  printf("-- RESUM --\n");
-  printf("Port : %s\n", gui->args.port);
-  printf("Nb_Max : %s\n", gui->args.nb_max);
-  printf("X : %s\n", gui->args.x);
-  printf("Y : %s\n", gui->args.y);
-  printf("conf : %s\n", gui->args.conf);
+  strcpy(gui->args.y,
+	 gtk_entry_get_text(GTK_ENTRY(gui->opt.combo.mode)));
   dialog = gtk_message_dialog_new((GtkWindow*) gui->opt.sys.window,
 				  GTK_DIALOG_MODAL,
 				  GTK_MESSAGE_INFO, GTK_BUTTONS_OK,
@@ -385,14 +379,10 @@ void	init_clients_g(t_gui *gui)
 void	init_mode(t_gui *gui)
 {
   gui->opt.list.list_mode = init_mode_list();
-  gui->opt.labels.mode_l = gtk_label_new("Mode de rendu : ");
+  gui->opt.labels.mode_l = gtk_label_new("Port : ");
   gtk_fixed_put(GTK_FIXED(gui->opt.sys.frame), gui->opt.labels.mode_l, 30, 200);
-  gui->opt.combo.mode = gtk_combo_new();
-  gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(gui->opt.combo.mode)->entry),
-			 FALSE);
-  gtk_combo_set_popdown_strings(GTK_COMBO(gui->opt.combo.mode),
-				gui->opt.list.list_mode) ;
-  gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(gui->opt.combo.mode)->entry), "Sépia");
+  gui->opt.combo.mode = gtk_entry_new();
+  gtk_widget_set_size_request(gui->opt.combo.mode, 185, 30);
   gtk_fixed_put(GTK_FIXED(gui->opt.sys.frame), gui->opt.combo.mode, 150, 195);
 }
 
@@ -534,17 +524,16 @@ void	init_arg(t_gui *gui)
 {
   gui->args.port = malloc(16 * sizeof(char));
   memset(gui->args.port, 0, 16);
-  write(1, "Port ? ", 8);
-  scanf("%s", gui->args.port);
+  strcpy(gui->args.port, "33669");
   gui->args.nb_max = malloc(8 * sizeof(char));
   memset(gui->args.nb_max, 0, 8);
   strcpy(gui->args.nb_max, "1");
   gui->args.x = malloc(16 * sizeof(char));
   memset(gui->args.x, 0, 16);
-  strcpy(gui->args.x, "800");
+  strcpy(gui->args.x, "800x600");
   gui->args.y = malloc(16 * sizeof(char));
   memset(gui->args.y, 0, 16);
-  strcpy(gui->args.y, "600");
+  strcpy(gui->args.y, "800x600");
   gui->args.conf = malloc(2048 * sizeof(char));
   memset(gui->args.conf, 0, 2048);
   strcpy(gui->args.conf, "naz");
@@ -562,6 +551,5 @@ int main (int argc, char *argv[])
   manage_callback(gui);
   gtk_widget_show_all(gui->main.sys.window);
   gtk_main();
-  printf("finish\n");
   return 0;
 }

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sun Jun  8 00:25:01 2014 Joris Bertomeu
+** Last update Sun Jun  8 02:53:57 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -20,12 +20,13 @@ GdkPixbuf	*pixbuf;
 GdkPixbuf	*pixbuff;
 int		g_flag;
 int		start;
+int		g_fflag;
 
 void	print_error(char *str)
 {
   char	*cmd;
 
-  cmd = malloc(512 * sizeof(char));
+  cmd = my_xmalloc(512 * sizeof(char));
   memset(cmd, 0, 512);
   sprintf(cmd, "%s > ", str);
   perror(cmd);
@@ -39,7 +40,7 @@ char	*search_ip_from_fd(t_libserver *libserver, int fd)
   int	i;
 
   i = 0;
-  ip = malloc((INET_ADDRSTRLEN + 15) * sizeof(char));
+  ip = my_xmalloc((INET_ADDRSTRLEN + 15) * sizeof(char));
   memset(ip, 0, (INET_ADDRSTRLEN + 15));
   while (i < 6)
     {
@@ -307,7 +308,7 @@ void		check_new_client(t_libserver *libserver, int nb_cl_total, t_gui_serv *gui)
 {
   char		*addr_client;
 
-  addr_client = malloc(INET_ADDRSTRLEN * sizeof(*addr_client));
+  addr_client = my_xmalloc(INET_ADDRSTRLEN * sizeof(*addr_client));
   if (id_exist(libserver->cli_addr[0].sin_addr.s_addr, libserver) == 0)
     {
       if (libserver->id_client >= 5)
@@ -422,7 +423,7 @@ void		*server(void *ok)
   int		retval;
   int		max;
 
-  libserver = malloc(sizeof(*libserver));
+  libserver = my_xmalloc(sizeof(*libserver));
   gui = ok;
   libserver = gui->libserver;
   init_all_serv(libserver, gui->params);
@@ -467,6 +468,11 @@ void	*refresh_img_func_full(void *data)
       refresh_imgf(NULL, gui);
       sleep(1);
     }
+  if (g_fflag == 1)
+    {
+      printf("OUUUT\n");
+      return;
+    }
   refresh_imgf(NULL, gui);
   return (NULL);
 }
@@ -477,7 +483,7 @@ void		*refresh_img_func(void *data)
   t_gui_serv	*gui;
 
   gui = data;
-  final = malloc(128 * sizeof(char));
+  final = my_xmalloc(128 * sizeof(char));
   while (g_flag == 0)
     {
       refresh_img(NULL, gui);
@@ -531,14 +537,14 @@ gchar		*clear_path(const gchar *str, char *ext)
     return (NULL);
   if (there_is_ext(str, ext) != 0)
     {
-      res = malloc((strlen((char *)str) + strlen(ext)) * sizeof(*res));
+      res = my_xmalloc((strlen((char *)str) + strlen(ext)) * sizeof(*res));
       strcpy(res, (char *)str);
       res = strcat(res, ext);
       return (res);
     }
   else
     {
-      res = malloc((strlen((char *)str) + 1) * sizeof(*res));
+      res = my_xmalloc((strlen((char *)str) + 1) * sizeof(*res));
       strcpy(res, (char *) str);
       return (res);
     }
@@ -673,14 +679,23 @@ void	call_all(t_gui_serv *gui)
   gui->twidth = gui->width;
   gui->theigh = gui->heigh;
   start = 1;
+  g_flag = 0;
+  g_fflag = 0;
   init_all_serv(gui->libserver, gui->params);
   send_first_data_re(gui->libserver, gui->params->nb_clients, gui);
+}
+
+void	quit_res(GtkWidget *w, t_gui_serv *gui)
+{
+  g_flag = 1;
+  g_fflag = 1;
+  gtk_widget_destroy(w);
 }
 
 void	get_key_event(GtkWidget *w, GdkEventKey *event)
 {
   if (strcmp(gdk_keyval_name(event->keyval), "Escape") == 0)
-    gtk_widget_destroy(w);
+    quit_res(w, NULL);
   if (strcmp(gdk_keyval_name(event->keyval), "s") == 0)
     save_png_full(w, pixbuff);
 }
@@ -696,7 +711,7 @@ void		init_res_func(t_gui_serv *gui)
 void		manage_call_res(t_gui_serv *gui)
 {
   g_signal_connect(G_OBJECT(gui->windowf), "delete-event",
-		   G_CALLBACK(gtk_main_quit), NULL);
+		   G_CALLBACK(quit_res), gui);
   g_signal_connect(G_OBJECT(gui->windowf), "key-release-event",
 		   G_CALLBACK(get_key_event), NULL);
 }
@@ -764,7 +779,7 @@ void            *my_xrealloc(char *str, int size)
     exit(EXIT_FAILURE);
   if (size == 0)
     return (str);
-  new_str = malloc((strlen(str) + size + 1) * sizeof(char));
+  new_str = my_xmalloc((strlen(str) + size + 1) * sizeof(char));
   *new_str = '\0';
   my_strcat(new_str, str);
   free(str);
@@ -801,10 +816,10 @@ void		start_serv(int ac, char **argv)
   pthread_t	thread;
 
   start = 0;
-  gui = malloc(sizeof(*gui));
-  gui->libserver = malloc(sizeof(t_libserver));
+  gui = my_xmalloc(sizeof(*gui));
+  gui->libserver = my_xmalloc(sizeof(t_libserver));
   gui->file = check_conf(argv[5]);
-  gui->params = malloc(sizeof(*(gui->params)));
+  gui->params = my_xmalloc(sizeof(*(gui->params)));
   gui->params->nb_clients = atoi(argv[2]);
   gui->params->port = atoi(argv[1]);
   gui->argv = argv;
@@ -813,7 +828,6 @@ void		start_serv(int ac, char **argv)
   XInitThreads();
   gtk_init(&ac, &argv);
   pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, 0, 8, 800, 600);
-  printf("X : %d Y : %d\n", gui->width, gui->heigh);
   pixbuff = gdk_pixbuf_new(GDK_COLORSPACE_RGB, 0, 8, gui->width, gui->heigh);
   pthread_create(&thread, NULL, server, gui);
   start_gtk(gui);

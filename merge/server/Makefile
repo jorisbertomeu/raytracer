@@ -20,6 +20,7 @@ SRC		= $(D_CORE)main.c			\
 		$(D_CORE)gui.c				\
 		$(D_FUNC)get_next_line.c		\
 		$(D_FUNC)my_alloc_init.c		\
+		$(D_FUNC)xmalloc.c			\
 
 all:	$(NAME)
 
