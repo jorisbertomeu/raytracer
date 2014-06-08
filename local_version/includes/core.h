@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 03:51:54 2014 Geoffrey Merran
+** Last update Sun Jun  8 14:38:24 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -66,6 +66,7 @@ void		get_simple_pos(t_cam *eye, t_item item, t_vector *pos_3d);
 
 t_rgb		luminosity(t_spot spot, t_inter inter);
 int		is_shadow(t_spot spot, t_inter inter, t_node *items);
+t_rgb		put_transparence(t_inter inter, t_scene *scene, t_vector pos_3d);
 
 /*
 ** Effects

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 11:55:41 2014 Geoffrey Merran
+** Last update Sun Jun  8 15:20:23 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -21,6 +21,7 @@ void		add_item(t_node **list, t_item new)
   tmp->item.type = new.type;
   tmp->item.rayon = new.rayon;
   tmp->item.color = new.color;
+  tmp->item.transparence = new.transparence;
   tmp->item.brillance = new.brillance;
   tmp->item.reflexion = new.reflexion;
   tmp->item.effect = new.effect;
@@ -68,7 +69,7 @@ t_spot		*get_spots()
   t_rgb		n_color;
 
   spots = NULL;
-  init_vec(&n_pos, -300, 0, 0);
+  init_vec(&n_pos, -600, 0, 0);
   init_rgb(&n_color, 255, 255, 255);
   add_spot(&spots, n_pos, n_color);
   /* init_vec(&n_pos, -300, 0, 0); */
@@ -98,13 +99,15 @@ t_node		*get_items()
   new.qua.a = 0;
   new.qua.b = 0;
   new.qua.c = 0;
-  /* init_vec(&n0_pos, -200, -100, 100); */
-  /* init_vec(&n_angle, 0, 0, 0); */
-  /* init_rgb(&n_color, 255, 0, 0); */
-  /* init_item(&new, n_pos, n_angle, CONE); */
-  /* init_item2(&new, 30.0, n_color, 0.5, 0.5); */
-  /* add_item(&items, new); */
-  new.effect = VAGUE;
+  new.effect = NONE;
+  new.transparence = 0;
+  init_vec(&n_pos, -500, 0, -100);
+  init_vec(&n_angle, 0, 0, 0);
+  init_rgb(&n_color, 48, 223, 0);
+  init_item(&new, n_pos, n_angle, SPHERE);
+  init_item2(&new, 50.0, n_color, 0, 0);
+  add_item(&items, new);
+  new.effect = DAMIER;
   init_vec(&n_pos, 0, 0, -200);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 95, 0, 255);
@@ -131,11 +134,12 @@ t_node		*get_items()
   /* init_item2(&new, 0, n_color, 0.5, 0.3); */
   /* add_item(&items, new); */
   new.effect = NONE;
+  new.transparence = 0.5;
   init_vec(&n_pos, -100, 0, -50);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 32, 255, 0);
   init_item(&new, n_pos, n_angle, SPHERE);
-  init_item2(&new, 150.0, n_color, 0.3, 0.3);
+  init_item2(&new, 150.0, n_color, 0.3, 0.7);
   add_item(&items, new);
   return (items);
 }

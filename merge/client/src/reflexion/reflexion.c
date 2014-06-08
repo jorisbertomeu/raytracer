@@ -5,9 +5,10 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Jun  6 03:23:23 2014 Geoffrey Merran
-** Last update Fri Jun  6 04:38:06 2014 Geoffrey Merran
+** Last update Sun Jun  8 16:06:24 2014 Geoffrey Merran
 */
 
+#define _BSD_SOURCE
 #include "core.h"
 
 t_rgb		put_reflexion(t_inter inter, t_scene *scene, t_vector pos_3d)
