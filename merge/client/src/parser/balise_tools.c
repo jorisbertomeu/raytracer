@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:00:41 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:01:21 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 16:19:44 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -74,14 +74,17 @@ void		is_closing_balise(int i, char *balise, char **conf)
   closing = get_closing_balise(balise);
   while (conf[i])
     {
-      if (is_valid_balise(conf[i]) == 1)
+      if (conf[i])
 	{
-	  fprintf(stderr, "Error on line %i : you can't open a balise \
+	  if (is_valid_balise(conf[i]) == 1)
+	    {
+	      fprintf(stderr, "Error on line %i : you can't open a balise \
 without closing the previous one\n", (i + 1));
-	  exit(0);
+	      exit(0);
+	    }
+	  if (strcmp(closing, conf[i]) == 0)
+	    return ;
 	}
-      if (strcmp(closing, conf[i]) == 0)
-	return ;
       i++;
     }
   fprintf(stderr, "Error on line %i : Balise isn't closed\n", tmp);

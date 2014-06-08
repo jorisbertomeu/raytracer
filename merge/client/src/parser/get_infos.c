@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:02:17 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 11:57:50 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 16:17:42 2014 Jeremy Mediavilla
 */
 
 #define _BSD_SOURCE
@@ -20,11 +20,19 @@ void		get_color_info(int i, char **conf, t_parser *parser)
     i++;
   if (conf[i] && conf[i + 1] != '\0')
     i++;
-  closing = get_closing_balise(conf[i]);
-  c.r = get_color_rgb(i, conf, "<r>");
-  c.g = get_color_rgb(i, conf, "<g>");
-  c.b = get_color_rgb(i, conf, "<b>");
-  parser->tmp.color = c;
+  if (conf[i])
+    {
+      closing = get_closing_balise(conf[i]);
+      c.r = get_color_rgb(i, conf, "<r>");
+      c.g = get_color_rgb(i, conf, "<g>");
+      c.b = get_color_rgb(i, conf, "<b>");
+      parser->tmp.color = c;
+    }
+  else
+    {
+      fprintf(stderr, "error on get_color_info\n");
+      exit(0);
+    }
   while (conf[i] && strcmp(conf[i], closing) != 0)
     (i)++;
   if (conf[i] && conf[i + 1] != '\0')
@@ -102,9 +110,14 @@ void		get_eye_info(int *i, char **conf, char *balise, t_parser *parser)
 	(*i)++;
       if (conf[*i] && conf[*i + 1] != '\0')
 	(*i)++;
-      get_item_pos(conf, *i, conf[*i], parser);
-      parser->scene->eye->pos = parser->tmp.pos;
-      parser->scene->eye->angle = parser->tmp.angle;
+      if (conf[*i])
+	{
+	  get_item_pos(conf, *i, conf[*i], parser);
+	  parser->scene->eye->pos = parser->tmp.pos;
+	  parser->scene->eye->angle = parser->tmp.angle;
+	}
+      else
+	my_error("Error on get_eye_info\n");
     }
 }
 

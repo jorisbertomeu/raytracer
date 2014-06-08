@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:04:28 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 15:49:02 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 16:23:10 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -25,9 +25,17 @@ void		get_item_pos(char **conf, int i, char *balise, t_parser *parser)
     i++;
   if (conf[i] && strcmp(conf[i], balise) == 0)
     i++;
-  v.x = get_fcoord_pars(conf, i, "<x>");
-  v.y = get_fcoord_pars(conf, i, "<y>");
-  v.z = get_fcoord_pars(conf, i, "<z>");
+  if (conf[i])
+    {
+      v.x = get_fcoord_pars(conf, i, "<x>");
+      v.y = get_fcoord_pars(conf, i, "<y>");
+      v.z = get_fcoord_pars(conf, i, "<z>");
+    }
+  else
+    {
+      fprintf(stderr, "Error with get_item_pos functions\n");
+      exit(0);
+    }
   if (strcmp(balise, "<POS>") == 0)
     parser->tmp.pos = v;
   if (strcmp(balise, "<ROT>") == 0)
@@ -48,7 +56,7 @@ int		get_color_rgb(int i, char **conf, char *balise)
     i++;
   while (j < 3)
     {
-      if (strncmp(conf[i], balise, len) == 0)
+      if (conf[i] && strncmp(conf[i], balise, len) == 0)
 	{
 	  tmp2 = get_ibalise_value(conf[i], balise, i);
 	  if (tmp2 < 0 || tmp2 > 255)
