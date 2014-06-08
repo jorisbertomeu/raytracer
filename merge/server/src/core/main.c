@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sun Jun  8 04:35:41 2014 nicolas ades
+** Last update Sun Jun  8 12:29:01 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -32,5 +32,6 @@ int		serv_dacc(int ac, char **argv)
       printf("You must enter a valid port and a number maximum of 6 peers\n");
       exit(-1);
     }
+  g_flag = 1;
   return (0);
 }

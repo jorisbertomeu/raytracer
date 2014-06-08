@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 04:05:39 2014 nicolas ades
-** Last update Sun Jun  8 04:53:11 2014 nicolas ades
+** Last update Sun Jun  8 12:26:05 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -17,6 +17,8 @@ void		*save_options(GtkWidget *useless, t_gui *gui)
   (void)useless;
   strcpy(gui->args.nb_max,
 	 gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(gui->opt.combo.nb_clients)->entry)));
+  strcpy(gui->args.port,
+	 gtk_entry_get_text(GTK_ENTRY(gui->opt.combo.mode)));
   strcpy(gui->args.x,
 	 gtk_entry_get_text(GTK_ENTRY(GTK_COMBO(gui->opt.combo.resol)->entry)));
   strcpy(gui->args.y,
