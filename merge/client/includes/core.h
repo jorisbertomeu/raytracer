@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 01:01:18 2014 nicolas ades
+** Last update Sun Jun  8 12:09:15 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -110,6 +110,7 @@ int		is_shadow(t_spot spot, t_inter inter, t_node *items);
 ** Effects
 */
 
+void		apply_pertubation(t_inter *inter);
 t_rgb		put_reflexion(t_inter inter, t_scene *scene, t_vector pos_3d);
 
 /*
