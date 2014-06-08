@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 03:09:31 2014 nicolas ades
-** Last update Sun Jun  8 03:09:58 2014 nicolas ades
+** Last update Sun Jun  8 18:08:12 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -82,9 +82,9 @@ void		parse_line(char *buff, int fd_ok, t_libserver *libserver, t_gui_serv *gui)
       if (cmptr == 0)
 	time(&(gui->start));
       cmptr += 8;
-      if (start == 0)
-	gtk_progress_set_percentage(GTK_PROGRESS(gui->progress),
-				    (gfloat)(cmptr) / (800 * 600));
+        /*     if (start == 0) */
+      	/* gtk_progress_set_percentage(GTK_PROGRESS(gui->progress), */
+      	/* 		    (gfloat)(cmptr) / (800 * 600)); */
     }
   free(addr_client);
 }
