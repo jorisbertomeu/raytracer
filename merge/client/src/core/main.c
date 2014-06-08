@@ -5,11 +5,11 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 07:30:43 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 07:38:36 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 10:24:44 2014 Jeremy Mediavilla
 */
 
-#include "core.h"
 #define _BSD_SOURCE
+#include "core.h"
 
 int	WIN_X;
 int	WIN_Y;

@@ -5,7 +5,7 @@
 ## Login   <ades_n@epitech.net>
 ## 
 ## Started on  Sun Jun  8 00:57:30 2014 nicolas ades
-## Last update Sun Jun  8 07:32:49 2014 Jeremy Mediavilla
+## Last update Sun Jun  8 10:07:20 2014 Jeremy Mediavilla
 ##
 
 RM		= rm -f
@@ -59,6 +59,13 @@ SRC		= $(D_CORE)main.c			\
 		$(D_CORE)xfunction.c			\
 		$(D_TMP)stock_color.c			\
 		$(D_DIAVME)parser.c			\
+		$(D_DIAVME)items.c			\
+		$(D_DIAVME)balise_tools.c		\
+		$(D_DIAVME)balise_value.c		\
+		$(D_DIAVME)get_infos.c			\
+		$(D_DIAVME)get_item_val.c		\
+		$(D_DIAVME)scene_tools.c		\
+		$(D_DIAVME)str_tools.c			\
 
 all:	libs $(NAME)
 
