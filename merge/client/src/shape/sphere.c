@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 03:44:36 2014 Geoffrey Merran
-** Last update Fri Jun  6 03:05:15 2014 Geoffrey Merran
+** Last update Sat Jun  7 02:04:28 2014 Geoffrey Merran
 */
 
 #define _BSD_SOURCE
@@ -18,11 +18,15 @@ float	get_k_from_delta(float delta, float a, float b)
 
   if (delta >= 0.00001)
     {
-      k1 = (-b + sqrtf(delta)) / (2 * a);
-      k2 = (-b - sqrtf(delta)) / (2 * a);
-      if (k2 >= 0.001)
-      	return (k2);
-      if (k1 >= 0.001)
+      k1 = (-b + sqrtf(delta)) / (2.0 * a);
+      k2 = (-b - sqrtf(delta)) / (2.0 * a);
+      if (k2 > 0.001)
+	{
+	  if (k1 >= 0.001 && k1 < k2)
+	    return (k1);
+	  return (k2);
+	}
+      if (k1 > 0.001)
 	return (k1);
       return (0);
     }

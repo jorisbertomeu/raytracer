@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 23:18:21 2014 Geoffrey Merran
-** Last update Fri Jun  6 19:30:31 2014 Geoffrey Merran
+** Last update Sat Jun  7 02:02:27 2014 Geoffrey Merran
 */
 
 #define _BSD_SOURCE
@@ -52,7 +52,7 @@ t_rgb		luminosity(t_spot spot, t_inter inter)
   norm_d = sqrtf(pow(inter.n.x, 2) + pow(inter.n.y, 2) + pow(inter.n.z, 2));
   cos_a = ((inter.n.x * l.x) + (inter.n.y * l.y)
 	   + (inter.n.z * l.z)) / (norm * norm_d);
-  if (cos_a < 0.0001)
+  if (cos_a < 0.00001)
     cos_a = 0;
   get_lumi_color(&inter, cos_a, spot);
   return (inter.rgb);

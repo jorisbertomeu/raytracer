@@ -1,3 +1,13 @@
+##
+## Makefile for  in /home/ades_n/Workspace/raytracer/merge/client
+## 
+## Made by nicolas ades
+## Login   <ades_n@epitech.net>
+## 
+## Started on  Sun Jun  8 00:57:30 2014 nicolas ades
+## Last update Sun Jun  8 07:32:49 2014 Jeremy Mediavilla
+##
+
 RM		= rm -f
 
 CC		= cc
@@ -22,7 +32,7 @@ D_PARSER	= src/parser/
 D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
 D_REFL		= src/reflexion/
-D_TMP		= src/kekette/
+D_TMP		= src/clt_color/
 D_DIAVME	= src/parser/mediav_parser/
 
 SRC		= $(D_CORE)main.c			\
@@ -30,31 +40,19 @@ SRC		= $(D_CORE)main.c			\
 		$(D_CORE)hook.c				\
 		$(D_CORE)libclient.c			\
 		$(D_CORE)utility.c			\
+		$(D_CORE)communication.c			\
+		$(D_CORE)thread.c			\
 		$(D_INTER)get_simple_pos.c 		\
 		$(D_INTER)get_simple_pos2.c		\
 		$(D_INTER)find_inter.c			\
 		$(D_INTER)get_normal.c			\
-		$(D_PARSER)get_effects.c		\
-		$(D_PARSER)get_eye.c			\
-		$(D_PARSER)get_next_line.c		\
-		$(D_PARSER)get_shape.c			\
-		$(D_PARSER)get_spot.c			\
-		$(D_PARSER)init.c			\
-		$(D_PARSER)parser.c			\
-		$(D_PARSER)parser2.c			\
-		$(D_PARSER)my_str_to_wordtab.c		\
-		$(D_PARSER)my_alloc_init.c		\
-		$(D_PARSER)my_free_wordtab.c		\
-		$(D_PARSER)my_xrealloc.c		\
-		$(D_PARSER)xclose.c			\
-		$(D_PARSER)xfree.c			\
-		$(D_PARSER)xopen.c			\
 		$(D_PARSER)list.c			\
 		$(D_PARSER)read_inf.c			\
 		$(D_SHAPE)sphere.c			\
 		$(D_SHAPE)plan.c 			\
 		$(D_SHAPE)cylinder.c 			\
 		$(D_SHAPE)cone.c			\
+		$(D_SHAPE)hyperboloide.c		\
 		$(D_LUM)luminosity.c 			\
 		$(D_LUM)shadow.c 			\
 		$(D_REFL)reflexion.c			\

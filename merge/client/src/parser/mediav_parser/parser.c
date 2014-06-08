@@ -5,11 +5,11 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sat Jun  7 19:15:56 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 07:06:09 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 07:38:26 2014 Jeremy Mediavilla
 */
 
+#define _BSD_SOURCE
 #include "core.h"
-#define BSD_SOURCE
 
 int		is_char_from_str(char c, char *delim)
 {
@@ -468,12 +468,13 @@ void		get_spot_info(int *i, char **conf, char *balise)
     }
 }
 
-void		check_balise(int *i, char *balise, char **conf)
+void		check_balise(int *i, char *balise, char **conf, t_scene *scene)
 {
   char		*tab[6];
   void		(*which_func[6])(int *, char **, char *);
   int		j;
 
+  (void)scene;
   j = 0;
   tab[0] = "<EYE>";
   tab[1] = "<SPHERE>";
@@ -518,10 +519,10 @@ void		init_scene(t_scene **scene)
   *scene = my_xmalloc(sizeof(**scene));
   (*scene)->items = NULL;
   (*scene)->spots = NULL;
-  (*scene)->eye = my_xmalloc(*(*scene)->eye);
+  (*scene)->eye = my_xmalloc(sizeof(*(*scene)->eye));
 }
 
-t_scene		*parser(char *file)
+t_scene		*get_scene(char *file)
 {
   t_scene	*scene;
   char		**conf;
@@ -540,6 +541,7 @@ t_scene		*parser(char *file)
       exit(0);
     }
   conf = epure_tab(conf, "\t ");
+  init_scene(&scene);
   while (conf[i])
     {
       check_balise(&i, conf[i], conf, scene);

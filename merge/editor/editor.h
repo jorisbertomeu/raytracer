@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:22:29 2014 nicolas ades
-** Last update Sat Jun  7 15:38:12 2014 nicolas ades
+** Last update Sun Jun  8 01:49:21 2014 nicolas ades
 */
 
 #ifndef EDITOR_H_
@@ -24,11 +24,15 @@
 
 typedef struct	s_editor
 {
+  gchar		*buff;
   GtkWidget	*pWindow;
   GtkWidget	*pWinSave;
   GtkWidget	*pWinHelp;
   GtkWidget	*pselection;
   GtkWidget	*Helpframe;
+  GtkWidget	*pR;
+  GtkWidget	*pG;
+  GtkWidget	*pB;
   GtkWidget	*Saveframe;
   GtkWidget	*pLabel;
   GtkWidget	*pCancelBtn;
@@ -41,6 +45,7 @@ typedef struct	s_editor
   GtkWidget	*pAddBtn;
   GtkWidget	*frame;
   GtkWidget	*pbox;
+  GtkWidget	*pbox2;
   GtkWidget	*area;
   GtkWidget	*pname;
   GtkWidget	*pTx;
@@ -77,17 +82,23 @@ void		inser_rx(t_editor *);
 void		inser_ry(t_editor *);
 void		inser_rz(t_editor *);
 void		inser_name(t_editor *);
+void		inser_r(t_editor *);
+void		inser_g(t_editor *);
+void		inser_b(t_editor *);
 void		inser_opacity(t_editor *);
 void		inser_reflexion(t_editor *);
 void		cancel_save_btn(t_editor *);
 void		save2_btn(t_editor *);
 void		create_save_win(GtkWidget *, t_editor *);
 void		editor(int, char **);
+void		create_box2(t_editor *);
 void		catch_sig(t_editor *);
+void		get_from_text_view(int, t_editor *);
 void		init_window(t_editor *);
 void		catch_event(GtkWidget *, gpointer );
 void		create_area(t_editor *);
 void		my_gtk_main_quit(GtkWidget *, t_editor *);
+void		generate_editor(t_editor *);
 void		my_widget_destroy(GtkWidget *, t_editor *);
 void		create_box1(t_editor *);
 

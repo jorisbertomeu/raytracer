@@ -5,10 +5,10 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Fri Jun  6 17:25:10 2014 Geoffrey Merran
+** Last update Sat Jun  7 22:32:34 2014 Geoffrey Merran
 */
 
-#include "parser.h"
+#include "core.h"
 
 void	init_rgb(t_rgb *color, int r, int g, int b)
 {

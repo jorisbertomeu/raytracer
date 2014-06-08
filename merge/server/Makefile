@@ -1,3 +1,4 @@
+
 RM		= rm -f
 
 CC		= cc `pkg-config --libs --cflags gtk+-2.0`
@@ -6,59 +7,51 @@ CFLAGS		+= -Wextra -Wall -W -pedantic -ansi -g3 -I$(I_PATH)
 
 I_PATH		= ./includes/
 
-NAME		= rtv1
+NAME		= rt
 
 OBJ		= $(SRC:.c=.o)
 
-LIBS		= -lmy -lmymlx -lmlx -lXext -lX11
-
-LIB		= libmy/
-LIBMYX		= libmymlx/
-LIBX11		= /usr/lib64/X11
-LIBXEXT		= /usr/lib64
-
 D_CORE		= src/core/
-D_INTER		= src/inter/
-D_PARSER	= src/parser/
-D_SHAPE		= src/shape/
-D_LUM		= src/luminosity/
+D_FUNC		= src/func/
+D_GUI		= src/gui/
 
-SRC		= $(D_CORE)main.c			\
-		$(D_CORE)hook.c				\
-		$(D_CORE)list.c				\
-		$(D_CORE)read_inf.c				\
-		$(D_INTER)get_simple_pos.c 		\
-		$(D_INTER)get_simple_pos2.c		\
-		$(D_INTER)find_inter.c			\
-		$(D_PARSER)items.c 			\
-		$(D_SHAPE)sphere.c			\
-		$(D_SHAPE)plan.c 			\
-		$(D_SHAPE)cylinder.c 			\
-		$(D_SHAPE)cone.c			\
-		$(D_LUM)luminosity.c 			\
-		$(D_CORE)xfunction.c			\
-		get_next_line.c				\
-		my_alloc_init.c				\
+SRC		= 	$(D_CORE)main.c				\
+			$(D_CORE)list.c				\
+			$(D_CORE)server_1.c			\
+			$(D_CORE)server_2.c			\
+			$(D_CORE)server_3.c			\
+			$(D_CORE)server_4.c			\
+			$(D_CORE)server_5.c			\
+			$(D_CORE)server_6.c			\
+			$(D_CORE)server_7.c			\
+			$(D_CORE)server_8.c			\
+			$(D_CORE)server_9.c			\
+			$(D_CORE)server_10.c			\
+			$(D_CORE)read_inf.c			\
+			$(D_FUNC)get_next_line.c		\
+			$(D_FUNC)my_alloc_init.c		\
+			$(D_FUNC)xmalloc.c			\
+			$(D_GUI)gui.c				\
+			$(D_GUI)gui_2.c				\
+			$(D_GUI)gui_3.c				\
+			$(D_GUI)gui_4.c				\
+			$(D_GUI)gui_5.c				\
+			$(D_GUI)gui_6.c				\
+			$(D_GUI)gui_7.c				\
+			$(D_GUI)gui_8.c				\
+			$(D_GUI)gui_9.c				\
 
-all:	libs $(NAME)
+all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) -I./minilibx $(LIBS) -L./minilibx -L$(LIB) -L$(LIBMYX) -L$(LIBX11) -L$(LIBXEXT) -lm
-
-libs:
-	make -C $(LIB)
-	make -C $(LIBMYX)
+	$(CC) -o $(NAME) $(OBJ) -lX11
 
 clean:
-	(cd $(LIB); make clean)
-	(cd $(LIBMYX); make clean)
 	$(RM) $(OBJ)
 
 fclean:		clean
-	(cd $(LIB); make fclean)
-	(cd $(LIBMYX); make clean)
 	$(RM) $(NAME)
 
 re:		fclean all
 
-.PHONY:	all libs clean fclean re
+.PHONY:	all clean fclean re

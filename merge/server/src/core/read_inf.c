@@ -5,11 +5,12 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sat Oct 26 18:03:57 2013 Jeremy Mediavilla
-** Last update Mon Jun  2 09:42:11 2014 Jeremy Mediavilla
+** Last update Sat Jun  7 22:50:21 2014 Geoffrey Merran
 */
 
-#include "parser.h"
+# define _BSD_SOURCE
 # define SIZE (4096)
+#include "core.h"
 
 char		*cat_list(t_list *list)
 {
@@ -24,7 +25,7 @@ char		*cat_list(t_list *list)
       len = len + strlen(tmp->data);
       tmp = tmp->next;
     }
-  final = my_xmalloc((len + 1) * sizeof(char));
+  final = malloc((len + 1) * sizeof(char));
   memset(final, '\0', len + 1);
   while (list != NULL)
     {
@@ -51,9 +52,9 @@ char		*my_read_inf(int fd)
 	  exit(0);
 	}
       if (list == NULL)
-	list = create_list(my_strdup(buff));
+	list = create_list(strdup(buff));
       else
-	add_to_end(list, my_strdup(buff));
+	add_to_end(list, strdup(buff));
       memset(buff, '\0', SIZE + 1);
     }
   final = cat_list(list);

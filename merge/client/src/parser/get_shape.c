@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Mon Jun  2 14:16:00 2014 martelliere
-** Last update Fri Jun  6 21:50:34 2014 martelliere
+** Last update Sat Jun  7 17:04:14 2014 martelliere
 */
 
 #include "parser.h"
@@ -42,13 +42,15 @@ void    get_plan(t_scene *scene, t_parser *parser)
 {
   t_item        new;
 
+  memset(&new, 0, sizeof(new));
   new.pos = get_vector(parser, "<pos>");
-  new.color = get_color(parser);
   new.angle = get_vector(parser, "<rot>");
+  new.color = get_color(parser);
   new.type = PLANE;
   new.rayon = get_size(parser);
   new.brillance = get_brill(parser);
   new.transparence = get_opacity(parser);
+  new.reflexion = get_reflexion(parser);
   add_item(&(scene->items), new);
 }
 
@@ -56,13 +58,15 @@ void    get_sphere(t_scene *scene, t_parser *parser)
 {
   t_item        new;
 
+  memset(&new, 0, sizeof(new));
   new.pos = get_vector(parser, "<pos>");
-  new.color = get_color(parser);
   new.angle = get_vector(parser, "<rot>");
+  new.color = get_color(parser);
   new.type = SPHERE;
   new.rayon = get_size(parser);
   new.brillance = get_brill(parser);
   new.transparence = get_opacity(parser);
+  new.reflexion = get_reflexion(parser);
   add_item(&(scene->items), new);
 }
 
@@ -70,13 +74,15 @@ void    get_cone(t_scene *scene, t_parser *parser)
 {
   t_item        new;
 
+  memset(&new, 0, sizeof(new));
   new.pos = get_vector(parser, "<pos>");
-  new.color = get_color(parser);
   new.angle = get_vector(parser, "<rot>");
+  new.color = get_color(parser);
   new.type = CONE;
   new.rayon = get_size(parser);
   new.brillance = get_brill(parser);
   new.transparence = get_opacity(parser);
+  new.reflexion = get_reflexion(parser);
   add_item(&(scene->items), new);
 }
 
@@ -84,12 +90,14 @@ void    get_cylindre(t_scene *scene, t_parser *parser)
 {
   t_item        new;
 
+  memset(&new, 0, sizeof(new));
   new.pos = get_vector(parser, "<pos>");
-  new.color = get_color(parser);
   new.angle = get_vector(parser, "<rot>");
+  new.color = get_color(parser);
   new.type = CYLINDER;
   new.rayon = get_size(parser);
   new.brillance = get_brill(parser);
   new.transparence = get_opacity(parser);
+  new.reflexion = get_reflexion(parser);
   add_item(&(scene->items), new);
 }

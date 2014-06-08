@@ -5,16 +5,19 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sat Jun  7 16:00:37 2014 Joris Bertomeu
+** Last update Sun Jun  8 01:01:18 2014 nicolas ades
 */
 
 #ifndef MAIN_
 # define MAIN_
-extern	int	WIN_X;
-extern	int	WIN_Y;
 # define ESCAPE 65307
 # define WIN_TITLE "RayTracer V.1 | Geoffrey Merran"
 # include <math.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <libclient.h>
 # include <stdlib.h>
 # include "my_mlx.h"
 # include "mlx_utility.h"
@@ -22,6 +25,42 @@ extern	int	WIN_Y;
 # include "my_printf.h"
 # include "rtv1.h"
 # include "parser.h"
+
+extern	int	WIN_X;
+extern	int	WIN_Y;
+extern	int	start;
+
+typedef struct s_info	t_info;
+struct s_info
+{
+  int	nb_clients;
+  int	*pix_by_core;
+  int	nb_core;
+  int	current;
+  int	pix_img;
+  int	x;
+  int	y;
+  int	pos_me;
+  int	max[16];
+  int	fd_server;
+  char	*file;
+  t_scene	*scene;
+  int		i;
+  int		j;
+  int		k;
+};
+
+void		init_int(t_info *info);
+t_pos		do_pos(int i, t_info *info);
+void		do_all(unsigned int *tab, t_info *info, t_pos pos);
+void		*calculate_pixel(void *data);
+void		rcv_trames(t_libclient *slib, t_info *info);
+void		calculate_pix_core(t_info *info, int total);
+void		wait_rep(t_libclient *slib);
+void		create_threads(t_info *info, pthread_t *threads);
+void		fill(char **argv, t_libclient *slib, t_info *info);
+void		printerror(char *msg);
+void		check_arg(int ac, char **argv);
 
 /*
 ** Main functions (OLD to edit)
@@ -42,11 +81,12 @@ typedef t_rinter (*t_finter)(t_cam, t_vector, t_item);
 t_inter		find_inter(t_cam eye, t_vector pos_3d, t_node *items);
 t_vector	get_eq_param(t_vector eye, float k, t_vector pos_3d);
 float		get_k_from_delta(float delta, float a, float b);
-t_vector	get_normal(t_inter inter);
+t_vector	get_normal(t_inter inter, t_cam *eye);
 t_rinter	inter_plan(t_cam eye, t_vector pos_3d, t_item plan);
 t_rinter	inter_sphere(t_cam eye, t_vector pos_3d, t_item sphere);
 t_rinter	inter_cylinder(t_cam eye, t_vector pos_3d, t_item sphere);
 t_rinter	inter_cone(t_cam eye, t_vector pos_3d, t_item cone);
+t_rinter	inter_hyper(t_cam eye, t_vector pos_3d, t_item hyper);
 
 /*
 ** Get position (real / simple)
@@ -80,10 +120,15 @@ int		expose_hook(t_screen *params);
 int		key_hook(int keycode, t_screen *params);
 
 /*
-** Xfunction
+** Utility
 */
 
 void		init_rgb(t_rgb *color, int r, int g, int b);
+
+/*
+** Xfunction
+*/
+
 mlxptr		xmlx_init();
 
 #endif /* MAIN_ */

@@ -5,13 +5,19 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Fri Jun  6 19:30:01 2014 martelliere
+** Last update Sat Jun  7 21:48:11 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
 # define RTV1_
-
 # include "my_mlx.h"
+
+typedef struct	s_qua
+{
+  float		a;
+  float		b;
+  float		c;
+}		t_qua;
 
 typedef union	s_union
 {
@@ -24,7 +30,8 @@ typedef enum	s_type
     SPHERE,
     PLANE,
     CONE,
-    CYLINDER
+    CYLINDER,
+    HYPER
   }		t_type;
 
 typedef struct	s_rgb
@@ -45,6 +52,7 @@ typedef struct	s_item
 {
   t_vector	pos;
   t_vector	angle;
+  t_qua		qua;
   t_type	type;
   t_rgb		color;
   float		rayon;

@@ -1,11 +1,11 @@
 /*
-** parser.h for Parser RT in /home/martel_c/rendu/RT/parser
-**
-** Made by martelliere
-** Login   <martel_c@epitech.net>
-**
-** Started on  Tue May 13 17:50:34 2014 martelliere
-** Last update Sat Jun  7 17:20:43 2014 Jeremy Mediavilla
+** parser.h for  in /home/mediav_j/mabm/raytracer/merge/client
+** 
+** Made by Jeremy Mediavilla
+** Login   <mediav_j@epitech.net>
+** 
+** Started on  Sun Jun  8 07:29:05 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 07:35:25 2014 Jeremy Mediavilla
 */
 
 #ifndef		PARSER_H_
@@ -79,11 +79,11 @@ float		get_pos(t_parser *parser, char *id);
 float		get_size(t_parser *parser);
 float		get_brill(t_parser *parser);
 float		get_opacity(t_parser *parser);
+float		get_reflexion(t_parser *parser);
 int		my_parser(t_scene *scene, t_parser *parser, int i);
 int		xopen(const char *, int, mode_t);
 t_vector	get_vector(t_parser *parser, char *id);
 t_rgb		get_color(t_parser *parser);
-t_scene		*init_scene(t_scene *scene);
 char   		*check_conf(int ac, char **av);
 t_scene		*get_scene(char *buff);
 int		xopen(const char *path, int flags, mode_t mode);

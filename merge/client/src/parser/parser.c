@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:52:03 2014 martelliere
-** Last update Fri Jun  6 21:52:21 2014 martelliere
+** Last update Sat Jun  7 16:49:21 2014 martelliere
 */
 
 #include "parser.h"
@@ -52,7 +52,7 @@ int	my_parser(t_scene *scene, t_parser *parser, int i)
       if (parser->tab[parser->n] != NULL &&
 	  strcmp(otab[i], strlower(parser->tab[parser->n])) == 0)
 	{
-	  if ((i == 1 || i == 2) && parser->k != 3)
+	  if (((i == 1 && parser->k != 1) || i == 2) && parser->k != 3)
 	    parser->k = parser->k + i;
 	  (*which_object[i++])(scene, parser);
 	  i = 6;
@@ -62,7 +62,7 @@ int	my_parser(t_scene *scene, t_parser *parser, int i)
   if (i == 6)
     {
       fprintf(stderr, "%s: unknown object line %d.\n",
-	      parser->tab[0], parser->line);
+	      parser->tab[parser->n], parser->line);
       exit(EXIT_FAILURE);
     }
   return (parser->k);
