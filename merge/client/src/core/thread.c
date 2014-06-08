@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 00:54:54 2014 nicolas ades
-** Last update Sun Jun  8 00:55:33 2014 nicolas ades
+** Last update Sun Jun  8 02:29:41 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -68,12 +68,15 @@ void	rcv_trames(t_libclient *slib, t_info *info)
   int	n;
   int	size;
 
-  n = 0;
   memset(slib->buffer, 0, 4096);
-  read(slib->to_server_socket, slib->buffer, 4096);
+  n = read(slib->to_server_socket, slib->buffer, 4096);
+  if (n <= 0)
+    printerror("Error on Socket ..\n");
   printf("Trame de bienvenue : %s\n", slib->buffer);
   memset(slib->buffer, 0, 4096);
-  read(slib->to_server_socket, &size, sizeof(int));
+  n = read(slib->to_server_socket, &size, sizeof(int));
+  if (n <= 0)
+    printerror("Error on Socket ..\n");
   n = 0;
   info->file = malloc((size + 1) * sizeof(char));
   while (n != size)
