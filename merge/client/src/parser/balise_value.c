@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:01:30 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:34:58 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 10:55:21 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -24,7 +24,8 @@ int		get_ibalise_value(char *line, char *balise, int j)
   memset(final, '\0', size);
   while (line[len] && line[len + 0] != '<')
     {
-      if (!(line[len] >= '0' && line[len] <= '9'))
+      if (!((line[len] >= '0' && line[len] <= '9') ||
+	    line[len] == '-'))
 	{
 	  fprintf(stderr, "Error on line %i : wrong number \
 in %s balise\n", (j + 1), balise);
@@ -51,7 +52,8 @@ float		get_fbalise_value(char *line, char *balise,  int j)
   memset(final, '\0', size);
   while (line[len] && line[len + 0] != '<')
     {
-      if (!(line[len] >= '0' && line[len] <= '9'))
+      if (!((line[len] >= '0' && line[len] <= '9') ||
+	    line[len] == '-'))
 	{
 	  fprintf(stderr, "Error on line %i : wrong number \
 in %s balise\n", (j + 1), balise);

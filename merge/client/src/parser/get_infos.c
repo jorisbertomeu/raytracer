@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:02:17 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:34:31 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:57:50 2014 Jeremy Mediavilla
 */
 
 #define _BSD_SOURCE
@@ -37,7 +37,7 @@ void		get_item_info(int *i, char **conf, char *balise, t_parser *parser)
   char		*closing2;
   int		tmp;
 
-  (void)balise;
+  parser->tmp.type = type_val(get_item_type(balise));
   closing = get_closing_balise(conf[*i]);
   if (conf[*i + 1] != '\0')
     (*i)++;
@@ -118,7 +118,7 @@ float		get_effects_val2(char *balise, char **conf, int i)
   len = strlen(balise);
   while (j < 3)
     {
-      if (strncmp(conf[i], balise, len) == 0)
+      if (conf[i] && strncmp(conf[i], balise, len) == 0)
 	{
 	  tmp = get_fbalise_value_spec(conf[i], balise, i);
 	  return (tmp);

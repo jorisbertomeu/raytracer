@@ -1,11 +1,11 @@
 /*
-** main.c for  in /home/mediav_j/mabm/raytracer/merge/client
+** main.c for rt in /home/jobertomeu/Work/raytracer/merge/client
 ** 
-** Made by Jeremy Mediavilla
-** Login   <mediav_j@epitech.net>
+** Made by Joris Bertomeu
+** Login   <jobertomeu@epitech.net>
 ** 
-** Started on  Sun Jun  8 07:30:43 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 11:43:43 2014 Joris Bertomeu
+** Started on  Sun Jun  8 12:15:00 2014 Joris Bertomeu
+** Last update Sun Jun  8 12:15:12 2014 Joris Bertomeu
 */
 
 #define _BSD_SOURCE
@@ -37,8 +37,8 @@ int		main(int ac, char **argv)
   t_info	*info;
 
   check_arg(ac, argv);
-  info = malloc(sizeof(*info));
-  slib = malloc(sizeof(*slib));
+  info = malloc(sizeof(t_info));
+  slib = malloc(sizeof(t_libclient));
   start = 0;
   while (1)
     {

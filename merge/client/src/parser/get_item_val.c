@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:04:28 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:33:36 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:12:33 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -78,8 +78,10 @@ void		get_size_item(int i, char **conf, t_parser *parser)
 {
   float		size;
 
+  size = 0;
   while (conf[i] && strncmp(conf[i], "<SIZE>", 6) != 0)
     i++;
-  size = get_effects_val2("<SIZE>", conf, i);;
+  if (conf[i])
+    size = get_effects_val2("<SIZE>", conf, i);;
   parser->tmp.rayon = size;  
 }

@@ -1,69 +1,85 @@
 /*
-** parser.c for parser RT in /home/martel_c/rendu/RT/parser
-**
-** Made by martelliere
-** Login   <martel_c@epitech.net>
-**
-** Started on  Tue May 13 17:52:03 2014 martelliere
-** Last update Sat Jun  7 16:49:21 2014 martelliere
+** parser.c for  in /home/mediav_j/mabm/raytracer/merge/client/src/parser/mediav_parser
+** 
+** Made by Jeremy Mediavilla
+** Login   <mediav_j@epitech.net>
+** 
+** Started on  Sat Jun  7 19:15:56 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:28:14 2014 Jeremy Mediavilla
 */
 
-#include "parser.h"
+#define _BSD_SOURCE
+#include "core.h"
 
-char	*strlower(char *str)
+void		check_balise(int *i, char *balise, char **conf, t_parser *parser)
 {
-  int	i;
+  char		*tab[6];
+  void		(*which_func[6])(int *, char **, char *, t_parser *);
+  int		j;
 
-  i = 0;
-  while (str[i] != '\0')
+  j = 0;
+  tab[0] = "<EYE>";
+  tab[1] = "<SPHERE>";
+  tab[2] = "<PLAN>";
+  tab[3] = "<SPOT>";
+  tab[4] = "<CYLINDRE>";
+  tab[5] = "<CONE>";
+  which_func[0] = &get_eye_info;
+  which_func[1] = &get_item_info;
+  which_func[2] = &get_item_info;
+  which_func[3] = &get_spot_info;
+  which_func[4] = &get_item_info;
+  which_func[5] = &get_item_info;
+  while (j < 6)
     {
-      if (str[i] >= 'A' && str[i] <= 'Z')
-	str[i] = str[i] + 32;
-      i++;
-    }
-  return (str);
-}
-
-void	init_functab(char **otab, ptr *which_object)
-{
-  otab[0] = "<plan>";
-  otab[1] = "<spot>";
-  otab[2] = "<eye>";
-  otab[3] = "<sphere>";
-  otab[4] = "<cone>";
-  otab[5] = "<cylindre>";
-  which_object[0] = &get_plan;
-  which_object[1] = &get_spot;
-  which_object[2] = &get_eye;
-  which_object[3] = &get_sphere;
-  which_object[4] = &get_cone;
-  which_object[5] = &get_cylindre;
-}
-
-int	my_parser(t_scene *scene, t_parser *parser, int i)
-{
-  char	*otab[6];
-  ptr	which_object[6];
-
-  init_functab(otab, which_object);
-  i = 0;
-  while (i < 5)
-    {
-      if (parser->tab[parser->n] != NULL &&
-	  strcmp(otab[i], strlower(parser->tab[parser->n])) == 0)
+      if (strcmp(tab[j], balise) == 0)
 	{
-	  if (((i == 1 && parser->k != 1) || i == 2) && parser->k != 3)
-	    parser->k = parser->k + i;
-	  (*which_object[i++])(scene, parser);
-	  i = 6;
+	  reset_item(parser);
+	  (*which_func[j])(i, conf, balise, parser);
+	  j = 7;
 	}
+      j++;
+    }
+}
+
+char		**epure_tab(char **tab, char *delim)
+{
+  int		i;
+
+  i = 0;
+  while (tab[i])
+    {
+      tab[i] = remove_char_begin(tab[i], delim);
       i++;
     }
-  if (i == 6)
+  return (tab);
+}
+
+t_scene		*get_scene(char *file)
+{
+  char		**conf;
+  int		i;
+  t_parser	parser;
+
+  i = 0;
+  if (strlen(file) == 0)
     {
-      fprintf(stderr, "%s: unknown object line %d.\n",
-	      parser->tab[parser->n], parser->line);
-      exit(EXIT_FAILURE);
+      fprintf(stderr, "Error file is empty\n");
+      exit(0);
     }
-  return (parser->k);
+  conf = my_strd_to_wordtab(file, "\n");
+  if (is_xml_balise(conf, "<EYE>", 0) != 1)
+    {
+      fprintf(stderr, "Error on conf file : EYE missing\n");
+      exit(0);
+    }
+  conf = epure_tab(conf, "\t ");
+  init_scene(&parser.scene);
+  while (conf[i])
+    {
+      check_balise(&i, conf[i], conf, &parser);
+      i++;
+    }
+  aff_the_scene(parser.scene);
+  return (parser.scene);
 }
