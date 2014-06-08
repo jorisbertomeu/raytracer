@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Fri Mar 14 16:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 04:50:27 2014 nicolas ades
+** Last update Sun Jun  8 16:20:39 2014 Geoffrey Merran
 */
 
 #ifndef MAIN_
@@ -98,15 +98,18 @@ void		del_client(t_libserver *libserver, char *addr_client, int fd_ok);
 void		pixel_put_to_pixbuf(GdkPixbuf *pixbuf, int x, int y, guchar *tab);
 void		stock_clr_img(t_libserver *libserver, t_gui_serv *gui);
 void		do_finish(t_libserver *libserver, t_gui_serv *gui);
-void		parse_line(char *buff, int fd_ok, t_libserver *libserver, t_gui_serv *gui);
+void		parse_line(char *buff, int fd_ok, t_libserver *libserver,
+ t_gui_serv *gui);
 void		init_clients(t_libserver *libserver);
 void		init_lib(t_libserver *libserver, int port);
 void		add_client(int id, t_libserver *libserver);
 int		id_exist(int id, t_libserver *libserver);
 void		send_first_data(t_libserver *libserver, int nb_cl_total, t_gui_serv *gui);
 void		send_rest(t_libserver *libserver, t_gui_serv *gui, int i);
-void		send_first_data_re(t_libserver *libserver, int nb_cl_total, t_gui_serv *gui);
-void		check_new_client(t_libserver *libserver, int nb_cl_total, t_gui_serv *gui);
+void		send_first_data_re(t_libserver *libserver, int nb_cl_total,
+ t_gui_serv *gui);
+void		check_new_client(t_libserver *libserver,
+int nb_cl_total, t_gui_serv *gui);
 void		init_fds(t_libserver *libserver);
 int		init_fd(fd_set *rfds, t_libserver *libserver);
 void		do_sock_fd(t_libserver *libserver, int client_max, t_gui_serv *gui);

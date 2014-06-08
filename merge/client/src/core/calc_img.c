@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Sun Jun  8 16:07:03 2014 Geoffrey Merran
+** Last update Sun Jun  8 17:27:32 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -92,6 +92,8 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   if (inter.k == 0)
     return (change_rgb(0, 0, 0));
   save = put_reflexion(inter, scene, pos_3d);
+  apply_coeff(&color, save, inter.item.reflexion);
+  save = put_transparence(inter, scene, pos_3d);
   apply_coeff(&color, save, inter.item.reflexion);
   return (change_rgb(color.r, color.g, color.b));
 }

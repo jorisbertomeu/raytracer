@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 03:09:31 2014 nicolas ades
-** Last update Sun Jun  8 03:09:58 2014 nicolas ades
+** Last update Sun Jun  8 17:47:30 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -32,7 +32,7 @@ void		stock_clr_img(t_libserver *libserver, t_gui_serv *gui)
   t_pos		count;
   t_union	trans;
 
-  i = 0;
+   i = 0;
   while (i < 8)
     {
       if (((int*) libserver->tab)[i] == 0 &&
@@ -94,7 +94,7 @@ void	init_clients(t_libserver *libserver)
   int	i;
 
   i = 0;
-  while (i < 7)
+  while (i < 6)
     {
       libserver->clients[i].active = 0;
       libserver->clients[i].id = 0;

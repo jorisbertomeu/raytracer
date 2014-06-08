@@ -1,3 +1,12 @@
+##
+## Makefile for Makefile in /home/merran_g/work/c_igraph/raytracer/merge/server
+## 
+## Made by Geoffrey Merran
+## Login   <merran_g@epitech.net>
+## 
+## Started on  Sun Jun  8 16:50:21 2014 Geoffrey Merran
+## Last update Sun Jun  8 16:51:15 2014 Geoffrey Merran
+##
 
 RM		= rm -f
 
