@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 08:33:40 2014 Geoffrey Merran
+** Last update Sun Jun  8 11:55:41 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -104,7 +104,7 @@ t_node		*get_items()
   /* init_item(&new, n_pos, n_angle, CONE); */
   /* init_item2(&new, 30.0, n_color, 0.5, 0.5); */
   /* add_item(&items, new); */
-  new.effect = DAMIER;
+  new.effect = VAGUE;
   init_vec(&n_pos, 0, 0, -200);
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 95, 0, 255);
