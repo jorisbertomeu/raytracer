@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Sat Jun  7 22:17:28 2014 Geoffrey Merran
+** Last update Sun Jun  8 05:21:14 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -61,6 +61,7 @@ t_inter		get_pixel_color(t_vector pos_3d, t_scene *scene)
     return (inter);
   inter.p = get_eq_param(scene->eye->pos, inter.k, pos_3d);
   inter.n = get_normal(inter, scene->eye);
+  apply_pertubation(&inter);
   rotate_all(&inter.n, inter.item.angle);
   inter.rgb = put_spots(inter, scene);
   return (inter);

@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 02:41:42 2014 Geoffrey Merran
+** Last update Sun Jun  8 05:06:48 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -23,6 +23,7 @@ void		add_item(t_node **list, t_item new)
   tmp->item.color = new.color;
   tmp->item.brillance = new.brillance;
   tmp->item.reflexion = new.reflexion;
+  tmp->item.effect = new.effect;
   tmp->next = *list;
   *list = tmp;
 }
@@ -108,7 +109,7 @@ t_node		*get_items()
   init_vec(&n_angle, 0, 0, 0);
   init_rgb(&n_color, 95, 0, 255);
   init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0.5, 0.3);
+  init_item2(&new, 0, n_color, 0, 0.3);
   add_item(&items, new);
   new.effect = NONE;
   init_vec(&n_pos, 0, 0, 200);
@@ -117,23 +118,23 @@ t_node		*get_items()
   init_item(&new, n_pos, n_angle, PLANE);
   init_item2(&new, 0, n_color, 0.5, 0.3);
   add_item(&items, new);
-  init_vec(&n_pos, 0, 200, 0);
-  init_vec(&n_angle, 90, 0, 0);
-  init_rgb(&n_color, 255, 0, 160);
-  init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0.5, 0.3);
-  add_item(&items, new);
-  init_vec(&n_pos, 0, -200, 0);
-  init_vec(&n_angle, -90, 0, 0);
-  init_rgb(&n_color, 223, 0, 255);
-  init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0.5, 0.3);
-  add_item(&items, new);
-  init_vec(&n_pos, 0, 0, 0);
-  init_vec(&n_angle, 0, 0, 0);
-  init_rgb(&n_color, 32, 255, 0);
-  init_item(&new, n_pos, n_angle, CONE);
-  init_item2(&new, 10.0, n_color, 0.5, 0.1);
-  add_item(&items, new);
+  /* init_vec(&n_pos, 0, 200, 0); */
+  /* init_vec(&n_angle, 90, 0, 0); */
+  /* init_rgb(&n_color, 255, 0, 160); */
+  /* init_item(&new, n_pos, n_angle, PLANE); */
+  /* init_item2(&new, 0, n_color, 0.5, 0.3); */
+  /* add_item(&items, new); */
+  /* init_vec(&n_pos, 0, -200, 0); */
+  /* init_vec(&n_angle, -90, 0, 0); */
+  /* init_rgb(&n_color, 223, 0, 255); */
+  /* init_item(&new, n_pos, n_angle, PLANE); */
+  /* init_item2(&new, 0, n_color, 0.5, 0.3); */
+  /* add_item(&items, new); */
+  /* init_vec(&n_pos, 0, 0, 0); */
+  /* init_vec(&n_angle, 0, 0, 0); */
+  /* init_rgb(&n_color, 32, 255, 0); */
+  /* init_item(&new, n_pos, n_angle, CONE); */
+  /* init_item2(&new, 10.0, n_color, 0.5, 0.1); */
+  /* add_item(&items, new); */
   return (items);
 }

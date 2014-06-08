@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 23:18:21 2014 Geoffrey Merran
-** Last update Sat Jun  7 02:02:27 2014 Geoffrey Merran
+** Last update Sun Jun  8 06:05:14 2014 Geoffrey Merran
 */
 
 #define _BSD_SOURCE
@@ -36,6 +36,35 @@ void		get_lumi_color(t_inter *inter, float cos_a, t_spot spot)
   get_correct_color(&inter->rgb.r);
   get_correct_color(&inter->rgb.g);
   get_correct_color(&inter->rgb.b);
+}
+
+void		apply_pertubation(t_inter *inter)
+{
+  float		n;
+
+  if (inter->item.effect == DAMIER)
+    {
+      if ((my_abs((int) inter->p.x % 100) >= 50) &&
+	  (my_abs((int) inter->p.y % 100) >= 50))
+      	{
+      	  inter->item.color.r = 0;
+      	  inter->item.color.g = 0;
+      	  inter->item.color.b = 0;
+      	}
+      if ((my_abs((int) inter->p.x % 100) < 50) &&
+	  (my_abs((int) inter->p.y % 100) < 50))
+      	{
+      	  inter->item.color.r = 0;
+      	  inter->item.color.g = 0;
+      	  inter->item.color.b = 0;
+      	}
+    }
+  if (inter->item.effect == VAGUE)
+    {
+      n = sqrtf(pow(inter->n.x, 2) + pow(inter->n.y, 2) +
+		pow(inter->n.z, 2));
+      inter->n.y = inter->n.y + (cos(inter->p.y / 10.0) * (n / 10.0));
+    }
 }
 
 t_rgb		luminosity(t_spot spot, t_inter inter)
