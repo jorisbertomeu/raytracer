@@ -5,7 +5,7 @@
 ** Login   <jobertomeu@epitech.net>
 ** 
 ** Started on  Sun Jun  8 12:15:00 2014 Joris Bertomeu
-** Last update Sun Jun  8 12:15:12 2014 Joris Bertomeu
+** Last update Sun Jun  8 12:19:59 2014 Joris Bertomeu
 */
 
 #define _BSD_SOURCE
@@ -17,8 +17,8 @@ int	start;
 
 void	check_arg(int ac, char **argv)
 {
-  if (ac != 4)
-    printerror("Usage : ./clientrt <ServerIP> <Port> <ConfFile>\n");
+  if (ac != 3)
+    printerror("Usage : ./clientrt <ServerIP> <Port>\n");
   if (atoi(argv[2]) <= 0 && atoi(argv[2]) >= 99999999)
     printerror("Port number must be > 0 and < 99999999\n");
 }
