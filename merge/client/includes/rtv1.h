@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Sun Jun  8 08:56:18 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 12:03:48 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -27,12 +27,19 @@ typedef union	s_union
 
 typedef enum	s_type
   {
-    SPHERE,
+    SPHERE = 0,
     PLANE,
     CONE,
     CYLINDER,
     HYPER
   }		t_type;
+
+typedef enum	s_effect
+  {
+    NONE = 0,
+    VAGUE,
+    DAMIER
+  }		t_effect;
 
 typedef struct	s_rgb
 {
@@ -55,6 +62,7 @@ typedef struct	s_item
   t_qua		qua;
   t_type	type;
   t_rgb		color;
+  t_effect	effect;
   float		rayon;
   float		brillance;
   float		reflexion;
