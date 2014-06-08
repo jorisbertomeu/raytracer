@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Fri Jun  6 16:35:09 2014 nicolas ades
-** Last update Sun Jun  8 07:16:03 2014 Joris Bertomeu
+** Last update Sun Jun  8 06:48:26 2014 nicolas ades
 */
 
 #include "editor.h"
@@ -66,11 +66,3 @@ void		inser_ty(t_editor *editor)
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 550, 125);
 }
 
-void		inser_tz(t_editor *editor)
-{
-  editor->pTz = gtk_entry_new();
-  gtk_widget_set_size_request(editor->pTz, 80, 25);
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pTz, 585, 170);
-  editor->pLabel = gtk_label_new("T.z :");
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 550, 175);
-}

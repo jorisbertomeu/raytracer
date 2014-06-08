@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sat Jun  7 18:41:24 2014 nicolas ades
-** Last update Sun Jun  8 03:21:27 2014 Joris Bertomeu
+** Last update Sun Jun  8 06:48:43 2014 nicolas ades
 */
 
 #include "editor.h"
@@ -21,10 +21,4 @@ void		get_from_text_view(int fd, t_editor *editor)
   gtk_text_buffer_get_bounds(buffer, &start, &end);
   text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
   write(fd, text, strlen(text));
-  printf("%s\n", text);
 }
-
-/* void		write_in_text_view(int fd, t_editor *editor) */
-/* { */
-
-/* } */

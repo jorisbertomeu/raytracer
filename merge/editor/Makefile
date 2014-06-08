@@ -1,6 +1,9 @@
 SRC	=	help.c		\
 		main_btn.c	\
 		main_btn2.c	\
+		editor_2.c	\
+		editor_3.c	\
+		editor_4.c	\
 		main_ins.c	\
 		main_ins2.c	\
 		main_ins3.c	\
