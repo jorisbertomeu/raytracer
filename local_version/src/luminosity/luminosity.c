@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 23:18:21 2014 Geoffrey Merran
-** Last update Sun Jun  8 06:05:14 2014 Geoffrey Merran
+** Last update Sun Jun  8 07:54:10 2014 Geoffrey Merran
 */
 
 #define _BSD_SOURCE
@@ -38,27 +38,39 @@ void		get_lumi_color(t_inter *inter, float cos_a, t_spot spot)
   get_correct_color(&inter->rgb.b);
 }
 
+void		apply_damier(t_inter *inter)
+{
+  float		x;
+  float		y;
+
+  x = inter->p.x;
+  y = inter->p.y;
+  if (inter->p.x < 0)
+    x -= 50;
+  if (inter->p.y < 0)
+    y -= 50;
+  if ((my_abs((int) x % 100) >= 50) &&
+      (my_abs((int) y % 100) >= 50))
+    {
+      inter->item.color.r = 0;
+      inter->item.color.g = 0;
+      inter->item.color.b = 0;
+      	}
+  if ((my_abs((int) x % 100) < 50) &&
+	  (my_abs((int) y % 100) < 50))
+    {
+      inter->item.color.r = 0;
+      inter->item.color.g = 0;
+      	  inter->item.color.b = 0;
+    }
+}
+
 void		apply_pertubation(t_inter *inter)
 {
   float		n;
 
   if (inter->item.effect == DAMIER)
-    {
-      if ((my_abs((int) inter->p.x % 100) >= 50) &&
-	  (my_abs((int) inter->p.y % 100) >= 50))
-      	{
-      	  inter->item.color.r = 0;
-      	  inter->item.color.g = 0;
-      	  inter->item.color.b = 0;
-      	}
-      if ((my_abs((int) inter->p.x % 100) < 50) &&
-	  (my_abs((int) inter->p.y % 100) < 50))
-      	{
-      	  inter->item.color.r = 0;
-      	  inter->item.color.g = 0;
-      	  inter->item.color.b = 0;
-      	}
-    }
+    apply_damier(inter);
   if (inter->item.effect == VAGUE)
     {
       n = sqrtf(pow(inter->n.x, 2) + pow(inter->n.y, 2) +
@@ -71,16 +83,14 @@ t_rgb		luminosity(t_spot spot, t_inter inter)
 {
   t_vector	l;
   float		cos_a;
-  float		norm;
-  float		norm_d;
 
   l.x = spot.pos.x - inter.p.x;
   l.y = spot.pos.y - inter.p.y;
   l.z = spot.pos.z - inter.p.z;
-  norm = sqrtf(pow(l.x, 2) + pow(l.y, 2) + pow(l.z, 2));
-  norm_d = sqrtf(pow(inter.n.x, 2) + pow(inter.n.y, 2) + pow(inter.n.z, 2));
+  normalize_vec(&l);
+  normalize_vec(&inter.n);
   cos_a = ((inter.n.x * l.x) + (inter.n.y * l.y)
-	   + (inter.n.z * l.z)) / (norm * norm_d);
+  	   + (inter.n.z * l.z));
   if (cos_a < 0.00001)
     cos_a = 0;
   get_lumi_color(&inter, cos_a, spot);

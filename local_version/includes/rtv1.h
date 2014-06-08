@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Sat Mar 15 18:20:39 2014 Geoffrey Merran
-** Last update Sun Jun  8 03:34:45 2014 Geoffrey Merran
+** Last update Sun Jun  8 07:09:15 2014 Geoffrey Merran
 */
 
 #ifndef RTV1_
@@ -27,7 +27,7 @@ typedef union	s_union
 
 typedef enum	s_type
   {
-    SPHERE,
+    SPHERE = 0,
     PLANE,
     CONE,
     CYLINDER,
@@ -36,7 +36,7 @@ typedef enum	s_type
 
 typedef enum	s_effect
   {
-    NONE,
+    NONE = 0,
     VAGUE,
     DAMIER
   }		t_effect;

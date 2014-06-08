@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:21:49 2014 nicolas ades
-** Last update Sun Jun  8 07:18:39 2014 Joris Bertomeu
+** Last update Sun Jun  8 08:53:05 2014 Joris Bertomeu
 */
 
 #include "editor.h"
@@ -28,7 +28,7 @@ void		create_combo(t_editor *editor)
 {
   editor->combo = gtk_combo_new();
   gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(editor->combo)->entry), FALSE);
-  gtk_combo_set_popdown_strings(GTK_COMBO(editor->combo), editor->list);
+  gtk_combo_set_popdown_strings(GTK_COMBO(editor->combo), create_list());
   gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(editor->combo)->entry), "SPHERE");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->combo, 550, 30);
 }
