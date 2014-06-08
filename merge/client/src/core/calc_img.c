@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Thu Jun  5 23:49:52 2014 Geoffrey Merran
-** Last update Sun Jun  8 05:21:14 2014 Geoffrey Merran
+** Last update Sun Jun  8 16:07:03 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -67,6 +67,16 @@ t_inter		get_pixel_color(t_vector pos_3d, t_scene *scene)
   return (inter);
 }
 
+void		apply_coeff(t_rgb *color, t_rgb save, float coeff)
+{
+  (*color).r = (save.r * coeff) +
+    ((*color).r * (1.0 - coeff));
+  (*color).g = (save.g * coeff) +
+    ((*color).g * (1.0 - coeff));
+  (*color).b = (save.b * coeff) +
+    ((*color).b * (1.0 - coeff));
+}
+
 unsigned int   	calc_image(t_pos pos, t_scene *scene)
 {
   t_vector	pos_3d;
@@ -82,11 +92,6 @@ unsigned int   	calc_image(t_pos pos, t_scene *scene)
   if (inter.k == 0)
     return (change_rgb(0, 0, 0));
   save = put_reflexion(inter, scene, pos_3d);
-  color.r = (save.r * inter.item.reflexion) +
-    (color.r * (1.0 - inter.item.reflexion));
-  color.g = (save.g * inter.item.reflexion) +
-    (color.g * (1.0 - inter.item.reflexion));
-  color.b = (save.b * inter.item.reflexion) +
-    (color.b * (1.0 - inter.item.reflexion));
+  apply_coeff(&color, save, inter.item.reflexion);
   return (change_rgb(color.r, color.g, color.b));
 }
