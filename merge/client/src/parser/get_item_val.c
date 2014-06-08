@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:04:28 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 11:12:33 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 12:11:21 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -72,6 +72,7 @@ void		get_effects(int i, char **conf, t_parser *parser)
   parser->tmp.brillance = get_effects_val("<BRILL>", conf, i);
   parser->tmp.transparence = get_effects_val("<TRANSP>", conf, i);
   parser->tmp.reflexion = get_effects_val("<REFLEXION>", conf, i);
+  parser->tmp.effect = (int)get_type_effect_val("<EFFECT>", conf, i);
 }
 
 void		get_size_item(int i, char **conf, t_parser *parser)

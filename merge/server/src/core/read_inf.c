@@ -5,12 +5,11 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sat Oct 26 18:03:57 2013 Jeremy Mediavilla
-** Last update Sat Jun  7 22:50:21 2014 Geoffrey Merran
+** Last update Sun Jun  8 11:21:15 2014 Jeremy Mediavilla
 */
 
-# define _BSD_SOURCE
-# define SIZE (4096)
 #include "core.h"
+# define SIZE (4096)
 
 char		*cat_list(t_list *list)
 {
@@ -22,10 +21,15 @@ char		*cat_list(t_list *list)
   len = 0;
   while (tmp != NULL)
     {
+      if (tmp->data == NULL)
+	{
+	  fprintf(stderr, "File corrupted, exiting\n");
+	  exit(EXIT_FAILURE);
+	}
       len = len + strlen(tmp->data);
       tmp = tmp->next;
     }
-  final = malloc((len + 1) * sizeof(char));
+  final = my_xmalloc((len + 1) * sizeof(char));
   memset(final, '\0', len + 1);
   while (list != NULL)
     {
