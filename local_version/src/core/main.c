@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sun Jun  8 15:21:21 2014 Geoffrey Merran
+** Last update Sun Jun  8 18:52:53 2014 Geoffrey Merran
 */
 
 #include "core.h"
@@ -36,7 +36,7 @@ void		fill_image(t_img *img, t_scene *scene)
 
 void	init_cam(t_cam *cam)
 {
-  init_vec(&cam->pos, -300, 0, 0);
+  init_vec(&cam->pos, -600, 0, 0);
   init_vec(&cam->angle, 0, 0, 0);
   cam->distance = 100;
 }

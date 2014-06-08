@@ -1,3 +1,13 @@
+##
+## Makefile for Makefile in /home/merran_g/work/c_igraph/raytracer/merge
+## 
+## Made by Geoffrey Merran
+## Login   <merran_g@epitech.net>
+## 
+## Started on  Sun Jun  8 20:34:56 2014 Geoffrey Merran
+## Last update Sun Jun  8 20:35:02 2014 Geoffrey Merran
+##
+
 SRC	=	help.c		\
 		main_btn.c	\
 		main_btn2.c	\
@@ -17,7 +27,7 @@ NAME	=	editor
 
 OBJ	=	$(SRC:.c=.o)
 
-CC	=	gcc `pkg-config --cflags --libs gtk+-2.0` -g3
+CC	=	gcc `pkg-config --cflags --libs gtk+-2.0` -O3
 
 RM	=	rm -f
 

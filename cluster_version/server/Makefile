@@ -5,14 +5,14 @@
 ## Login   <merran_g@epitech.net>
 ## 
 ## Started on  Sun Jun  8 16:50:21 2014 Geoffrey Merran
-## Last update Sun Jun  8 16:51:15 2014 Geoffrey Merran
+## Last update Sun Jun  8 20:34:25 2014 Geoffrey Merran
 ##
 
 RM		= rm -f
 
 CC		= cc `pkg-config --libs --cflags gtk+-2.0`
 
-CFLAGS		+= -Wextra -Wall -W -pedantic -ansi -g3 -I$(I_PATH)
+CFLAGS		+= -Wextra -Wall -W -pedantic -ansi -I$(I_PATH)
 
 I_PATH		= ./includes/
 

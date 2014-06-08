@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 18:18:35 2014 Geoffrey Merran
+** Last update Sun Jun  8 20:29:50 2014 Geoffrey Merran
 */
 
 #include "parser.h"
@@ -69,17 +69,17 @@ t_spot		*get_spots()
   t_rgb		n_color;
 
   spots = NULL;
+  /* init_vec(&n_pos, -220, -150, 0); */
+  /* init_rgb(&n_color, 255, 255, 255); */
+  /* add_spot(&spots, n_pos, n_color); */
+  init_vec(&n_pos, -560, 0, 60);
+  init_rgb(&n_color, 255, 255, 255);
+  add_spot(&spots, n_pos, n_color);
   init_vec(&n_pos, -600, 0, 0);
   init_rgb(&n_color, 255, 255, 255);
   add_spot(&spots, n_pos, n_color);
-  /* init_vec(&n_pos, -300, 0, 0); */
-  /* init_rgb(&n_color, 255, 255, 255); */
-  /* add_spot(&spots, n_pos, n_color); */
-  /* init_vec(&n_pos, 0, -200, 200); */
-  /* init_rgb(&n_color, 255, 255, 255); */
-  /* add_spot(&spots, n_pos, n_color); */
-  /* init_vec(&n_pos, 300, 150, 0); */
-  /* init_rgb(&n_color, 255, 255, 255); */
+  /* init_vec(&n_pos, 0, 0, 190); */
+  /* init_rgb(&n_color, 142, 4, 2); */
   /* add_spot(&spots, n_pos, n_color); */
   /* init_vec(&n_pos, 300, -150, 0); */
   /* init_rgb(&n_color, 255, 255, 255); */
@@ -107,45 +107,45 @@ t_node		*get_items()
   /* init_item(&new, n_pos, n_angle, SPHERE); */
   /* init_item2(&new, 50.0, n_color, 0, 0); */
   /* add_item(&items, new); */
-  new.effect = NONE;
+  new.effect = DAMIER;
   init_vec(&n_pos, 0, 0, -200);
   init_vec(&n_angle, 0, 0, 0);
-  init_rgb(&n_color, 244, 221, 119);
+  init_rgb(&n_color, 200, 181, 119);
   init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0, 0);
-  add_item(&items, new);
-  init_vec(&n_pos, -210, 0, 0);
-  init_vec(&n_angle, 0, -90, 0);
-  init_rgb(&n_color, 244, 221, 119);
-  init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0, 0);
+  init_item2(&new, 0, n_color, 0.5, 0);
   add_item(&items, new);
   new.effect = NONE;
+  init_vec(&n_pos, -210, 0, 0);
+  init_vec(&n_angle, 0, -90, 0);
+  init_rgb(&n_color, 200, 181, 119);
+  init_item(&new, n_pos, n_angle, PLANE);
+  init_item2(&new, 0, n_color, 0.5, 0);
+  add_item(&items, new);
   init_vec(&n_pos, 0, 0, 200);
   init_vec(&n_angle, 180, 0, 0);
-  init_rgb(&n_color, 244, 221, 119);
+  init_rgb(&n_color, 150, 131, 69);
   init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0.3, 0);
+  init_item2(&new, 0, n_color, 0.5, 0);
   add_item(&items, new);
   init_vec(&n_pos, 0, 200, 0);
   init_vec(&n_angle, 90, 0, 0);
   init_rgb(&n_color, 111, 130, 23);
   init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0.5, 0);
+  init_item2(&new, 0, n_color, 0.5, 0.2);
   add_item(&items, new);
   init_vec(&n_pos, 0, -200, 0);
   init_vec(&n_angle, -90, 0, 0);
-  init_rgb(&n_color, 149, 4, 1);
+  init_rgb(&n_color, 72, 4, 1);
   init_item(&new, n_pos, n_angle, PLANE);
-  init_item2(&new, 0, n_color, 0.5, 0);
+  init_item2(&new, 0, n_color, 0.5, 0.2);
   add_item(&items, new);
   /* new.effect = NONE; */
   /* new.transparence = 0; */
-  /* init_vec(&n_pos, -100, 0, -50); */
-  /* init_vec(&n_angle, 0, 0, 0); */
-  /* init_rgb(&n_color, 32, 255, 0); */
-  /* init_item(&new, n_pos, n_angle, SPHERE); */
-  /* init_item2(&new, 150.0, n_color, 0, 0.5); */
-  /* add_item(&items, new); */
+  init_vec(&n_pos, -500, 0, 0);
+  init_vec(&n_angle, 0, 0, 0);
+  init_rgb(&n_color, 208, 130, 45);
+  init_item(&new, n_pos, n_angle, SPHERE);
+  init_item2(&new, 50.0, n_color, 0.6, 0.5);
+  add_item(&items, new);
   return (items);
 }
