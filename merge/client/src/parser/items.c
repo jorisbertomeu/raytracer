@@ -5,7 +5,7 @@
 ** Login   <merran_g@epitech.net>
 ** 
 ** Started on  Sun Mar 16 01:54:50 2014 Geoffrey Merran
-** Last update Sun Jun  8 12:12:00 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 15:57:47 2014 Jeremy Mediavilla
 */
 
 #include "parser.h"
@@ -24,34 +24,29 @@ void		add_item(t_node **list, t_item new)
   tmp->item.brillance = new.brillance;
   tmp->item.transparence = new.transparence;
   tmp->item.reflexion = new.reflexion;
-  /* tmp->item.effect = new.effect; */
+  tmp->item.effect = new.effect;
   tmp->next = *list;
   *list = tmp;
 }
 
-float		get_type_effect_val(char *balise, char **conf, int i)
+int		get_type_effect_val(char *balise, char **conf, int i)
 {
-  int		j;
   int		len;
-  float		tmp;
+  int		val;
 
-  j = 0;
   len = strlen(balise);
-  while (j < 3)
+  val = 0;
+  while (conf[i] && strncmp(conf[i], balise, len) != 0)
+    i++;
+  if (conf[i])
     {
-      if (strncmp(conf[i], balise, len) == 0)
+      val = (int)get_effects_val2(balise, conf, i);
+      if (val < 0 || val > 2)
 	{
-	  tmp = get_fbalise_value_spec(conf[i], balise, i);
-	  if (tmp < 0 || tmp > 2)
-	    {
-	      fprintf(stderr, "Error on line %i : value must be \
-between 0 and 2\n", (i + 1));
-	      return (0);
-	    }
-	  return (tmp);
+	  fprintf(stderr, "Error on line %i : effect value \
+must be between 0 and 2\n", i);
+	  exit(0);
 	}
-      j++;
-      i++;
     }
-  return (0);
+  return (val);
 }

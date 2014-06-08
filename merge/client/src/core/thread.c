@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 00:54:54 2014 nicolas ades
-** Last update Sun Jun  8 11:39:48 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 12:30:50 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -83,7 +83,6 @@ void	rcv_trames(t_libclient *slib, t_info *info)
   while (n != size)
     n += read(slib->to_server_socket, &(info->file[n]), size - n);
   info->scene = get_scene(info->file);
-  printf("%s\n", info->file);
   free(info->file);
   read(slib->to_server_socket, &(info->nb_clients), sizeof(int));
   memset(slib->buffer, 0, 4096);

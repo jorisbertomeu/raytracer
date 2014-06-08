@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:05:27 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:58:35 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 12:32:36 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -33,12 +33,14 @@ void		init_scene(t_scene **scene)
   (*scene)->eye = my_xmalloc(sizeof(*((*scene)->eye)));
   init_vec(&(*scene)->eye->pos, 0, 0, 0);
   init_vec(&(*scene)->eye->angle, 0, 0, 0);
+  (*scene)->eye->distance = 100;
 }
 
 void		print_items(t_node *tmp)
 {
   printf("Item :\n x: %f y: %f z: %f\n", 
 	 tmp->item.pos.x, tmp->item.pos.y, tmp->item.pos.z);
+  printf("Type : %d", tmp->item.type);
   printf("Pos :\n x: %f y: %f z: %f\n", 
 	 tmp->item.angle.x, tmp->item.angle.y, tmp->item.angle.z);
   printf("r: %d g: %d b: %d\n", 
@@ -46,6 +48,7 @@ void		print_items(t_node *tmp)
   printf("Effects : brill %f trans %f reflex %f size %f\n", 
 	 tmp->item.brillance, tmp->item.transparence,
 	 tmp->item.reflexion, tmp->item.rayon);
+  printf("Effect : %d\n", tmp->item.effect);
 }
 
 void		aff_the_scene(t_scene *scene)

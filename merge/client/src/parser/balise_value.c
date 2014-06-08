@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:01:30 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 12:11:09 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 12:21:30 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -131,33 +131,6 @@ float		get_effects_val(char *balise, char **conf, int i)
 	    {
 	      fprintf(stderr, "Error on line %i : value must be \
 between 0 and 1\n", (i + 1));
-	    }
-	  return (tmp);
-	}
-      j++;
-      i++;
-    }
-  return (0);
-}
-
-float		get_type_effect_val(char *balise, char **conf, int i)
-{
-  int		j;
-  int		len;
-  float		tmp;
-
-  j = 0;
-  len = strlen(balise);
-  while (j < 3)
-    {
-      if (strncmp(conf[i], balise, len) == 0)
-	{
-	  tmp = get_fbalise_value_spec(conf[i], balise, i);
-	  if (tmp < 0 || tmp > 2)
-	    {
-	      fprintf(stderr, "Error on line %i : value must be \
-between 0 and 2\n", (i + 1));
-	      return (0);
 	    }
 	  return (tmp);
 	}

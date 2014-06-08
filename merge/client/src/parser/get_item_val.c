@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:04:28 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 12:11:21 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 15:49:02 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -72,7 +72,7 @@ void		get_effects(int i, char **conf, t_parser *parser)
   parser->tmp.brillance = get_effects_val("<BRILL>", conf, i);
   parser->tmp.transparence = get_effects_val("<TRANSP>", conf, i);
   parser->tmp.reflexion = get_effects_val("<REFLEXION>", conf, i);
-  parser->tmp.effect = (int)get_type_effect_val("<EFFECT>", conf, i);
+  parser->tmp.effect = get_type_effect_val("<EFFECT>", conf, i);
 }
 
 void		get_size_item(int i, char **conf, t_parser *parser)
@@ -83,6 +83,12 @@ void		get_size_item(int i, char **conf, t_parser *parser)
   while (conf[i] && strncmp(conf[i], "<SIZE>", 6) != 0)
     i++;
   if (conf[i])
-    size = get_effects_val2("<SIZE>", conf, i);;
+    size = get_effects_val2("<SIZE>", conf, i);
+  if (size < 0)
+    {
+      fprintf(stderr, "Error on line %i : you can't have a \
+negative size\n", i);
+      exit(0);
+    }
   parser->tmp.rayon = size;  
 }

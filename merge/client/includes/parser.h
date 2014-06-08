@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 07:29:05 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 11:54:37 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 15:49:15 2014 Jeremy Mediavilla
 */
 
 #ifndef		PARSER_H_
@@ -106,5 +106,6 @@ void		add_to_end(t_list *, char *);
 
 /* fonction dans items.c */
 void		add_item(t_node **, t_item);
+int		get_type_effect_val(char *, char **, int);
 
 #endif		/* PARSER_H_ */
