@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:22:29 2014 nicolas ades
-** Last update Sat Jun  7 21:38:26 2014 nicolas ades
+** Last update Sun Jun  8 01:49:21 2014 nicolas ades
 */
 
 #ifndef EDITOR_H_
@@ -93,11 +93,12 @@ void		create_save_win(GtkWidget *, t_editor *);
 void		editor(int, char **);
 void		create_box2(t_editor *);
 void		catch_sig(t_editor *);
-void		get_from_text_view(t_editor *);
+void		get_from_text_view(int, t_editor *);
 void		init_window(t_editor *);
 void		catch_event(GtkWidget *, gpointer );
 void		create_area(t_editor *);
 void		my_gtk_main_quit(GtkWidget *, t_editor *);
+void		generate_editor(t_editor *);
 void		my_widget_destroy(GtkWidget *, t_editor *);
 void		create_box1(t_editor *);
 
