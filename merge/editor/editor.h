@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:22:29 2014 nicolas ades
-** Last update Sun Jun  8 01:49:21 2014 nicolas ades
+** Last update Sun Jun  8 06:43:10 2014 nicolas ades
 */
 
 #ifndef EDITOR_H_
@@ -61,6 +61,8 @@ typedef struct	s_editor
   GtkWidget	*pOpa;
   GList		*list;
   GtkWidget	*combo;
+  GtkTextBuffer	*buffer;
+  int		star;
 }		t_editor;
 
 GList		*create_list();
@@ -100,6 +102,16 @@ void		create_area(t_editor *);
 void		my_gtk_main_quit(GtkWidget *, t_editor *);
 void		generate_editor(t_editor *);
 void		my_widget_destroy(GtkWidget *, t_editor *);
+void		set_all_sen_true(t_editor *);
+void		set_sen_eye(t_editor *);
+void		grising_cases(GtkWidget *, t_editor *);
+char		*get_final(t_editor *);
+char		*cts(const gchar *);
+char		*add_spot(t_editor *);
+char		*add_eye(t_editor *);
+char		*sort_number(const gchar *);
+char		*add_object(t_editor *);
+void		add_obj(GtkWidget *, t_editor *);
 void		create_box1(t_editor *);
 
 #endif /* EDITOR_H_ */

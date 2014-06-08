@@ -5,17 +5,37 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Fri Jun  6 16:35:09 2014 nicolas ades
-** Last update Fri Jun  6 16:35:43 2014 nicolas ades
+** Last update Sun Jun  8 06:48:26 2014 nicolas ades
 */
 
 #include "editor.h"
 
+GList		*create_list_effects()
+{
+  GList		*list;
+
+  list = NULL;
+  list = g_list_append(list, g_strdup_printf("None"));
+  list = g_list_append(list, g_strdup_printf("Wave"));
+  list = g_list_append(list, g_strdup_printf("Checkerboard"));
+  list = g_list_append(list, g_strdup_printf("Earth"));
+  list = g_list_append(list, g_strdup_printf("Wind"));
+  list = g_list_append(list, g_strdup_printf("Fire"));
+  list = g_list_append(list, g_strdup_printf("Spotto"));
+  return (list);
+}
+
 void		inser_color(t_editor *editor)
 {
-  editor->pColor = gtk_entry_new();
-  gtk_widget_set_size_request(editor->pColor, 80, 25);
+
+  editor->pColor = gtk_combo_new();
+  gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(editor->pColor)->entry), FALSE);
+  gtk_combo_set_popdown_strings(GTK_COMBO(editor->pColor),
+				create_list_effects());
+  gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(editor->pColor)->entry),
+		     "None");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pColor, 605, 220);
-  editor->pLabel = gtk_label_new("Color :");
+  editor->pLabel = gtk_label_new("Effects :");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 550, 225);
 }
 
@@ -23,9 +43,9 @@ void		inser_Brightness(t_editor *editor)
 {
   editor->pBright = gtk_entry_new();
   gtk_widget_set_size_request(editor->pBright, 80, 25);
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pBright, 840, 220);
+  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pBright, 900, 220);
   editor->pLabel = gtk_label_new("Brightness :");
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 750, 225);
+  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 810, 225);
 }
 
 void		inser_tx(t_editor *editor)
@@ -46,11 +66,3 @@ void		inser_ty(t_editor *editor)
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 550, 125);
 }
 
-void		inser_tz(t_editor *editor)
-{
-  editor->pTz = gtk_entry_new();
-  gtk_widget_set_size_request(editor->pTz, 80, 25);
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pTz, 585, 170);
-  editor->pLabel = gtk_label_new("T.z :");
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 550, 175);
-}

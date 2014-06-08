@@ -5,9 +5,10 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Fri Jun  6 16:33:18 2014 nicolas ades
-** Last update Sat Jun  7 20:37:26 2014 nicolas ades
+** Last update Sun Jun  8 06:45:44 2014 nicolas ades
 */
 
+#define _BSD_SOURCE
 #include "editor.h"
 
 void		catch_event(GtkWidget *pWidget, gpointer pData)
@@ -32,7 +33,8 @@ void		create_area(t_editor *editor)
 {
   editor->area = gtk_text_view_new();
   gtk_widget_set_size_request(editor->area, 500, 680);
-  gtk_fixed_put(GTK_FIXED(editor->frame), editor->area, 30, 30);
+  gtk_fixed_put(GTK_FIXED(editor->frame), editor->area, 30, 40);
+  editor->buffer = gtk_text_buffer_new(NULL);
 }
 
 void		create_box1(t_editor *editor)
@@ -47,13 +49,4 @@ void		create_box2(t_editor *editor)
   editor->pbox2 = gtk_frame_new("RGB Color");
   gtk_widget_set_size_request(editor->pbox2, 330, 50);
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pbox2, 550, 320);
-}
-
-void		catch_sig(t_editor *editor)
-{
-  g_signal_connect(G_OBJECT(editor->pWindow), "destroy", G_CALLBACK(catch_event), NULL);
-  g_signal_connect(G_OBJECT(editor->pQuitBtn), "clicked", G_CALLBACK(gtk_main_quit), NULL);
-  g_signal_connect(G_OBJECT(editor->pHelpBtn), "clicked", G_CALLBACK(create_help_win), editor);
-  g_signal_connect(G_OBJECT(editor->pSaveBtn), "clicked", G_CALLBACK(create_save_win), editor);
-  /* g_signal_connect(G_OBJECT(editor->pAddBtn), "clicked", G_CALLBACK(write_in_file), editor); */
 }

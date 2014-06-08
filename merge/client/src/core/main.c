@@ -1,11 +1,11 @@
 /*
-** main.c for rt in /home/jobertomeu/Work/raytracer/merge
+** main.c for  in /home/mediav_j/mabm/raytracer/merge/client
 ** 
-** Made by Joris Bertomeu
-** Login   <jobertomeu@epitech.net>
+** Made by Jeremy Mediavilla
+** Login   <mediav_j@epitech.net>
 ** 
-** Started on  Sat Jun  7 19:42:19 2014 Joris Bertomeu
-** Last update Sun Jun  8 01:00:33 2014 nicolas ades
+** Started on  Sun Jun  8 07:30:43 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 07:38:36 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -25,17 +25,25 @@ void	check_arg(int ac, char **argv)
 
 int		main(int ac, char **argv)
 {
-  t_libclient	*slib;
-  t_info	*info;
+  int		fd;
+  char		*buf;
 
-  check_arg(ac, argv);
-  info = malloc(sizeof(*info));
-  slib = malloc(sizeof(*slib));
-  start = 0;
-  while (1)
-    {
-      fill(argv, slib, info);
-      start = 1;
-    }
+  (void)ac;
+  fd = open(argv[1], O_RDONLY);
+  buf = my_read_inf(fd);
+  close(fd);
+  get_scene(buf);
+  /* t_libclient	*slib; */
+  /* t_info	*info; */
+
+  /* check_arg(ac, argv); */
+  /* info = malloc(sizeof(*info)); */
+  /* slib = malloc(sizeof(*slib)); */
+  /* start = 0; */
+  /* while (1) */
+  /*   { */
+  /*     fill(argv, slib, info); */
+  /*     start = 1; */
+  /*   } */
   return (0);
 }

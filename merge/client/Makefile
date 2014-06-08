@@ -5,7 +5,7 @@
 ## Login   <ades_n@epitech.net>
 ## 
 ## Started on  Sun Jun  8 00:57:30 2014 nicolas ades
-## Last update Sun Jun  8 00:58:34 2014 nicolas ades
+## Last update Sun Jun  8 07:32:49 2014 Jeremy Mediavilla
 ##
 
 RM		= rm -f
@@ -33,6 +33,7 @@ D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
 D_REFL		= src/reflexion/
 D_TMP		= src/clt_color/
+D_DIAVME	= src/parser/mediav_parser/
 
 SRC		= $(D_CORE)main.c			\
 		$(D_CORE)calc_img.c			\
@@ -45,21 +46,8 @@ SRC		= $(D_CORE)main.c			\
 		$(D_INTER)get_simple_pos2.c		\
 		$(D_INTER)find_inter.c			\
 		$(D_INTER)get_normal.c			\
-		$(D_PARSER)get_effects.c		\
-		$(D_PARSER)get_eye.c			\
-		$(D_PARSER)get_next_line.c		\
-		$(D_PARSER)get_shape.c			\
-		$(D_PARSER)get_spot.c			\
-		$(D_PARSER)init.c			\
-		$(D_PARSER)parser.c			\
-		$(D_PARSER)parser2.c			\
-		$(D_PARSER)my_str_to_wordtab.c		\
-		$(D_PARSER)my_alloc_init.c		\
-		$(D_PARSER)my_free_wordtab.c		\
-		$(D_PARSER)my_xrealloc.c		\
-		$(D_PARSER)xclose.c			\
-		$(D_PARSER)xfree.c			\
-		$(D_PARSER)xopen.c			\
+		$(D_PARSER)list.c			\
+		$(D_PARSER)read_inf.c			\
 		$(D_SHAPE)sphere.c			\
 		$(D_SHAPE)plan.c 			\
 		$(D_SHAPE)cylinder.c 			\
@@ -70,6 +58,7 @@ SRC		= $(D_CORE)main.c			\
 		$(D_REFL)reflexion.c			\
 		$(D_CORE)xfunction.c			\
 		$(D_TMP)stock_color.c			\
+		$(D_DIAVME)parser.c			\
 
 all:	libs $(NAME)
 
