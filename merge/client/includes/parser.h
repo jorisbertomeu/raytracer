@@ -5,7 +5,7 @@
 ** Login   <martel_c@epitech.net>
 **
 ** Started on  Tue May 13 17:50:34 2014 martelliere
-** Last update Fri Jun  6 18:07:06 2014 Geoffrey Merran
+** Last update Sat Jun  7 17:20:43 2014 Jeremy Mediavilla
 */
 
 #ifndef		PARSER_H_
@@ -41,6 +41,21 @@ typedef	struct	s_parser
 }		t_parser;
 
 typedef void(*ptr)(t_scene *, t_parser *);
+
+typedef		struct s_list
+{
+  char		*data;
+  struct s_list *next;
+  struct s_list *prev;
+}		t_list;
+
+/* fonctions dans list.c */
+
+t_list		*create_list(char *);
+void		add_after(t_list *, char *);
+void		add_before(t_list *, char *);
+void		remove_from_list(t_list *);
+void		add_to_end(t_list *, char *);
 
 /*
 ** PROTOTYPES

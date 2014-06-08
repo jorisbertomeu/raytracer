@@ -10,7 +10,7 @@ Auteurs :
 - Bertomeu Joris
 - Mediavilla Jeremy
 
-Guest : Marteliere Pierrik
+Guest : Marteliere Pierrick
 
 To people who want to test our Raytracer, you must install the minilibx in your system.
 If you have problem to launch the raytracer, don't hesitate to contact.

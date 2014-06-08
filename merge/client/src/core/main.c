@@ -5,15 +5,15 @@
 ** Login   <merran_g@epitech.net>
 **
 ** Started on  Fri Oct  4 09:11:03 2013 Geoffrey Merran
-** Last update Sat Jun  7 16:32:53 2014 Joris Bertomeu
+** Last update Sun Jun  8 07:02:17 2014 Jeremy Mediavilla
 */
 
-#include "core.h"
 #include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <libclient.h>
+#include "core.h"
 
 int	WIN_X;
 int	WIN_Y;
@@ -185,17 +185,25 @@ void	check_arg(int ac, char **argv)
 
 int		main(int ac, char **argv)
 {
-  t_libclient	*slib;
-  t_info	*info;
+  int		fd;
+  char		*buf;
 
-  check_arg(ac, argv);
-  info = malloc(sizeof(*info));
-  slib = malloc(sizeof(*slib));
-  start = 0;
-  while (1)
-    {
-      fill(argv, slib, info);
-      start = 1;
-    }
+  (void)ac;
+  fd = open(argv[1], O_RDONLY);
+  buf = my_read_inf(fd);
+  close(fd);
+  parser(buf);
+  /* t_libclient	*slib; */
+  /* t_info	*info; */
+
+  /* check_arg(ac, argv); */
+  /* info = malloc(sizeof(*info)); */
+  /* slib = malloc(sizeof(*slib)); */
+  /* start = 0; */
+  /* while (1) */
+  /*   { */
+  /*     fill(argv, slib, info); */
+  /*     start = 1; */
+  /*   } */
   return (0);
 }

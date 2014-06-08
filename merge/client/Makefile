@@ -23,6 +23,7 @@ D_SHAPE		= src/shape/
 D_LUM		= src/luminosity/
 D_REFL		= src/reflexion/
 D_TMP		= src/kekette/
+D_DIAVME	= src/parser/mediav_parser/
 
 SRC		= $(D_CORE)main.c			\
 		$(D_CORE)calc_img.c			\
@@ -48,6 +49,8 @@ SRC		= $(D_CORE)main.c			\
 		$(D_PARSER)xclose.c			\
 		$(D_PARSER)xfree.c			\
 		$(D_PARSER)xopen.c			\
+		$(D_PARSER)list.c			\
+		$(D_PARSER)read_inf.c			\
 		$(D_SHAPE)sphere.c			\
 		$(D_SHAPE)plan.c 			\
 		$(D_SHAPE)cylinder.c 			\
@@ -57,6 +60,7 @@ SRC		= $(D_CORE)main.c			\
 		$(D_REFL)reflexion.c			\
 		$(D_CORE)xfunction.c			\
 		$(D_TMP)stock_color.c			\
+		$(D_DIAVME)parser.c			\
 
 all:	libs $(NAME)
 
