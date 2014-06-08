@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 07:30:43 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:24:44 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:41:36 2014 Jeremy Mediavilla
 */
 
 #define _BSD_SOURCE
@@ -25,25 +25,25 @@ void	check_arg(int ac, char **argv)
 
 int		main(int ac, char **argv)
 {
-  int		fd;
-  char		*buf;
+  /* int		fd; */
+  /* char		*buf; */
 
-  (void)ac;
-  fd = open(argv[1], O_RDONLY);
-  buf = my_read_inf(fd);
-  close(fd);
-  get_scene(buf);
-  /* t_libclient	*slib; */
-  /* t_info	*info; */
+  /* (void)ac; */
+  /* fd = open(argv[1], O_RDONLY); */
+  /* buf = my_read_inf(fd); */
+  /* close(fd); */
+  /* get_scene(buf); */
+  t_libclient	*slib;
+  t_info	*info;
 
-  /* check_arg(ac, argv); */
-  /* info = malloc(sizeof(*info)); */
-  /* slib = malloc(sizeof(*slib)); */
-  /* start = 0; */
-  /* while (1) */
-  /*   { */
-  /*     fill(argv, slib, info); */
-  /*     start = 1; */
-  /*   } */
+  check_arg(ac, argv);
+  info = malloc(sizeof(t_info));
+  slib = malloc(sizeof(t_libclient));
+  start = 0;
+  while (1)
+    {
+      fill(argv, slib, info);
+      start = 1;
+    }
   return (0);
 }

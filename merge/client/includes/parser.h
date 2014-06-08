@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 07:29:05 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:34:56 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:54:37 2014 Jeremy Mediavilla
 */
 
 #ifndef		PARSER_H_
@@ -90,6 +90,8 @@ void		aff_the_scene(t_scene *);
 int		is_char_from_str(char, char *);
 int		nbr_char_begin(char *, char *);
 char		*remove_char_begin(char *, char *);
+char		*get_item_type(char *);
+int		type_val(char *);
 
 /* fonctions dans read_inf.c */
 char		*my_read_inf(int);
