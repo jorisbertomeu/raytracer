@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:21:49 2014 nicolas ades
-** Last update Sun Jun  8 01:48:52 2014 nicolas ades
+** Last update Sun Jun  8 07:18:39 2014 Joris Bertomeu
 */
 
 #include "editor.h"
@@ -15,13 +15,12 @@ GList		*create_list()
   GList		*list;
 
   list = NULL;
-  list = g_list_append(list, g_strdup_printf("Circle"));
-  list = g_list_append(list, g_strdup_printf("Plan"));
-  list = g_list_append(list, g_strdup_printf("Effects"));
-  list = g_list_append(list, g_strdup_printf("Cylinder"));
-  list = g_list_append(list, g_strdup_printf("Cone"));
-  list = g_list_append(list, g_strdup_printf("Eye"));
-  list = g_list_append(list, g_strdup_printf("Spot"));
+  list = g_list_append(list, g_strdup_printf("SPHERE"));
+  list = g_list_append(list, g_strdup_printf("PLAN"));
+  list = g_list_append(list, g_strdup_printf("CYLINDRE"));
+  list = g_list_append(list, g_strdup_printf("CONE"));
+  list = g_list_append(list, g_strdup_printf("EYE"));
+  list = g_list_append(list, g_strdup_printf("SPOT"));
   return (list);
 }
 
@@ -30,7 +29,7 @@ void		create_combo(t_editor *editor)
   editor->combo = gtk_combo_new();
   gtk_entry_set_editable(GTK_ENTRY(GTK_COMBO(editor->combo)->entry), FALSE);
   gtk_combo_set_popdown_strings(GTK_COMBO(editor->combo), editor->list);
-  gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(editor->combo)->entry), "Circle");
+  gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(editor->combo)->entry), "SPHERE");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->combo, 550, 30);
 }
 
@@ -66,7 +65,7 @@ void		editor(int ac, char **av)
 {
   t_editor	*editor;
 
-  editor = malloc(sizeof(*editor));
+  editor = malloc(sizeof(t_editor));
   gtk_init(&ac, &av);
   init_window(editor);
   editor->list = create_list();
