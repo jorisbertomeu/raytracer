@@ -13,14 +13,33 @@ OBJ		= $(SRC:.c=.o)
 
 D_CORE		= src/core/
 D_FUNC		= src/func/
+D_GUI		= src/gui/
 
-SRC		= $(D_CORE)main.c			\
-		$(D_CORE)list.c				\
-		$(D_CORE)read_inf.c			\
-		$(D_CORE)gui.c				\
-		$(D_FUNC)get_next_line.c		\
-		$(D_FUNC)my_alloc_init.c		\
-		$(D_FUNC)xmalloc.c			\
+SRC		= 	$(D_CORE)main.c				\
+			$(D_CORE)list.c				\
+			$(D_CORE)server_1.c			\
+			$(D_CORE)server_2.c			\
+			$(D_CORE)server_3.c			\
+			$(D_CORE)server_4.c			\
+			$(D_CORE)server_5.c			\
+			$(D_CORE)server_6.c			\
+			$(D_CORE)server_7.c			\
+			$(D_CORE)server_8.c			\
+			$(D_CORE)server_9.c			\
+			$(D_CORE)server_10.c			\
+			$(D_CORE)read_inf.c			\
+			$(D_FUNC)get_next_line.c		\
+			$(D_FUNC)my_alloc_init.c		\
+			$(D_FUNC)xmalloc.c			\
+			$(D_GUI)gui.c				\
+			$(D_GUI)gui_2.c				\
+			$(D_GUI)gui_3.c				\
+			$(D_GUI)gui_4.c				\
+			$(D_GUI)gui_5.c				\
+			$(D_GUI)gui_6.c				\
+			$(D_GUI)gui_7.c				\
+			$(D_GUI)gui_8.c				\
+			$(D_GUI)gui_9.c				\
 
 all:	$(NAME)
 
