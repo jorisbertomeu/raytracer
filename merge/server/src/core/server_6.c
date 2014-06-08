@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 03:11:37 2014 nicolas ades
-** Last update Sun Jun  8 04:38:49 2014 nicolas ades
+** Last update Sun Jun  8 07:53:51 2014 Joris Bertomeu
 */
 
 #include "core.h"
@@ -30,7 +30,6 @@ void	*refresh_img_func_full(void *data)
     }
   if (g_fflag == 1)
     {
-      printf("OUUUT\n");
       return (NULL);
     }
   refresh_imgf(NULL, gui);

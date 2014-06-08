@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Wed Jun  4 13:22:29 2014 nicolas ades
-** Last update Sun Jun  8 06:43:10 2014 nicolas ades
+** Last update Sun Jun  8 08:55:52 2014 Joris Bertomeu
 */
 
 #ifndef EDITOR_H_
@@ -63,6 +63,8 @@ typedef struct	s_editor
   GtkWidget	*combo;
   GtkTextBuffer	*buffer;
   int		star;
+  GtkWidget	*sizeo;
+  GtkWidget	*sizeol;
 }		t_editor;
 
 GList		*create_list();

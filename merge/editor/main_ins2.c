@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Fri Jun  6 16:35:53 2014 nicolas ades
-** Last update Sat Jun  7 20:18:55 2014 nicolas ades
+** Last update Sun Jun  8 08:56:56 2014 Joris Bertomeu
 */
 
 #include "editor.h"
@@ -17,6 +17,13 @@ void		inser_rx(t_editor *editor)
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pRx, 785, 75);
   editor->pLabel = gtk_label_new("R.x :");
   gtk_fixed_put(GTK_FIXED(editor->frame), editor->pLabel, 750, 80);
+
+  editor->sizeo = gtk_entry_new();
+  gtk_widget_set_size_request(editor->sizeo, 80, 25);
+  gtk_fixed_put(GTK_FIXED(editor->frame), editor->sizeo, 940, 75);
+  editor->sizeol = gtk_label_new("Size :");
+  gtk_fixed_put(GTK_FIXED(editor->frame), editor->sizeol, 900, 80);
+
 }
 
 void		inser_ry(t_editor *editor)
