@@ -12,7 +12,7 @@ RM		= rm -f
 
 CC		= cc `pkg-config --libs --cflags gtk+-2.0`
 
-CFLAGS		+= -Wextra -Wall -W -pedantic -ansi -O3 -I$(I_PATH)
+CFLAGS		+= -Wextra -Wall -W -pedantic -ansi -g3 -I$(I_PATH)
 
 I_PATH		= ./includes/
 

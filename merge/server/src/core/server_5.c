@@ -5,7 +5,7 @@
 ** Login   <ades_n@epitech.net>
 ** 
 ** Started on  Sun Jun  8 03:11:08 2014 nicolas ades
-** Last update Sun Jun  8 03:11:28 2014 nicolas ades
+** Last update Sun Jun  8 18:03:48 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -13,9 +13,11 @@
 void	do_sock_client(t_libserver *libserver, fd_set rfds, t_gui_serv *gui)
 {
   int	i;
+  int	tmp;
   int	total;
 
   i = 0;
+  tmp = 1;
   total = 18 * sizeof(unsigned int);
   while (i < 6)
     {
@@ -23,9 +25,12 @@ void	do_sock_client(t_libserver *libserver, fd_set rfds, t_gui_serv *gui)
       if (FD_ISSET(libserver->fds[i], &rfds) == 1)
 	{
 	  memset(libserver->buffer, 0, 4096);
-	  while (libserver->n != total)
-	    libserver->n += read(libserver->fds[i], &(libserver->tab[libserver->n]),
-				 total - libserver->n);
+	  while (libserver->n != total && tmp > 0)
+	    {
+	      tmp = read(libserver->fds[i], &(libserver->tab[libserver->n]),
+			 total - libserver->n);
+	      libserver->n += tmp;
+	    }
 	  if (libserver->n <= 0)
 	    print_error("Socket Read error");
 	  else
