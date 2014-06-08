@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 10:05:27 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:31:31 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 10:58:35 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -43,7 +43,7 @@ void		print_items(t_node *tmp)
 	 tmp->item.angle.x, tmp->item.angle.y, tmp->item.angle.z);
   printf("r: %d g: %d b: %d\n", 
 	 tmp->item.color.r, tmp->item.color.g, tmp->item.color.b);
-  printf("Effects : brill %f trans %f reflex %f size %f", 
+  printf("Effects : brill %f trans %f reflex %f size %f\n", 
 	 tmp->item.brillance, tmp->item.transparence,
 	 tmp->item.reflexion, tmp->item.rayon);
 }

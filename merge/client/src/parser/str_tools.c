@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sun Jun  8 09:59:58 2014 Jeremy Mediavilla
-** Last update Sun Jun  8 10:00:24 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 11:58:09 2014 Jeremy Mediavilla
 */
 
 #include "core.h"
@@ -64,4 +64,38 @@ char		*remove_char_begin(char *str, char *delim)
       j++;
     }
   return (final);
+}
+
+char		*get_item_type(char *balise)
+{
+  int		len;
+  char		*final;
+  int		i;
+  int		j;
+
+  i = 1;
+  j = 0;
+  len = strlen(balise);
+  final = my_xmalloc(len * sizeof(char ));
+  memset(final, '\0', len);
+  while (balise[i] && balise[i] != '>')
+    {
+      final[j] = balise[i]; 
+      i++;
+      j++;
+    }
+  return (final);
+}
+
+int		type_val(char *type)
+{
+  if (strcmp(type, "SPHERE") == 0)
+    return (SPHERE);
+  if (strcmp(type, "PLAN") == 0)
+    return (PLANE);
+  if (strcmp(type, "CONE") == 0)
+    return (CONE);
+  if (strcmp(type, "CYLINDRE") == 0)
+    return (CYLINDER);
+  return (-1);
 }

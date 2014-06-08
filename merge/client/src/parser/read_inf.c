@@ -5,7 +5,7 @@
 ** Login   <mediav_j@epitech.net>
 ** 
 ** Started on  Sat Oct 26 18:03:57 2013 Jeremy Mediavilla
-** Last update Mon Jun  2 09:42:11 2014 Jeremy Mediavilla
+** Last update Sun Jun  8 10:48:11 2014 Jeremy Mediavilla
 */
 
 #include "parser.h"
@@ -21,6 +21,11 @@ char		*cat_list(t_list *list)
   len = 0;
   while (tmp != NULL)
     {
+      if (tmp->data == NULL)
+	{
+	  fprintf(stderr, "File corrupted, exiting\n");
+	  exit(EXIT_FAILURE);
+	}
       len = len + strlen(tmp->data);
       tmp = tmp->next;
     }
